@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MVCPrueba.Models;
+using ProyectoLojackABM.Models;
 using System.Threading;
 using System.Globalization;
 
-namespace MVCPrueba.Controllers
+namespace ProyectoLojackABM.Controllers
 {
     public class NivelServicioController : Controller
     {

@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Web.Configuration;
 
-namespace MVCPrueba.Models
+namespace ProyectoLojacABM.Models
 {
     public class CodeDB
     {

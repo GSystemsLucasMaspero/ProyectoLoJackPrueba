@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace MVCPrueba.Models
+namespace ProyectoLojackABM.Models
 {
     public class NivelServicioModel
     {
