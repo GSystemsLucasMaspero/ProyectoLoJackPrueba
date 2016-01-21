@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Web.Configuration;
 
-namespace ProyectoLojacABM.Models
+namespace ProyectoLojackABM.Models
 {
     public class CodeDB
     {
@@ -18,14 +18,11 @@ namespace ProyectoLojacABM.Models
             connection = new SqlConnection(@WebConfigurationManager.ConnectionStrings[Connection].ToString());
             try
             {
-                bool b = true;
                 if (connection.State.ToString() != "Open")
-                {
                     connection.Open();
-                }
-                return b;
+                return true;
             }
-            catch (SqlException ex)
+            catch(SqlException ex)
             {
                 return false;
             }
@@ -65,8 +62,7 @@ namespace ProyectoLojacABM.Models
                 if (connection.State.ToString() == "Open")
                 {
                     SqlCommand cmd = new SqlCommand(query, connection);
-                    cmd.ExecuteNonQuery();
-                    LastID = this.ToInt(cmd.ExecuteScalar());
+                    LastID = cmd.ExecuteNonQuery();
                 }
                 return this.ToInt(LastID);
             }

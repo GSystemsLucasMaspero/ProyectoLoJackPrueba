@@ -12,8 +12,6 @@ namespace ProyectoLojackABM.Models
         public DateTime? fechaBaja { get; set; }
         public int? usuarioBaja { get; set; }
         [Required]
-        public int idNivelServicio { get; set; }
-        [Required]
         [StringLength(20)]
         public string descripcion { get; set; }
         [Required]

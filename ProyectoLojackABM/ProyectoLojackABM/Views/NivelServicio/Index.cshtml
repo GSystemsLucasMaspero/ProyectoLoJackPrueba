@@ -11,29 +11,13 @@
     @Html.ValidationSummary();
     @Html.AntiForgeryToken();
 
-    // 1
-    @Html.LabelFor(m => m.idNivelServicio)
-    @Html.TextBoxFor(m => m.idNivelServicio)
-
     // 2
-    @Html.LabelFor(m => m.descripcion)
+    @Html.Label("Descripción")
     @Html.TextBoxFor(m => m.descripcion)
     
-    // 3
-    @Html.LabelFor(m => m.fechaAlta)
-    @Html.TextBoxFor(m => m.fechaAlta)
-    
     // 4
-    @Html.LabelFor(m => m.usuarioAlta)
+    @Html.Label("ID Usuario")
     @Html.TextBoxFor(m => m.usuarioAlta)
-    
-    // 5
-    @Html.LabelFor(m => m.fechaBaja)
-    @Html.TextBoxFor(m => m.fechaBaja)
-    
-    // 6
-    @Html.LabelFor(m => m.usuarioBaja)
-    @Html.TextBoxFor(m => m.usuarioBaja)
 
     <input type="submit" value="Save" name="Save" />
 }

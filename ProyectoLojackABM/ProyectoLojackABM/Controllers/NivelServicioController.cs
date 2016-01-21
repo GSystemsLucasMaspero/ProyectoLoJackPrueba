@@ -24,27 +24,20 @@ namespace ProyectoLojackABM.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 DB.Open();
-                var originalCulture = Thread.CurrentThread.CurrentCulture;
-                var usCulture = new CultureInfo("en-US");
-                if (!originalCulture.Equals(usCulture)) Thread.CurrentThread.CurrentCulture = usCulture; 
-                var fechaAlta = f.fechaAlta.ToShortDateString();
-                var fechaBaja = f.fechaBaja != null ? "'" + f.fechaBaja.ToString() + "'" : "null";
-                var usuarioBaja = f.usuarioBaja != null ? "'" + f.usuarioBaja.ToString() + "'" : "null";
-                var consult = string.Format(@"INSERT INTO 
+
+                // Formatear la fecha para que la base de datos la reconozca
+                var fechaAlta = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+              
+                var sqlCommandInsert = string.Format(@"INSERT INTO 
                     NivelServicio(descripcion,fechaAlta,usuarioAlta,fechaBaja,usuarioBaja) 
-                    VALUES('{0}','{1}','{2}',{3},{4})", f.descripcion, fechaAlta, f.usuarioAlta, fechaBaja, usuarioBaja);
-                //string consult1 = "INSERT INTO NivelServicio(descripcion,fechaAlta,usuarioAlta,fechaBaja,usuarioBaja) VALUES("'" + f.descripcion + "','" + fechaAlta + "','" + f.usuarioAlta + "','" + f.fechaBaja + "','" + f.usuarioBaja + "')";
-                int i = DB.DataInsert(consult);
-                if (i > 0)
-                {
-                    ModelState.AddModelError("Success", "Save Success");
-                }
-                else
-                {
+                    VALUES('{0}','{1}','{2}',{3},{4})", f.descripcion, fechaAlta, f.usuarioAlta, "null", "null");
+                
+                // Si inserte exitosamente,
+                int i = DB.DataInsert(sqlCommandInsert);
+                if (i <= 0) 
                     ModelState.AddModelError("Error", "Save Error");
-                }
+
                 DB.Close();
             }
             return View("Index");
