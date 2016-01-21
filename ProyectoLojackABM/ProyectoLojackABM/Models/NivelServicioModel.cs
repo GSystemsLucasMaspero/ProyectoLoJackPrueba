@@ -8,7 +8,7 @@ namespace ProyectoLojackABM.Models
 {
     public class NivelServicioModel
     {
-        
+        public int idNivelServicio { get; set; }
         public DateTime? fechaBaja { get; set; }
         public int? usuarioBaja { get; set; }
         [Required]

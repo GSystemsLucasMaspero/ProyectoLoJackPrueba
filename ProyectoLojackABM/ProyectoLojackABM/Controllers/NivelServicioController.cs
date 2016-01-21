@@ -6,16 +6,34 @@ using System.Web.Mvc;
 using ProyectoLojackABM.Models;
 using System.Threading;
 using System.Globalization;
+using System.Data;
 
 namespace ProyectoLojackABM.Controllers
 {
     public class NivelServicioController : Controller
     {
-        protected CodeDB DB = new CodeDB();
+        protected DBManager DB = new DBManager();
 
         public ActionResult Index()
         {
             return View();
+        }
+
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ShowList(NivelServicioModel f)
+        {
+            DB.Open();
+
+            DataTable list = DB.GetData("NivelServicio");
+            if (list != null)
+            {
+                
+            }
+
+            DB.Close();
+            return View("Index");
         }
 
         [HttpPost]

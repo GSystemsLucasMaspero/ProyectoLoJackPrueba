@@ -1,0 +1,24 @@
+﻿@{model ProyectoLojackABM.Models.NivelServicioModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Alta</h2>
+
+@using (Html.BeginForm("SaveDataNivelServicio", "NivelServicio", new { @id = "Form" }, FormMethod.Post))
+{
+    @Html.ValidationSummary();
+    @Html.AntiForgeryToken();
+    
+
+    // 2
+    @Html.Label("Descripción")
+    @Html.TextBoxFor(m => m.descripcion)
+    
+    // 4
+    @Html.Label("ID Usuario")
+    @Html.TextBoxFor(m => m.usuarioAlta)
+
+    <input type="submit" value="Save" name="Save" />
+}

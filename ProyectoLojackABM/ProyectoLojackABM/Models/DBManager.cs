@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Web.Configuration;
+using System.Data;
 
 namespace ProyectoLojackABM.Models
 {
-    public class CodeDB
+    public class DBManager
     {
         // Conexión de variables
         protected SqlConnection connection;
@@ -69,6 +70,26 @@ namespace ProyectoLojackABM.Models
             catch
             {
                 return 0;
+            }
+        }
+
+        public DataTable GetData(string table)
+        {
+            try
+            {
+                if (connection.State.ToString() == "Open")
+                {
+                    string query = "SELECT * FROM [" + table + "]";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    DataTable dt = new DataTable();
+                    dt.Load(cmd.ExecuteReader());
+                    return dt;
+                }
+                return null;
+            }
+            catch
+            {
+                return null;
             }
         }
 

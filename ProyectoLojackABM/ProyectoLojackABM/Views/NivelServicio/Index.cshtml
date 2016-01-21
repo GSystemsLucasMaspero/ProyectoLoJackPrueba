@@ -1,23 +1,35 @@
-﻿@model ProyectoLojackABM.Models.NivelServicioModel
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Nivel Servicio</h2>
-
-@using (Html.BeginForm("SaveDataNivelServicio", "NivelServicio", new { @id = "Form" }, FormMethod.Post))
+﻿<?php
+$con=mysql_connect("neutrino2","desa","desa");
+// Check connection
+if (mysqli_connect_errno())
 {
-    @Html.ValidationSummary();
-    @Html.AntiForgeryToken();
-
-    // 2
-    @Html.Label("Descripción")
-    @Html.TextBoxFor(m => m.descripcion)
-    
-    // 4
-    @Html.Label("ID Usuario")
-    @Html.TextBoxFor(m => m.usuarioAlta)
-
-    <input type="submit" value="Save" name="Save" />
+echo "Failed to connect to MySQL: " . mysqli_connect_error();
+} else {
+echo "BIEN ";
 }
+
+$result = mysqli_query($con,"SELECT * FROM Persons");
+
+echo "<table border='1'>
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+    </tr>";
+
+    while($row = mysqli_fetch_array($result))
+    {
+    echo "
+    <tr>
+        ";
+        echo "
+        <td>" . $row['FirstName'] . "</td>";
+        echo "
+        <td>" . $row['LastName'] . "</td>";
+        echo "
+    </tr>";
+    }
+    echo "
+</table>";
+
+mysqli_close($con);
+?>
