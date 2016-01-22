@@ -12,27 +12,34 @@ namespace ProyectoLojackABM.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipo
+    public partial class Usuario
     {
-        public int idEquipo { get; set; }
-        public string identificador { get; set; }
-        public string nroSerie { get; set; }
-        public bool primario { get; set; }
-        public int idEquipoTipo { get; set; }
-        public int cadencia { get; set; }
+        public int idUsuario { get; set; }
+        public int idCliente { get; set; }
+        public string userLogin { get; set; }
+        public string nombre { get; set; }
+        public string apellido { get; set; }
+        public int idSector { get; set; }
+        public string password { get; set; }
+        public Nullable<System.DateTime> lastExpiredPassword { get; set; }
+        public bool operador { get; set; }
+        public Nullable<bool> operadorSeguridad { get; set; }
+        public bool supervisor { get; set; }
+        public string email { get; set; }
         public System.DateTime fechaAlta { get; set; }
         public int usuarioAlta { get; set; }
-        public string versionFirmware { get; set; }
-        public string versionProgramacion { get; set; }
         public System.DateTime fechaModificacion { get; set; }
         public int usuarioModificacion { get; set; }
         public Nullable<System.DateTime> fechaBaja { get; set; }
         public Nullable<int> usuarioBaja { get; set; }
-        public string estadoSd { get; set; }
+        public int nivelAuditoria { get; set; }
+        public int perfilWindows { get; set; }
+        public int perfilWeb { get; set; }
+        public bool multipais { get; set; }
+        public bool demo { get; set; }
+        public int diasDemo { get; set; }
         public Nullable<int> idCuenta { get; set; }
-        public bool portable { get; set; }
     
         public virtual Cuenta Cuenta { get; set; }
-        public virtual EquipoTipo EquipoTipo { get; set; }
     }
 }

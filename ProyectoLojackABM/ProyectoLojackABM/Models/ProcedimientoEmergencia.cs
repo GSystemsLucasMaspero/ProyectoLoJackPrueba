@@ -12,27 +12,20 @@ namespace ProyectoLojackABM.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipo
+    public partial class ProcedimientoEmergencia
     {
-        public int idEquipo { get; set; }
-        public string identificador { get; set; }
-        public string nroSerie { get; set; }
-        public bool primario { get; set; }
-        public int idEquipoTipo { get; set; }
-        public int cadencia { get; set; }
-        public System.DateTime fechaAlta { get; set; }
+        public int idProcedimiento { get; set; }
+        public string nombre { get; set; }
+        public string nombrearchivo { get; set; }
+        public byte[] archivo { get; set; }
         public int usuarioAlta { get; set; }
-        public string versionFirmware { get; set; }
-        public string versionProgramacion { get; set; }
-        public System.DateTime fechaModificacion { get; set; }
+        public System.DateTime fechaAlta { get; set; }
         public int usuarioModificacion { get; set; }
-        public Nullable<System.DateTime> fechaBaja { get; set; }
+        public System.DateTime fechaModificacion { get; set; }
         public Nullable<int> usuarioBaja { get; set; }
-        public string estadoSd { get; set; }
+        public Nullable<System.DateTime> fechaBaja { get; set; }
         public Nullable<int> idCuenta { get; set; }
-        public bool portable { get; set; }
     
         public virtual Cuenta Cuenta { get; set; }
-        public virtual EquipoTipo EquipoTipo { get; set; }
     }
 }

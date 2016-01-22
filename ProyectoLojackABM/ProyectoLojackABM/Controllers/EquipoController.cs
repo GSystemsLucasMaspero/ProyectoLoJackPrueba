@@ -11,14 +11,14 @@ namespace ProyectoLojackABM.Controllers
 {
     public class EquipoController : Controller
     {
-        private Lojack_PruebaEntities2 db = new Lojack_PruebaEntities2();
+        private Lojack_PruebaEntities db = new Lojack_PruebaEntities();
 
         //
         // GET: /Equipo/
 
         public ActionResult Index()
         {
-            var equipoes = db.Equipoes.Include(e => e.EquipoTipo);
+            var equipoes = db.Equipoes.Include(e => e.Cuenta).Include(e => e.EquipoTipo);
             return View(equipoes.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace ProyectoLojackABM.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre");
             ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion");
             return View();
         }
@@ -58,6 +59,7 @@ namespace ProyectoLojackABM.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
             ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
             return View(equipo);
         }
@@ -72,6 +74,7 @@ namespace ProyectoLojackABM.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
             ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
             return View(equipo);
         }
@@ -89,6 +92,7 @@ namespace ProyectoLojackABM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
             ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
             return View(equipo);
         }

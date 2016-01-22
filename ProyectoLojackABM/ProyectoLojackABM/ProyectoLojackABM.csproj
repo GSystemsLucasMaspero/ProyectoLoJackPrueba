@@ -191,48 +191,41 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBManager.cs" />
-    <Compile Include="Models\Entidad.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Entidad.Context.tt</DependentUpon>
+    <Compile Include="Models\Cuenta.cs">
+      <DependentUpon>LucasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entidad.cs">
-      <DependentUpon>Entidad.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entidad.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Entidad.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entidad1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Entidad.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Equipo.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Equipo.Context.tt</DependentUpon>
+      <DependentUpon>LucasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Equipo.cs">
-      <DependentUpon>Equipo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Equipo.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Equipo.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Equipo1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Equipo.tt</DependentUpon>
+      <DependentUpon>LucasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EquipoTipo.cs">
-      <DependentUpon>Equipo.tt</DependentUpon>
+      <DependentUpon>LucasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LucasDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LucasDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LucasDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LucasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LucasDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LucasDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\NivelServicio.cs">
-      <DependentUpon>Entidad.tt</DependentUpon>
+      <DependentUpon>LucasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProcedimientoEmergencia.cs">
+      <DependentUpon>LucasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>LucasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -299,39 +292,22 @@
     <Content Include="Global.asax" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <EntityDeploy Include="Models\Entidad.edmx">
+    <EntityDeploy Include="Models\LucasDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Entidad.Designer.cs</LastGenOutput>
+      <LastGenOutput>LucasDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Entidad.Context.tt">
+    <Content Include="Models\LucasDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Entidad.edmx</DependentUpon>
-      <LastGenOutput>Entidad.Context.cs</LastGenOutput>
+      <DependentUpon>LucasDB.edmx</DependentUpon>
+      <LastGenOutput>LucasDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Entidad.edmx.diagram">
-      <DependentUpon>Entidad.edmx</DependentUpon>
+    <Content Include="Models\LucasDB.edmx.diagram">
+      <DependentUpon>LucasDB.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Entidad.tt">
+    <Content Include="Models\LucasDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Entidad.edmx</DependentUpon>
-      <LastGenOutput>Entidad1.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\Equipo.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Equipo.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Equipo.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Equipo.edmx</DependentUpon>
-      <LastGenOutput>Equipo.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Equipo.edmx.diagram">
-      <DependentUpon>Equipo.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Equipo.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Equipo.edmx</DependentUpon>
-      <LastGenOutput>Equipo1.cs</LastGenOutput>
+      <DependentUpon>LucasDB.edmx</DependentUpon>
+      <LastGenOutput>LucasDB.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -385,16 +361,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Entidad\Index.cshtml" />
-    <Content Include="Views\Entidad\Details.cshtml" />
-    <Content Include="Views\Entidad\Create.cshtml" />
-    <Content Include="Views\Entidad\Edit.cshtml" />
-    <Content Include="Views\Entidad\Delete.cshtml" />
-    <Content Include="Views\NivelServicio\Index.cshtml" />
-    <Content Include="Views\NivelServicio\Details.cshtml" />
-    <Content Include="Views\NivelServicio\Create.cshtml" />
-    <Content Include="Views\NivelServicio\Edit.cshtml" />
-    <Content Include="Views\NivelServicio\Delete.cshtml" />
     <Content Include="Views\Equipo\Index.cshtml" />
     <Content Include="Views\Equipo\Details.cshtml" />
     <Content Include="Views\Equipo\Create.cshtml" />
@@ -405,6 +371,16 @@
     <Content Include="Views\EquipoTipo\Create.cshtml" />
     <Content Include="Views\EquipoTipo\Edit.cshtml" />
     <Content Include="Views\EquipoTipo\Delete.cshtml" />
+    <Content Include="Views\Entidad\Index.cshtml" />
+    <Content Include="Views\Entidad\Details.cshtml" />
+    <Content Include="Views\Entidad\Create.cshtml" />
+    <Content Include="Views\Entidad\Edit.cshtml" />
+    <Content Include="Views\Entidad\Delete.cshtml" />
+    <Content Include="Views\NivelServicio\Index.cshtml" />
+    <Content Include="Views\NivelServicio\Details.cshtml" />
+    <Content Include="Views\NivelServicio\Create.cshtml" />
+    <Content Include="Views\NivelServicio\Edit.cshtml" />
+    <Content Include="Views\NivelServicio\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

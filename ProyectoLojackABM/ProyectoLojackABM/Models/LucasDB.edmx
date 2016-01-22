@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Lojack_PruebaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="idCuenta" />
+          </Key>
+          <Property Name="idCuenta" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idClienteControlador" Type="int" Nullable="false" />
+          <Property Name="mapGuideEnabled" Type="bit" />
+          <Property Name="googleMapsEnabled" Type="bit" />
+          <Property Name="mapsEnabled" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entidad">
+          <Key>
+            <PropertyRef Name="idEntidad" />
+          </Key>
+          <Property Name="idEntidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="idNivelServicio" Type="int" Nullable="false" />
+          <Property Name="plantillaSuceso" Type="varchar" MaxLength="50" />
+          <Property Name="cadenciaReporte" Type="int" Nullable="false" />
+          <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="usuarioAlta" Type="int" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="int" Nullable="false" />
+          <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="usuarioBaja" Type="int" />
+          <Property Name="comentario" Type="varchar" MaxLength="40" />
+          <Property Name="telefono" Type="varchar" MaxLength="255" />
+          <Property Name="idProcedimiento" Type="int" />
+          <Property Name="idCuenta" Type="int" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="idEquipo" />
+          </Key>
+          <Property Name="idEquipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="identificador" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nroSerie" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="primario" Type="bit" Nullable="false" />
+          <Property Name="idEquipoTipo" Type="int" Nullable="false" />
+          <Property Name="cadencia" Type="int" Nullable="false" />
+          <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="usuarioAlta" Type="int" Nullable="false" />
+          <Property Name="versionFirmware" Type="varchar" MaxLength="50" />
+          <Property Name="versionProgramacion" Type="varchar" MaxLength="50" />
+          <Property Name="fechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="int" Nullable="false" />
+          <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="usuarioBaja" Type="int" />
+          <Property Name="estadoSd" Type="varchar" MaxLength="50" />
+          <Property Name="idCuenta" Type="int" />
+          <Property Name="portable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EquipoTipo">
+          <Key>
+            <PropertyRef Name="idEquipoTipo" />
+          </Key>
+          <Property Name="idEquipoTipo" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cantSensores" Type="int" Nullable="false" />
+          <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="usuarioAlta" Type="int" Nullable="false" />
+          <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="usuarioBaja" Type="int" />
+        </EntityType>
+        <EntityType Name="NivelServicio">
+          <Key>
+            <PropertyRef Name="idNivelServicio" />
+          </Key>
+          <Property Name="idNivelServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="usuarioAlta" Type="int" Nullable="false" />
+          <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="usuarioBaja" Type="int" />
+        </EntityType>
+        <EntityType Name="ProcedimientoEmergencia">
+          <Key>
+            <PropertyRef Name="idProcedimiento" />
+          </Key>
+          <Property Name="idProcedimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nombrearchivo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="archivo" Type="varbinary(max)" />
+          <Property Name="usuarioAlta" Type="int" Nullable="false" />
+          <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="int" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="usuarioBaja" Type="int" />
+          <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="idCuenta" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="userLogin" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="idSector" Type="int" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="lastExpiredPassword" Type="datetime" />
+          <Property Name="operador" Type="bit" Nullable="false" />
+          <Property Name="operadorSeguridad" Type="bit" />
+          <Property Name="supervisor" Type="bit" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="usuarioAlta" Type="int" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="int" Nullable="false" />
+          <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="usuarioBaja" Type="int" />
+          <Property Name="nivelAuditoria" Type="int" Nullable="false" />
+          <Property Name="perfilWindows" Type="int" Nullable="false" />
+          <Property Name="perfilWeb" Type="int" Nullable="false" />
+          <Property Name="multipais" Type="bit" Nullable="false" />
+          <Property Name="demo" Type="bit" Nullable="false" />
+          <Property Name="diasDemo" Type="int" Nullable="false" />
+          <Property Name="idCuenta" Type="int" />
+        </EntityType>
+        <Association Name="Entidad_FK01">
+          <End Role="NivelServicio" Type="Self.NivelServicio" Multiplicity="1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelServicio">
+              <PropertyRef Name="idNivelServicio" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="idNivelServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Equipo_FK01">
+          <End Role="EquipoTipo" Type="Self.EquipoTipo" Multiplicity="1" />
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipoTipo">
+              <PropertyRef Name="idEquipoTipo" />
+            </Principal>
+            <Dependent Role="Equipo">
+              <PropertyRef Name="idEquipoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entidad_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipo_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Equipo">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcedimientoEmergencia_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+          <End Role="ProcedimientoEmergencia" Type="Self.ProcedimientoEmergencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="ProcedimientoEmergencia">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Lojack_PruebaModelStoreContainer">
+          <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entidad" EntityType="Self.Entidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipoTipo" EntityType="Self.EquipoTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NivelServicio" EntityType="Self.NivelServicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcedimientoEmergencia" EntityType="Self.ProcedimientoEmergencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Entidad_FK01" Association="Self.Entidad_FK01">
+            <End Role="NivelServicio" EntitySet="NivelServicio" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="Equipo_FK01" Association="Self.Equipo_FK01">
+            <End Role="EquipoTipo" EntitySet="EquipoTipo" />
+            <End Role="Equipo" EntitySet="Equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entidad_Cuenta" Association="Self.FK_Entidad_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipo_Cuenta" Association="Self.FK_Equipo_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Equipo" EntitySet="Equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcedimientoEmergencia_Cuenta" Association="Self.FK_ProcedimientoEmergencia_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="ProcedimientoEmergencia" EntitySet="ProcedimientoEmergencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Cuenta" Association="Self.FK_Usuario_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Lojack_PruebaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="idCuenta" />
+          </Key>
+          <Property Name="idCuenta" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idClienteControlador" Type="Int32" Nullable="false" />
+          <Property Name="mapGuideEnabled" Type="Boolean" />
+          <Property Name="googleMapsEnabled" Type="Boolean" />
+          <Property Name="mapsEnabled" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Entidads" Relationship="Self.FK_Entidad_Cuenta" FromRole="Cuenta" ToRole="Entidad" />
+          <NavigationProperty Name="Equipoes" Relationship="Self.FK_Equipo_Cuenta" FromRole="Cuenta" ToRole="Equipo" />
+          <NavigationProperty Name="ProcedimientoEmergencias" Relationship="Self.FK_ProcedimientoEmergencia_Cuenta" FromRole="Cuenta" ToRole="ProcedimientoEmergencia" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuario_Cuenta" FromRole="Cuenta" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Entidad">
+          <Key>
+            <PropertyRef Name="idEntidad" />
+          </Key>
+          <Property Name="idEntidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="idNivelServicio" Type="Int32" Nullable="false" />
+          <Property Name="plantillaSuceso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cadenciaReporte" Type="Int32" Nullable="false" />
+          <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int32" Nullable="false" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="usuarioBaja" Type="Int32" />
+          <Property Name="comentario" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="idProcedimiento" Type="Int32" />
+          <Property Name="idCuenta" Type="Int32" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK_Entidad_Cuenta" FromRole="Entidad" ToRole="Cuenta" />
+          <NavigationProperty Name="NivelServicio" Relationship="Self.Entidad_FK01" FromRole="Entidad" ToRole="NivelServicio" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="idEquipo" />
+          </Key>
+          <Property Name="idEquipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="identificador" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nroSerie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="primario" Type="Boolean" Nullable="false" />
+          <Property Name="idEquipoTipo" Type="Int32" Nullable="false" />
+          <Property Name="cadencia" Type="Int32" Nullable="false" />
+          <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+          <Property Name="versionFirmware" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="versionProgramacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int32" Nullable="false" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="usuarioBaja" Type="Int32" />
+          <Property Name="estadoSd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idCuenta" Type="Int32" />
+          <Property Name="portable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK_Equipo_Cuenta" FromRole="Equipo" ToRole="Cuenta" />
+          <NavigationProperty Name="EquipoTipo" Relationship="Self.Equipo_FK01" FromRole="Equipo" ToRole="EquipoTipo" />
+        </EntityType>
+        <EntityType Name="EquipoTipo">
+          <Key>
+            <PropertyRef Name="idEquipoTipo" />
+          </Key>
+          <Property Name="idEquipoTipo" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cantSensores" Type="Int32" Nullable="false" />
+          <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="usuarioBaja" Type="Int32" />
+          <NavigationProperty Name="Equipoes" Relationship="Self.Equipo_FK01" FromRole="EquipoTipo" ToRole="Equipo" />
+        </EntityType>
+        <EntityType Name="NivelServicio">
+          <Key>
+            <PropertyRef Name="idNivelServicio" />
+          </Key>
+          <Property Name="idNivelServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="usuarioBaja" Type="Int32" />
+          <NavigationProperty Name="Entidads" Relationship="Self.Entidad_FK01" FromRole="NivelServicio" ToRole="Entidad" />
+        </EntityType>
+        <EntityType Name="ProcedimientoEmergencia">
+          <Key>
+            <PropertyRef Name="idProcedimiento" />
+          </Key>
+          <Property Name="idProcedimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombrearchivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="archivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+          <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int32" Nullable="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioBaja" Type="Int32" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="idCuenta" Type="Int32" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK_ProcedimientoEmergencia_Cuenta" FromRole="ProcedimientoEmergencia" ToRole="Cuenta" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="userLogin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idSector" Type="Int32" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastExpiredPassword" Type="DateTime" Precision="3" />
+          <Property Name="operador" Type="Boolean" Nullable="false" />
+          <Property Name="operadorSeguridad" Type="Boolean" />
+          <Property Name="supervisor" Type="Boolean" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int32" Nullable="false" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="usuarioBaja" Type="Int32" />
+          <Property Name="nivelAuditoria" Type="Int32" Nullable="false" />
+          <Property Name="perfilWindows" Type="Int32" Nullable="false" />
+          <Property Name="perfilWeb" Type="Int32" Nullable="false" />
+          <Property Name="multipais" Type="Boolean" Nullable="false" />
+          <Property Name="demo" Type="Boolean" Nullable="false" />
+          <Property Name="diasDemo" Type="Int32" Nullable="false" />
+          <Property Name="idCuenta" Type="Int32" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK_Usuario_Cuenta" FromRole="Usuario" ToRole="Cuenta" />
+        </EntityType>
+        <Association Name="FK_Entidad_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipo_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Equipo">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcedimientoEmergencia_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+          <End Role="ProcedimientoEmergencia" Type="Self.ProcedimientoEmergencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="ProcedimientoEmergencia">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Entidad_FK01">
+          <End Role="NivelServicio" Type="Self.NivelServicio" Multiplicity="1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelServicio">
+              <PropertyRef Name="idNivelServicio" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="idNivelServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Equipo_FK01">
+          <End Role="EquipoTipo" Type="Self.EquipoTipo" Multiplicity="1" />
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipoTipo">
+              <PropertyRef Name="idEquipoTipo" />
+            </Principal>
+            <Dependent Role="Equipo">
+              <PropertyRef Name="idEquipoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Lojack_PruebaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cuentas" EntityType="Self.Cuenta" />
+          <EntitySet Name="Entidads" EntityType="Self.Entidad" />
+          <EntitySet Name="Equipoes" EntityType="Self.Equipo" />
+          <EntitySet Name="EquipoTipoes" EntityType="Self.EquipoTipo" />
+          <EntitySet Name="NivelServicios" EntityType="Self.NivelServicio" />
+          <EntitySet Name="ProcedimientoEmergencias" EntityType="Self.ProcedimientoEmergencia" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Entidad_Cuenta" Association="Self.FK_Entidad_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuentas" />
+            <End Role="Entidad" EntitySet="Entidads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipo_Cuenta" Association="Self.FK_Equipo_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuentas" />
+            <End Role="Equipo" EntitySet="Equipoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcedimientoEmergencia_Cuenta" Association="Self.FK_ProcedimientoEmergencia_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuentas" />
+            <End Role="ProcedimientoEmergencia" EntitySet="ProcedimientoEmergencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Cuenta" Association="Self.FK_Usuario_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuentas" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="Entidad_FK01" Association="Self.Entidad_FK01">
+            <End Role="NivelServicio" EntitySet="NivelServicios" />
+            <End Role="Entidad" EntitySet="Entidads" />
+          </AssociationSet>
+          <AssociationSet Name="Equipo_FK01" Association="Self.Equipo_FK01">
+            <End Role="EquipoTipo" EntitySet="EquipoTipoes" />
+            <End Role="Equipo" EntitySet="Equipoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Lojack_PruebaModelStoreContainer" CdmEntityContainer="Lojack_PruebaEntities">
+          <EntitySetMapping Name="Cuentas">
+            <EntityTypeMapping TypeName="Lojack_PruebaModel.Cuenta">
+              <MappingFragment StoreEntitySet="Cuenta">
+                <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idClienteControlador" ColumnName="idClienteControlador" />
+                <ScalarProperty Name="mapGuideEnabled" ColumnName="mapGuideEnabled" />
+                <ScalarProperty Name="googleMapsEnabled" ColumnName="googleMapsEnabled" />
+                <ScalarProperty Name="mapsEnabled" ColumnName="mapsEnabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entidads">
+            <EntityTypeMapping TypeName="Lojack_PruebaModel.Entidad">
+              <MappingFragment StoreEntitySet="Entidad">
+                <ScalarProperty Name="idEntidad" ColumnName="idEntidad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idNivelServicio" ColumnName="idNivelServicio" />
+                <ScalarProperty Name="plantillaSuceso" ColumnName="plantillaSuceso" />
+                <ScalarProperty Name="cadenciaReporte" ColumnName="cadenciaReporte" />
+                <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+                <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="idProcedimiento" ColumnName="idProcedimiento" />
+                <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipoes">
+            <EntityTypeMapping TypeName="Lojack_PruebaModel.Equipo">
+              <MappingFragment StoreEntitySet="Equipo">
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="identificador" ColumnName="identificador" />
+                <ScalarProperty Name="nroSerie" ColumnName="nroSerie" />
+                <ScalarProperty Name="primario" ColumnName="primario" />
+                <ScalarProperty Name="idEquipoTipo" ColumnName="idEquipoTipo" />
+                <ScalarProperty Name="cadencia" ColumnName="cadencia" />
+                <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+                <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+                <ScalarProperty Name="versionFirmware" ColumnName="versionFirmware" />
+                <ScalarProperty Name="versionProgramacion" ColumnName="versionProgramacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+                <ScalarProperty Name="estadoSd" ColumnName="estadoSd" />
+                <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+                <ScalarProperty Name="portable" ColumnName="portable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipoTipoes">
+            <EntityTypeMapping TypeName="Lojack_PruebaModel.EquipoTipo">
+              <MappingFragment StoreEntitySet="EquipoTipo">
+                <ScalarProperty Name="idEquipoTipo" ColumnName="idEquipoTipo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cantSensores" ColumnName="cantSensores" />
+                <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+                <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NivelServicios">
+            <EntityTypeMapping TypeName="Lojack_PruebaModel.NivelServicio">
+              <MappingFragment StoreEntitySet="NivelServicio">
+                <ScalarProperty Name="idNivelServicio" ColumnName="idNivelServicio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+                <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcedimientoEmergencias">
+            <EntityTypeMapping TypeName="Lojack_PruebaModel.ProcedimientoEmergencia">
+              <MappingFragment StoreEntitySet="ProcedimientoEmergencia">
+                <ScalarProperty Name="idProcedimiento" ColumnName="idProcedimiento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nombrearchivo" ColumnName="nombrearchivo" />
+                <ScalarProperty Name="archivo" ColumnName="archivo" />
+                <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+                <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="Lojack_PruebaModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="userLogin" ColumnName="userLogin" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="idSector" ColumnName="idSector" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="lastExpiredPassword" ColumnName="lastExpiredPassword" />
+                <ScalarProperty Name="operador" ColumnName="operador" />
+                <ScalarProperty Name="operadorSeguridad" ColumnName="operadorSeguridad" />
+                <ScalarProperty Name="supervisor" ColumnName="supervisor" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+                <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+                <ScalarProperty Name="nivelAuditoria" ColumnName="nivelAuditoria" />
+                <ScalarProperty Name="perfilWindows" ColumnName="perfilWindows" />
+                <ScalarProperty Name="perfilWeb" ColumnName="perfilWeb" />
+                <ScalarProperty Name="multipais" ColumnName="multipais" />
+                <ScalarProperty Name="demo" ColumnName="demo" />
+                <ScalarProperty Name="diasDemo" ColumnName="diasDemo" />
+                <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -31,6 +31,7 @@ namespace ProyectoLojackABM.Models
         public Nullable<int> idProcedimiento { get; set; }
         public Nullable<int> idCuenta { get; set; }
     
+        public virtual Cuenta Cuenta { get; set; }
         public virtual NivelServicio NivelServicio { get; set; }
     }
 }

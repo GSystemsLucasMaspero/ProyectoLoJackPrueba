@@ -11,14 +11,14 @@ namespace ProyectoLojackABM.Controllers
 {
     public class EntidadController : Controller
     {
-        private Lojack_PruebaEntities1 db = new Lojack_PruebaEntities1();
+        private Lojack_PruebaEntities db = new Lojack_PruebaEntities();
 
         //
         // GET: /Entidad/
 
         public ActionResult Index()
         {
-            var entidads = db.Entidads.Include(e => e.NivelServicio);
+            var entidads = db.Entidads.Include(e => e.Cuenta).Include(e => e.NivelServicio);
             return View(entidads.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace ProyectoLojackABM.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre");
             ViewBag.idNivelServicio = new SelectList(db.NivelServicios, "idNivelServicio", "descripcion");
             return View();
         }
@@ -58,6 +59,7 @@ namespace ProyectoLojackABM.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", entidad.idCuenta);
             ViewBag.idNivelServicio = new SelectList(db.NivelServicios, "idNivelServicio", "descripcion", entidad.idNivelServicio);
             return View(entidad);
         }
@@ -72,6 +74,7 @@ namespace ProyectoLojackABM.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", entidad.idCuenta);
             ViewBag.idNivelServicio = new SelectList(db.NivelServicios, "idNivelServicio", "descripcion", entidad.idNivelServicio);
             return View(entidad);
         }
@@ -89,6 +92,7 @@ namespace ProyectoLojackABM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", entidad.idCuenta);
             ViewBag.idNivelServicio = new SelectList(db.NivelServicios, "idNivelServicio", "descripcion", entidad.idNivelServicio);
             return View(entidad);
         }

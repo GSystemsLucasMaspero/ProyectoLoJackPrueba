@@ -11,7 +11,7 @@ namespace ProyectoLojackABM.Controllers
 {
     public class NivelServicioController : Controller
     {
-        private Lojack_PruebaEntities1 db = new Lojack_PruebaEntities1();
+        private Lojack_PruebaEntities db = new Lojack_PruebaEntities();
 
         //
         // GET: /NivelServicio/

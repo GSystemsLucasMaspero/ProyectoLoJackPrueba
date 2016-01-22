@@ -11,7 +11,7 @@ namespace ProyectoLojackABM.Controllers
 {
     public class EquipoTipoController : Controller
     {
-        private Lojack_PruebaEntities2 db = new Lojack_PruebaEntities2();
+        private Lojack_PruebaEntities db = new Lojack_PruebaEntities();
 
         //
         // GET: /EquipoTipo/
