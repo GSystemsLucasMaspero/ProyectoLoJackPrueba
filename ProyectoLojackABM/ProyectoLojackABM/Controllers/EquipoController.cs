@@ -9,107 +9,112 @@ using ProyectoLojackABM.Models;
 
 namespace ProyectoLojackABM.Controllers
 {
-    public class NivelServicioController : Controller
+    public class EquipoController : Controller
     {
-        private Lojack_PruebaEntities1 db = new Lojack_PruebaEntities1();
+        private Lojack_PruebaEntities2 db = new Lojack_PruebaEntities2();
 
         //
-        // GET: /NivelServicio/
+        // GET: /Equipo/
 
         public ActionResult Index()
         {
-            return View(db.NivelServicios.ToList());
+            var equipoes = db.Equipoes.Include(e => e.EquipoTipo);
+            return View(equipoes.ToList());
         }
 
         //
-        // GET: /NivelServicio/Details/5
+        // GET: /Equipo/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            if (nivelservicio == null)
+            Equipo equipo = db.Equipoes.Find(id);
+            if (equipo == null)
             {
                 return HttpNotFound();
             }
-            return View(nivelservicio);
+            return View(equipo);
         }
 
         //
-        // GET: /NivelServicio/Create
+        // GET: /Equipo/Create
 
         public ActionResult Create()
         {
+            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion");
             return View();
         }
 
         //
-        // POST: /NivelServicio/Create
+        // POST: /Equipo/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(NivelServicio nivelservicio)
+        public ActionResult Create(Equipo equipo)
         {
             if (ModelState.IsValid)
             {
-                db.NivelServicios.Add(nivelservicio);
+                db.Equipoes.Add(equipo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(nivelservicio);
+            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
+            return View(equipo);
         }
 
         //
-        // GET: /NivelServicio/Edit/5
+        // GET: /Equipo/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            if (nivelservicio == null)
+            Equipo equipo = db.Equipoes.Find(id);
+            if (equipo == null)
             {
                 return HttpNotFound();
             }
-            return View(nivelservicio);
+            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
+            return View(equipo);
         }
 
         //
-        // POST: /NivelServicio/Edit/5
+        // POST: /Equipo/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(NivelServicio nivelservicio)
+        public ActionResult Edit(Equipo equipo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nivelservicio).State = EntityState.Modified;
+                db.Entry(equipo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nivelservicio);
+            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
+            return View(equipo);
         }
 
         //
-        // GET: /NivelServicio/Delete/5
+        // GET: /Equipo/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            if (nivelservicio == null)
+            Equipo equipo = db.Equipoes.Find(id);
+            if (equipo == null)
             {
                 return HttpNotFound();
             }
-            return View(nivelservicio);
+            return View(equipo);
         }
 
         //
-        // POST: /NivelServicio/Delete/5
+        // POST: /Equipo/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            db.NivelServicios.Remove(nivelservicio);
+            Equipo equipo = db.Equipoes.Find(id);
+            db.Equipoes.Remove(equipo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

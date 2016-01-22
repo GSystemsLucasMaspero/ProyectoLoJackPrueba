@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProyectoLojackABM.Models.NivelServicio>
+﻿@model IEnumerable<ProyectoLojackABM.Models.EquipoTipo>
 
 @{
     ViewBag.Title = "Index";
@@ -12,10 +12,13 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idNivelServicio)
+            @Html.DisplayNameFor(model => model.idEquipoTipo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantSensores)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.fechaAlta)
@@ -35,10 +38,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.idNivelServicio)
+            @Html.DisplayFor(modelItem => item.idEquipoTipo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantSensores)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.fechaAlta)

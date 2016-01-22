@@ -1,0 +1,84 @@
+﻿@model ProyectoLojackABM.Models.EquipoTipo
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>EquipoTipo</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idEquipoTipo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idEquipoTipo)
+            @Html.ValidationMessageFor(model => model.idEquipoTipo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.descripcion)
+            @Html.ValidationMessageFor(model => model.descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cantSensores)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cantSensores)
+            @Html.ValidationMessageFor(model => model.cantSensores)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaAlta)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaAlta)
+            @Html.ValidationMessageFor(model => model.fechaAlta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.usuarioAlta)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.usuarioAlta)
+            @Html.ValidationMessageFor(model => model.usuarioAlta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaBaja)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaBaja)
+            @Html.ValidationMessageFor(model => model.fechaBaja)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.usuarioBaja)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.usuarioBaja)
+            @Html.ValidationMessageFor(model => model.usuarioBaja)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

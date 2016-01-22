@@ -9,33 +9,33 @@ using ProyectoLojackABM.Models;
 
 namespace ProyectoLojackABM.Controllers
 {
-    public class NivelServicioController : Controller
+    public class EquipoTipoController : Controller
     {
-        private Lojack_PruebaEntities1 db = new Lojack_PruebaEntities1();
+        private Lojack_PruebaEntities2 db = new Lojack_PruebaEntities2();
 
         //
-        // GET: /NivelServicio/
+        // GET: /EquipoTipo/
 
         public ActionResult Index()
         {
-            return View(db.NivelServicios.ToList());
+            return View(db.EquipoTipoes.ToList());
         }
 
         //
-        // GET: /NivelServicio/Details/5
+        // GET: /EquipoTipo/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            if (nivelservicio == null)
+            EquipoTipo equipotipo = db.EquipoTipoes.Find(id);
+            if (equipotipo == null)
             {
                 return HttpNotFound();
             }
-            return View(nivelservicio);
+            return View(equipotipo);
         }
 
         //
-        // GET: /NivelServicio/Create
+        // GET: /EquipoTipo/Create
 
         public ActionResult Create()
         {
@@ -43,73 +43,73 @@ namespace ProyectoLojackABM.Controllers
         }
 
         //
-        // POST: /NivelServicio/Create
+        // POST: /EquipoTipo/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(NivelServicio nivelservicio)
+        public ActionResult Create(EquipoTipo equipotipo)
         {
             if (ModelState.IsValid)
             {
-                db.NivelServicios.Add(nivelservicio);
+                db.EquipoTipoes.Add(equipotipo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(nivelservicio);
+            return View(equipotipo);
         }
 
         //
-        // GET: /NivelServicio/Edit/5
+        // GET: /EquipoTipo/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            if (nivelservicio == null)
+            EquipoTipo equipotipo = db.EquipoTipoes.Find(id);
+            if (equipotipo == null)
             {
                 return HttpNotFound();
             }
-            return View(nivelservicio);
+            return View(equipotipo);
         }
 
         //
-        // POST: /NivelServicio/Edit/5
+        // POST: /EquipoTipo/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(NivelServicio nivelservicio)
+        public ActionResult Edit(EquipoTipo equipotipo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nivelservicio).State = EntityState.Modified;
+                db.Entry(equipotipo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nivelservicio);
+            return View(equipotipo);
         }
 
         //
-        // GET: /NivelServicio/Delete/5
+        // GET: /EquipoTipo/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            if (nivelservicio == null)
+            EquipoTipo equipotipo = db.EquipoTipoes.Find(id);
+            if (equipotipo == null)
             {
                 return HttpNotFound();
             }
-            return View(nivelservicio);
+            return View(equipotipo);
         }
 
         //
-        // POST: /NivelServicio/Delete/5
+        // POST: /EquipoTipo/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            db.NivelServicios.Remove(nivelservicio);
+            EquipoTipo equipotipo = db.EquipoTipoes.Find(id);
+            db.EquipoTipoes.Remove(equipotipo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

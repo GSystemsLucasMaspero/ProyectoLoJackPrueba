@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -181,17 +183,57 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EntidadController.cs" />
+    <Compile Include="Controllers\EquipoController.cs" />
+    <Compile Include="Controllers\EquipoTipoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NivelServicioController.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DBManager.cs" />
-    <Compile Include="Models\NivelServicioContext.cs" />
-    <Compile Include="Models\NivelServicioModel.cs" />
+    <Compile Include="Models\Entidad.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entidad.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entidad.cs">
+      <DependentUpon>Entidad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entidad.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entidad.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entidad1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entidad.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Equipo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Equipo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Equipo.cs">
+      <DependentUpon>Equipo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Equipo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Equipo.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Equipo1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Equipo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EquipoTipo.cs">
+      <DependentUpon>Equipo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NivelServicio.cs">
+      <DependentUpon>Entidad.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -199,61 +241,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.autoFill.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.autoFill.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.bootstrap.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.colReorder.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.colReorder.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.colVis.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.colvis.jqueryui.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.colVis.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.fixedColumns.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.fixedColumns.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.fixedHeader.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.fixedHeader.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.foundation.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.jqueryui.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.keyTable.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.keyTable.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.responsive.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.scroller.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.scroller.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.tableTools.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.tableTools.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\jquery.dataTables.css" />
-    <Content Include="Content\DataTables-1.10.4\css\jquery.dataTables.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\jquery.dataTables_themeroller.css" />
-    <Content Include="Content\DataTables-1.10.4\images\background.png" />
-    <Content Include="Content\DataTables-1.10.4\images\back_disabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\back_enabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\back_enabled_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\collection.png" />
-    <Content Include="Content\DataTables-1.10.4\images\collection_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\copy.png" />
-    <Content Include="Content\DataTables-1.10.4\images\copy_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\csv.png" />
-    <Content Include="Content\DataTables-1.10.4\images\csv_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\details_close.png" />
-    <Content Include="Content\DataTables-1.10.4\images\details_open.png" />
-    <Content Include="Content\DataTables-1.10.4\images\filler.png" />
-    <Content Include="Content\DataTables-1.10.4\images\forward_disabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\forward_enabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\forward_enabled_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\insert.png" />
-    <Content Include="Content\DataTables-1.10.4\images\loading-background.png" />
-    <Content Include="Content\DataTables-1.10.4\images\pdf.png" />
-    <Content Include="Content\DataTables-1.10.4\images\pdf_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\print.png" />
-    <Content Include="Content\DataTables-1.10.4\images\print_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\sort_asc.png" />
-    <Content Include="Content\DataTables-1.10.4\images\sort_asc_disabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\sort_both.png" />
-    <Content Include="Content\DataTables-1.10.4\images\sort_desc.png" />
-    <Content Include="Content\DataTables-1.10.4\images\sort_desc_disabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\xls.png" />
-    <Content Include="Content\DataTables-1.10.4\images\xls_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\swf\copy_csv_xls.swf" />
-    <Content Include="Content\DataTables-1.10.4\swf\copy_csv_xls_pdf.swf" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -312,34 +299,43 @@
     <Content Include="Global.asax" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.jqueryui.scss" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.responsive.scss" />
+    <EntityDeploy Include="Models\Entidad.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Entidad.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Entidad.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Entidad.edmx</DependentUpon>
+      <LastGenOutput>Entidad.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Entidad.edmx.diagram">
+      <DependentUpon>Entidad.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Entidad.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Entidad.edmx</DependentUpon>
+      <LastGenOutput>Entidad1.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Equipo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Equipo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Equipo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Equipo.edmx</DependentUpon>
+      <LastGenOutput>Equipo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Equipo.edmx.diagram">
+      <DependentUpon>Equipo.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Equipo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Equipo.edmx</DependentUpon>
+      <LastGenOutput>Equipo1.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.autoFill.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.autoFill.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.bootstrap.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colReorder.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colReorder.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colVis.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colVis.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedColumns.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedColumns.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedHeader.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedHeader.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.foundation.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.jqueryui.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.keyTable.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.keyTable.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.responsive.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.responsive.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.scroller.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.scroller.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.tableTools.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.tableTools.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\jquery.dataTables.js" />
-    <Content Include="Scripts\DataTables-1.10.4\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
@@ -382,15 +378,6 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -398,16 +385,35 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Entidad\Index.cshtml" />
+    <Content Include="Views\Entidad\Details.cshtml" />
+    <Content Include="Views\Entidad\Create.cshtml" />
+    <Content Include="Views\Entidad\Edit.cshtml" />
+    <Content Include="Views\Entidad\Delete.cshtml" />
     <Content Include="Views\NivelServicio\Index.cshtml" />
-    <Content Include="Views\NivelServicio\Alta.cshtml" />
-    <Content Include="Views\NivelServicio\Baja.cshtml" />
-    <Content Include="Views\NivelServicio\Modificacion.cshtml" />
+    <Content Include="Views\NivelServicio\Details.cshtml" />
+    <Content Include="Views\NivelServicio\Create.cshtml" />
+    <Content Include="Views\NivelServicio\Edit.cshtml" />
+    <Content Include="Views\NivelServicio\Delete.cshtml" />
+    <Content Include="Views\Equipo\Index.cshtml" />
+    <Content Include="Views\Equipo\Details.cshtml" />
+    <Content Include="Views\Equipo\Create.cshtml" />
+    <Content Include="Views\Equipo\Edit.cshtml" />
+    <Content Include="Views\Equipo\Delete.cshtml" />
+    <Content Include="Views\EquipoTipo\Index.cshtml" />
+    <Content Include="Views\EquipoTipo\Details.cshtml" />
+    <Content Include="Views\EquipoTipo\Create.cshtml" />
+    <Content Include="Views\EquipoTipo\Edit.cshtml" />
+    <Content Include="Views\EquipoTipo\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

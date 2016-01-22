@@ -1,0 +1,131 @@
+﻿@model ProyectoLojackABM.Models.Entidad
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Entidad</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idEntidad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idEntidad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.estado)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estado)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NivelServicio.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NivelServicio.descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.plantillaSuceso)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.plantillaSuceso)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cadenciaReporte)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cadenciaReporte)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaAlta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaAlta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuarioAlta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuarioAlta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaModificacion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaModificacion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuarioModificacion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuarioModificacion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaBaja)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaBaja)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuarioBaja)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuarioBaja)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.comentario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.comentario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.telefono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idProcedimiento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idProcedimiento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idCuenta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idCuenta)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

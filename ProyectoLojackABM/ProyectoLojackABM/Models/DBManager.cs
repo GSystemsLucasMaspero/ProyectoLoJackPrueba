@@ -25,6 +25,7 @@ namespace ProyectoLojackABM.Models
             }
             catch(SqlException ex)
             {
+                var message = ex.StackTrace;
                 return false;
             }
         }
@@ -39,6 +40,7 @@ namespace ProyectoLojackABM.Models
             }
             catch (SqlException ex)
             {
+                var message = ex.StackTrace;
                 return false;
             }
         }
