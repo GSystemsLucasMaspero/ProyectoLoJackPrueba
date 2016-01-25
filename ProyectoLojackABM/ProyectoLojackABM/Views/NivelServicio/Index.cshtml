@@ -4,30 +4,35 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Nivel Servicio</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar nuevo", "Create")
 </p>
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idNivelServicio)
+            @Html.DisplayName("ID")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.descripcion)
+            @Html.DisplayName("Descripción")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaAlta)
+            @Html.DisplayName("Fecha Alta")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioAlta)
+            @Html.DisplayName("ID Usuario Alta")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaBaja)
+            @Html.DisplayName("Fecha Baja")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioBaja)
+            @Html.DisplayName("ID Usuario Baja")
         </th>
         <th></th>
     </tr>
@@ -37,25 +42,29 @@
         <td>
             @Html.DisplayFor(modelItem => item.idNivelServicio)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.descripcion)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.fechaAlta)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.usuarioAlta)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.fechaBaja)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.usuarioBaja)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Editar", "Edit", new { id=item.idNivelServicio }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.idNivelServicio })
         </td>
     </tr>
 }

@@ -22,19 +22,6 @@ namespace ProyectoLojackABM.Controllers
         }
 
         //
-        // GET: /NivelServicio/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            if (nivelservicio == null)
-            {
-                return HttpNotFound();
-            }
-            return View(nivelservicio);
-        }
-
-        //
         // GET: /NivelServicio/Create
 
         public ActionResult Create()
@@ -49,13 +36,14 @@ namespace ProyectoLojackABM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(NivelServicio nivelservicio)
         {
+            // La fecha de alta es la de "ahora"
+            nivelservicio.fechaAlta = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.NivelServicios.Add(nivelservicio);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(nivelservicio);
         }
 

@@ -22,19 +22,6 @@ namespace ProyectoLojackABM.Controllers
         }
 
         //
-        // GET: /EquipoTipo/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            EquipoTipo equipotipo = db.EquipoTipoes.Find(id);
-            if (equipotipo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(equipotipo);
-        }
-
-        //
         // GET: /EquipoTipo/Create
 
         public ActionResult Create()
@@ -49,6 +36,7 @@ namespace ProyectoLojackABM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(EquipoTipo equipotipo)
         {
+            equipotipo.fechaAlta = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.EquipoTipoes.Add(equipotipo);

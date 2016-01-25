@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Equipo Tipo - Modificación</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -12,17 +12,14 @@
 
     <fieldset>
         <legend>EquipoTipo</legend>
-
+        <p></p>
         <div class="editor-label">
-            @Html.LabelFor(model => model.idEquipoTipo)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.idEquipoTipo)
-            @Html.ValidationMessageFor(model => model.idEquipoTipo)
+            @Html.Label("ID")
+            <font size="3">@Html.DisplayFor(model => model.idEquipoTipo)</font>    
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.descripcion)
+            @Html.Label("Descripción")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.descripcion)
@@ -30,7 +27,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.cantSensores)
+            @Html.Label("Cantidad de sensores")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.cantSensores)
@@ -38,15 +35,12 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.fechaAlta)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.fechaAlta)
-            @Html.ValidationMessageFor(model => model.fechaAlta)
+            @Html.Label("Fecha Alta")
+            <font size="3">@Html.DisplayFor(model => model.fechaAlta)</font>
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.usuarioAlta)
+            @Html.Label("ID Usuario Alta")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.usuarioAlta)
@@ -54,29 +48,23 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.fechaBaja)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.fechaBaja)
-            @Html.ValidationMessageFor(model => model.fechaBaja)
+            @Html.Label("Fecha Baja")
+            <font size="3">@Html.DisplayFor(model => model.fechaBaja)</font>
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.usuarioBaja)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.usuarioBaja)
-            @Html.ValidationMessageFor(model => model.usuarioBaja)
+            @Html.Label("ID Usuario Baja")
+            <font size="3">@Html.DisplayFor(model => model.usuarioBaja)</font>
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Modificar" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </div>
 
 @section Scripts {
