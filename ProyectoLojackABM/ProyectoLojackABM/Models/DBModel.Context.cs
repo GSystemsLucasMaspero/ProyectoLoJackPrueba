@@ -13,10 +13,10 @@ namespace ProyectoLojackABM.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Lojack_PruebaEntities : DbContext
+    public partial class DataContextLoJack_Prueba : DbContext
     {
-        public Lojack_PruebaEntities()
-            : base("name=Lojack_PruebaEntities")
+        public DataContextLoJack_Prueba()
+            : base("name=DataContextLoJack_Prueba")
         {
         }
     
@@ -25,12 +25,13 @@ namespace ProyectoLojackABM.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Cuenta> Cuentas { get; set; }
         public DbSet<Entidad> Entidads { get; set; }
         public DbSet<Equipo> Equipoes { get; set; }
         public DbSet<EquipoTipo> EquipoTipoes { get; set; }
         public DbSet<NivelServicio> NivelServicios { get; set; }
-        public DbSet<ProcedimientoEmergencia> ProcedimientoEmergencias { get; set; }
+        public DbSet<Sector> Sectors { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
     }
 }

@@ -4,34 +4,33 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Equipo Tipo</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Agregar nuevo", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table>
     <tr>
         <th>
-            @Html.DisplayName("ID")
+            @Html.DisplayNameFor(model => model.idEquipoTipo)
         </th>
         <th>
-            @Html.DisplayName("Descripción")
+            @Html.DisplayNameFor(model => model.descripcion)
         </th>
         <th>
-            @Html.DisplayName("Cantidad de sensores")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Fecha Alta")
+            @Html.DisplayNameFor(model => model.cantSensores)
         </th>
         <th>
-            @Html.DisplayName("ID Usuario Alta")
+            @Html.DisplayNameFor(model => model.fechaAlta)
         </th>
         <th>
-            @Html.DisplayName("Fecha Baja")
+            @Html.DisplayNameFor(model => model.usuarioAlta)
         </th>
         <th>
-            @Html.DisplayName("ID Usuario Baja")
+            @Html.DisplayNameFor(model => model.fechaBaja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuarioBaja)
         </th>
         <th></th>
     </tr>
@@ -47,7 +46,6 @@
         <td>
             @Html.DisplayFor(modelItem => item.cantSensores)
         </td>
-        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.fechaAlta)
         </td>
@@ -61,8 +59,9 @@
             @Html.DisplayFor(modelItem => item.usuarioBaja)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

@@ -11,7 +11,7 @@ namespace ProyectoLojackABM.Controllers
 {
     public class EntidadController : Controller
     {
-        private Lojack_PruebaEntities db = new Lojack_PruebaEntities();
+        private DataContextLoJack_Prueba db = new DataContextLoJack_Prueba();
 
         //
         // GET: /Entidad/

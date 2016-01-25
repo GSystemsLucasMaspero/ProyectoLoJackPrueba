@@ -16,9 +16,10 @@ namespace ProyectoLojackABM.Models
     {
         public Cuenta()
         {
+            this.Clientes = new HashSet<Cliente>();
             this.Entidads = new HashSet<Entidad>();
             this.Equipoes = new HashSet<Equipo>();
-            this.ProcedimientoEmergencias = new HashSet<ProcedimientoEmergencia>();
+            this.Sectors = new HashSet<Sector>();
             this.Usuarios = new HashSet<Usuario>();
         }
     
@@ -29,9 +30,11 @@ namespace ProyectoLojackABM.Models
         public Nullable<bool> googleMapsEnabled { get; set; }
         public int mapsEnabled { get; set; }
     
+        public virtual ICollection<Cliente> Clientes { get; set; }
+        public virtual Cliente Cliente { get; set; }
         public virtual ICollection<Entidad> Entidads { get; set; }
         public virtual ICollection<Equipo> Equipoes { get; set; }
-        public virtual ICollection<ProcedimientoEmergencia> ProcedimientoEmergencias { get; set; }
+        public virtual ICollection<Sector> Sectors { get; set; }
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0227ddb0ea22404ba0c346f55c5501b2" Name="Diagram1">
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Cliente" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Cuenta" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Entidad" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Equipo" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.EquipoTipo" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.NivelServicio" Width="1.5" PointX="3.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Sector" Width="1.5" PointX="3" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Usuario" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <AssociationConnector Association="Lojack_PruebaModel.FK_Cliente_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.FK_Cuenta_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.Usuario_FK02" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.FK_Entidad_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.FK_Equipo_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.FK_Sector_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.FK_Usuario_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.Entidad_FK01" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.Equipo_FK01" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.Usuario_FK01" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

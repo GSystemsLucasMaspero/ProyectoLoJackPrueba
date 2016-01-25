@@ -5,6 +5,31 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Lojack_PruebaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="localidad" Type="char" MaxLength="4" />
+          <Property Name="partido" Type="char" MaxLength="4" />
+          <Property Name="provincia" Type="char" MaxLength="1" />
+          <Property Name="cuit" Type="varchar" MaxLength="13" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="fax" Type="varchar" MaxLength="50" />
+          <Property Name="inhabilitado" Type="bit" Nullable="false" />
+          <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="usuarioAlta" Type="int" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="int" Nullable="false" />
+          <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="usuarioBaja" Type="int" />
+          <Property Name="idPais" Type="int" Nullable="false" />
+          <Property Name="idCuenta" Type="int" />
+          <Property Name="vistaInternoDesvios" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cuenta">
           <Key>
             <PropertyRef Name="idCuenta" />
@@ -82,20 +107,16 @@
           <Property Name="fechaBaja" Type="datetime" />
           <Property Name="usuarioBaja" Type="int" />
         </EntityType>
-        <EntityType Name="ProcedimientoEmergencia">
+        <EntityType Name="Sector">
           <Key>
-            <PropertyRef Name="idProcedimiento" />
+            <PropertyRef Name="idSector" />
           </Key>
-          <Property Name="idProcedimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="nombrearchivo" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="archivo" Type="varbinary(max)" />
-          <Property Name="usuarioAlta" Type="int" Nullable="false" />
+          <Property Name="idSector" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="fechaAlta" Type="datetime" Nullable="false" />
-          <Property Name="usuarioModificacion" Type="int" Nullable="false" />
-          <Property Name="fechaModificacion" Type="datetime" Nullable="false" />
-          <Property Name="usuarioBaja" Type="int" />
+          <Property Name="usuarioAlta" Type="int" Nullable="false" />
           <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="usuarioBaja" Type="int" />
           <Property Name="idCuenta" Type="int" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -152,6 +173,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cliente_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuenta_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Cuenta">
+              <PropertyRef Name="idClienteControlador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Entidad_Cuenta">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
           <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
@@ -176,14 +221,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProcedimientoEmergencia_Cuenta">
+        <Association Name="FK_Sector_Cuenta">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
-          <End Role="ProcedimientoEmergencia" Type="Self.ProcedimientoEmergencia" Multiplicity="*" />
+          <End Role="Sector" Type="Self.Sector" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cuenta">
               <PropertyRef Name="idCuenta" />
             </Principal>
-            <Dependent Role="ProcedimientoEmergencia">
+            <Dependent Role="Sector">
               <PropertyRef Name="idCuenta" />
             </Dependent>
           </ReferentialConstraint>
@@ -200,13 +245,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Usuario_FK01">
+          <End Role="Sector" Type="Self.Sector" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sector">
+              <PropertyRef Name="idSector" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idSector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Usuario_FK02">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Lojack_PruebaModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Entidad" EntityType="Self.Entidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EquipoTipo" EntityType="Self.EquipoTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NivelServicio" EntityType="Self.NivelServicio" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProcedimientoEmergencia" EntityType="Self.ProcedimientoEmergencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sector" EntityType="Self.Sector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="Entidad_FK01" Association="Self.Entidad_FK01">
             <End Role="NivelServicio" EntitySet="NivelServicio" />
@@ -216,6 +286,14 @@
             <End Role="EquipoTipo" EntitySet="EquipoTipo" />
             <End Role="Equipo" EntitySet="Equipo" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Cuenta" Association="Self.FK_Cliente_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuenta_Cliente" Association="Self.FK_Cuenta_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Cuenta" EntitySet="Cuenta" />
+          </AssociationSet>
           <AssociationSet Name="FK_Entidad_Cuenta" Association="Self.FK_Entidad_Cuenta">
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Entidad" EntitySet="Entidad" />
@@ -224,12 +302,20 @@
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Equipo" EntitySet="Equipo" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProcedimientoEmergencia_Cuenta" Association="Self.FK_ProcedimientoEmergencia_Cuenta">
+          <AssociationSet Name="FK_Sector_Cuenta" Association="Self.FK_Sector_Cuenta">
             <End Role="Cuenta" EntitySet="Cuenta" />
-            <End Role="ProcedimientoEmergencia" EntitySet="ProcedimientoEmergencia" />
+            <End Role="Sector" EntitySet="Sector" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Cuenta" Association="Self.FK_Usuario_Cuenta">
             <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="Usuario_FK01" Association="Self.Usuario_FK01">
+            <End Role="Sector" EntitySet="Sector" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="Usuario_FK02" Association="Self.Usuario_FK02">
+            <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
@@ -238,6 +324,34 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Lojack_PruebaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="localidad" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="partido" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="provincia" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="cuit" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="inhabilitado" Type="Boolean" Nullable="false" />
+          <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int32" Nullable="false" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="usuarioBaja" Type="Int32" />
+          <Property Name="idPais" Type="Int32" Nullable="false" />
+          <Property Name="idCuenta" Type="Int32" />
+          <Property Name="vistaInternoDesvios" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK_Cliente_Cuenta" FromRole="Cliente" ToRole="Cuenta" />
+          <NavigationProperty Name="Cuentas" Relationship="Self.FK_Cuenta_Cliente" FromRole="Cliente" ToRole="Cuenta" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.Usuario_FK02" FromRole="Cliente" ToRole="Usuario" />
+        </EntityType>
         <EntityType Name="Cuenta">
           <Key>
             <PropertyRef Name="idCuenta" />
@@ -248,9 +362,11 @@
           <Property Name="mapGuideEnabled" Type="Boolean" />
           <Property Name="googleMapsEnabled" Type="Boolean" />
           <Property Name="mapsEnabled" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Cliente_Cuenta" FromRole="Cuenta" ToRole="Cliente" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cuenta_Cliente" FromRole="Cuenta" ToRole="Cliente" />
           <NavigationProperty Name="Entidads" Relationship="Self.FK_Entidad_Cuenta" FromRole="Cuenta" ToRole="Entidad" />
           <NavigationProperty Name="Equipoes" Relationship="Self.FK_Equipo_Cuenta" FromRole="Cuenta" ToRole="Equipo" />
-          <NavigationProperty Name="ProcedimientoEmergencias" Relationship="Self.FK_ProcedimientoEmergencia_Cuenta" FromRole="Cuenta" ToRole="ProcedimientoEmergencia" />
+          <NavigationProperty Name="Sectors" Relationship="Self.FK_Sector_Cuenta" FromRole="Cuenta" ToRole="Sector" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuario_Cuenta" FromRole="Cuenta" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Entidad">
@@ -325,22 +441,19 @@
           <Property Name="usuarioBaja" Type="Int32" />
           <NavigationProperty Name="Entidads" Relationship="Self.Entidad_FK01" FromRole="NivelServicio" ToRole="Entidad" />
         </EntityType>
-        <EntityType Name="ProcedimientoEmergencia">
+        <EntityType Name="Sector">
           <Key>
-            <PropertyRef Name="idProcedimiento" />
+            <PropertyRef Name="idSector" />
           </Key>
-          <Property Name="idProcedimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nombrearchivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="archivo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+          <Property Name="idSector" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="usuarioModificacion" Type="Int32" Nullable="false" />
-          <Property Name="fechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="usuarioBaja" Type="Int32" />
+          <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
           <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="usuarioBaja" Type="Int32" />
           <Property Name="idCuenta" Type="Int32" />
-          <NavigationProperty Name="Cuenta" Relationship="Self.FK_ProcedimientoEmergencia_Cuenta" FromRole="ProcedimientoEmergencia" ToRole="Cuenta" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK_Sector_Cuenta" FromRole="Sector" ToRole="Cuenta" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.Usuario_FK01" FromRole="Sector" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -371,8 +484,46 @@
           <Property Name="demo" Type="Boolean" Nullable="false" />
           <Property Name="diasDemo" Type="Int32" Nullable="false" />
           <Property Name="idCuenta" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="Self.Usuario_FK02" FromRole="Usuario" ToRole="Cliente" />
           <NavigationProperty Name="Cuenta" Relationship="Self.FK_Usuario_Cuenta" FromRole="Usuario" ToRole="Cuenta" />
+          <NavigationProperty Name="Sector" Relationship="Self.Usuario_FK01" FromRole="Usuario" ToRole="Sector" />
         </EntityType>
+        <Association Name="FK_Cliente_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuenta_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Cuenta">
+              <PropertyRef Name="idClienteControlador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Usuario_FK02">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Entidad_Cuenta">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
           <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
@@ -397,14 +548,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProcedimientoEmergencia_Cuenta">
+        <Association Name="FK_Sector_Cuenta">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
-          <End Role="ProcedimientoEmergencia" Type="Self.ProcedimientoEmergencia" Multiplicity="*" />
+          <End Role="Sector" Type="Self.Sector" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cuenta">
               <PropertyRef Name="idCuenta" />
             </Principal>
-            <Dependent Role="ProcedimientoEmergencia">
+            <Dependent Role="Sector">
               <PropertyRef Name="idCuenta" />
             </Dependent>
           </ReferentialConstraint>
@@ -445,14 +596,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Lojack_PruebaEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="Usuario_FK01">
+          <End Role="Sector" Type="Self.Sector" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sector">
+              <PropertyRef Name="idSector" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idSector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataContextLoJack_Prueba" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
           <EntitySet Name="Cuentas" EntityType="Self.Cuenta" />
           <EntitySet Name="Entidads" EntityType="Self.Entidad" />
           <EntitySet Name="Equipoes" EntityType="Self.Equipo" />
           <EntitySet Name="EquipoTipoes" EntityType="Self.EquipoTipo" />
           <EntitySet Name="NivelServicios" EntityType="Self.NivelServicio" />
-          <EntitySet Name="ProcedimientoEmergencias" EntityType="Self.ProcedimientoEmergencia" />
+          <EntitySet Name="Sectors" EntityType="Self.Sector" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Cliente_Cuenta" Association="Self.FK_Cliente_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuentas" />
+            <End Role="Cliente" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuenta_Cliente" Association="Self.FK_Cuenta_Cliente">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Cuenta" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="Usuario_FK02" Association="Self.Usuario_FK02">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
           <AssociationSet Name="FK_Entidad_Cuenta" Association="Self.FK_Entidad_Cuenta">
             <End Role="Cuenta" EntitySet="Cuentas" />
             <End Role="Entidad" EntitySet="Entidads" />
@@ -461,9 +637,9 @@
             <End Role="Cuenta" EntitySet="Cuentas" />
             <End Role="Equipo" EntitySet="Equipoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProcedimientoEmergencia_Cuenta" Association="Self.FK_ProcedimientoEmergencia_Cuenta">
+          <AssociationSet Name="FK_Sector_Cuenta" Association="Self.FK_Sector_Cuenta">
             <End Role="Cuenta" EntitySet="Cuentas" />
-            <End Role="ProcedimientoEmergencia" EntitySet="ProcedimientoEmergencias" />
+            <End Role="Sector" EntitySet="Sectors" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Cuenta" Association="Self.FK_Usuario_Cuenta">
             <End Role="Cuenta" EntitySet="Cuentas" />
@@ -477,13 +653,43 @@
             <End Role="EquipoTipo" EntitySet="EquipoTipoes" />
             <End Role="Equipo" EntitySet="Equipoes" />
           </AssociationSet>
+          <AssociationSet Name="Usuario_FK01" Association="Self.Usuario_FK01">
+            <End Role="Sector" EntitySet="Sectors" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Lojack_PruebaModelStoreContainer" CdmEntityContainer="Lojack_PruebaEntities">
+        <EntityContainerMapping StorageEntityContainer="Lojack_PruebaModelStoreContainer" CdmEntityContainer="DataContextLoJack_Prueba">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="Lojack_PruebaModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="localidad" ColumnName="localidad" />
+                <ScalarProperty Name="partido" ColumnName="partido" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="cuit" ColumnName="cuit" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="inhabilitado" ColumnName="inhabilitado" />
+                <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+                <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+                <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+                <ScalarProperty Name="vistaInternoDesvios" ColumnName="vistaInternoDesvios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Cuentas">
             <EntityTypeMapping TypeName="Lojack_PruebaModel.Cuenta">
               <MappingFragment StoreEntitySet="Cuenta">
@@ -566,19 +772,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProcedimientoEmergencias">
-            <EntityTypeMapping TypeName="Lojack_PruebaModel.ProcedimientoEmergencia">
-              <MappingFragment StoreEntitySet="ProcedimientoEmergencia">
-                <ScalarProperty Name="idProcedimiento" ColumnName="idProcedimiento" />
+          <EntitySetMapping Name="Sectors">
+            <EntityTypeMapping TypeName="Lojack_PruebaModel.Sector">
+              <MappingFragment StoreEntitySet="Sector">
+                <ScalarProperty Name="idSector" ColumnName="idSector" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="nombrearchivo" ColumnName="nombrearchivo" />
-                <ScalarProperty Name="archivo" ColumnName="archivo" />
-                <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
                 <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
-                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
-                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
-                <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+                <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
                 <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
                 <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
               </MappingFragment>
             </EntityTypeMapping>

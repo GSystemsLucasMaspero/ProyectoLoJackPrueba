@@ -12,36 +12,37 @@ namespace ProyectoLojackABM.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Cliente
     {
-        public int idUsuario { get; set; }
+        public Cliente()
+        {
+            this.Cuentas = new HashSet<Cuenta>();
+            this.Usuarios = new HashSet<Usuario>();
+        }
+    
         public int idCliente { get; set; }
-        public string userLogin { get; set; }
         public string nombre { get; set; }
-        public string apellido { get; set; }
-        public int idSector { get; set; }
-        public string password { get; set; }
-        public Nullable<System.DateTime> lastExpiredPassword { get; set; }
-        public bool operador { get; set; }
-        public Nullable<bool> operadorSeguridad { get; set; }
-        public bool supervisor { get; set; }
+        public string direccion { get; set; }
+        public string telefono { get; set; }
+        public string localidad { get; set; }
+        public string partido { get; set; }
+        public string provincia { get; set; }
+        public string cuit { get; set; }
         public string email { get; set; }
+        public string fax { get; set; }
+        public bool inhabilitado { get; set; }
         public System.DateTime fechaAlta { get; set; }
         public int usuarioAlta { get; set; }
         public System.DateTime fechaModificacion { get; set; }
         public int usuarioModificacion { get; set; }
         public Nullable<System.DateTime> fechaBaja { get; set; }
         public Nullable<int> usuarioBaja { get; set; }
-        public int nivelAuditoria { get; set; }
-        public int perfilWindows { get; set; }
-        public int perfilWeb { get; set; }
-        public bool multipais { get; set; }
-        public bool demo { get; set; }
-        public int diasDemo { get; set; }
+        public int idPais { get; set; }
         public Nullable<int> idCuenta { get; set; }
+        public bool vistaInternoDesvios { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
         public virtual Cuenta Cuenta { get; set; }
-        public virtual Sector Sector { get; set; }
+        public virtual ICollection<Cuenta> Cuentas { get; set; }
+        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }
