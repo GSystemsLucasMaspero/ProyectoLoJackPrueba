@@ -12,10 +12,9 @@
 
     <fieldset>
         <legend>NivelServicio</legend>
-
         <div class="editor-label">
             @Html.Label("ID")
-            <input type="text" id="id" value="@Model.idNivelServicio " readonly />
+            <input type="text" id="id" value="@Model.idNivelServicio" readonly />
         </div>
 
         <div class="editor-label">
@@ -26,27 +25,24 @@
             @Html.ValidationMessageFor(model => model.descripcion)
         </div>
 
-        <div class="clearfix">
+        <div class="editor-label">
             @Html.Label("Fecha Alta")
-            <input type="text" id="fechaAlta" value="@Model.fechaAlta.ToString("yyyy-MM-dd hh:mm:ss.fff") " readonly />
+            <input type="text" id="id" value="@Model.fechaAlta" readonly />
         </div>
 
         <div class="editor-label">
             @Html.Label("ID Usuario Alta")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.usuarioAlta)
-            @Html.ValidationMessageFor(model => model.usuarioAlta)
+            <input type="text" id="id" value="@Model.usuarioAlta" readonly />
         </div>
 
         <div class="editor-label">
             @Html.Label("Fecha Baja")
-            <input type="text" id="fechaBaja" value="@Model.fechaBaja " readonly />
+            <input type="text" id="id" value="@Model.fechaBaja" readonly />
         </div>
 
         <div class="editor-label">
             @Html.Label("ID Usuario Baja")
-            <input type="text" id="usuarioBaja" value="@Model.usuarioBaja " readonly />
+            <input type="text" id="id" value="@Model.usuarioBaja" readonly />
         </div>
 
         <p>

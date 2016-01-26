@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoLojackABM.Models;
+using PagedList;
 
 namespace ProyectoLojackABM.Controllers
 {
@@ -19,9 +20,49 @@ namespace ProyectoLojackABM.Controllers
         // Hasta que este hecho el log-in
         private static int usuarioPrueba = 20;
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.NivelServicios.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IDSortParm = "id_desc";
+            ViewBag.DescriptionSortParm = String.IsNullOrEmpty(sortOrder) ? "desc_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+
+            var nivelservicios = from s in db.NivelServicios
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                nivelservicios = nivelservicios.Where(s => s.descripcion.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    nivelservicios = nivelservicios.OrderBy(s => s.idNivelServicio);
+                    break;
+                case "desc_desc":
+                    nivelservicios = nivelservicios.OrderByDescending(s => s.descripcion);
+                    break;
+                case "Date":
+                    nivelservicios = nivelservicios.OrderBy(s => s.fechaAlta);
+                    break;
+                case "date_desc":
+                    nivelservicios = nivelservicios.OrderByDescending(s => s.fechaAlta);
+                    break;
+                default:
+                    nivelservicios = nivelservicios.OrderBy(s => s.idNivelServicio);
+                    break;
+            }
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(nivelservicios.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Create()
@@ -52,8 +93,6 @@ namespace ProyectoLojackABM.Controllers
         public ActionResult Edit(int id = 0)
         {
             NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            if (nivelservicio.fechaBaja == null)
-                return View();
             if (nivelservicio == null)
             {
                 return HttpNotFound();

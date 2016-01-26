@@ -1,7 +1,9 @@
-﻿@model IEnumerable<ProyectoLojackABM.Models.NivelServicio>
+﻿@model PagedList.IPagedList<ProyectoLojackABM.Models.NivelServicio>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "NivelServicio";
 }
 
 <h2>Nivel Servicio</h2>
@@ -9,18 +11,26 @@
 <p>
     @Html.ActionLink("Agregar nuevo", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "NivelServicio", FormMethod.Get))
+{
+    <p>Buscar por descripción: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Buscar" />
+    </p>
+}
+
 <table>
     <tr>
         <th>
-            @Html.DisplayName("ID")
+            @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
         <th>
-            @Html.DisplayName("Descripción")
+            @Html.ActionLink("Descripción", "Index", new { sortOrder = ViewBag.DescriptionSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
         <th>
-            @Html.DisplayName("Fecha Alta")
+            @Html.ActionLink("Fecha Alta", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
         <th>
@@ -74,3 +84,10 @@
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
