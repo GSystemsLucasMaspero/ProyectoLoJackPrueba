@@ -14,11 +14,21 @@
         <legend>NivelServicio</legend>
 
         <div class="editor-label">
+            @Html.Label("ID")
+            <input type="text" id="id" value="@Model.idNivelServicio " readonly />
+        </div>
+
+        <div class="editor-label">
             @Html.Label("Descripción")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.descripcion)
             @Html.ValidationMessageFor(model => model.descripcion)
+        </div>
+
+        <div class="clearfix">
+            @Html.Label("Fecha Alta")
+            <input type="text" id="fechaAlta" value="@Model.fechaAlta.ToString("yyyy-MM-dd hh:mm:ss.fff") " readonly />
         </div>
 
         <div class="editor-label">
@@ -27,6 +37,16 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.usuarioAlta)
             @Html.ValidationMessageFor(model => model.usuarioAlta)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Fecha Baja")
+            <input type="text" id="fechaBaja" value="@Model.fechaBaja " readonly />
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("ID Usuario Baja")
+            <input type="text" id="usuarioBaja" value="@Model.usuarioBaja " readonly />
         </div>
 
         <p>

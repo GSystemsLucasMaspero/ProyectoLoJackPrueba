@@ -12,32 +12,30 @@ namespace ProyectoLojackABM.Controllers
     public class NivelServicioController : Controller
     {
         private DataContextLoJack_Prueba db = new DataContextLoJack_Prueba();
-
-        //
-        // GET: /NivelServicio/
+        private static int last_edit_id = 0;
+        private static int last_delete_id = 0;
+        private static int last_id = 0;
 
         public ActionResult Index()
         {
             return View(db.NivelServicios.ToList());
         }
 
-        //
-        // GET: /NivelServicio/Create
-
         public ActionResult Create()
         {
+            if (last_id == 0)
+            {
+                last_id = db.NivelServicios.ToArray().Last().idNivelServicio;
+            }
             return View();
         }
-
-        //
-        // POST: /NivelServicio/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(NivelServicio nivelservicio)
         {
-            // La fecha de alta es la de "ahora"
             nivelservicio.fechaAlta = DateTime.Now;
+            nivelservicio.idNivelServicio = ++last_id;
             if (ModelState.IsValid)
             {
                 db.NivelServicios.Add(nivelservicio);
@@ -47,9 +45,6 @@ namespace ProyectoLojackABM.Controllers
             return View(nivelservicio);
         }
 
-        //
-        // GET: /NivelServicio/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
             NivelServicio nivelservicio = db.NivelServicios.Find(id);
@@ -57,27 +52,28 @@ namespace ProyectoLojackABM.Controllers
             {
                 return HttpNotFound();
             }
+            last_edit_id = id;
             return View(nivelservicio);
         }
-
-        //
-        // POST: /NivelServicio/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(NivelServicio nivelservicio)
         {
+            nivelservicio.idNivelServicio = last_edit_id;
             if (ModelState.IsValid)
             {
-                db.Entry(nivelservicio).State = EntityState.Modified;
-                db.SaveChanges();
+                var nivelServicioToUpdate = db.NivelServicios.SingleOrDefault(ns => ns.idNivelServicio == nivelservicio.idNivelServicio);
+                if (nivelServicioToUpdate != null)
+                {
+                    nivelServicioToUpdate.descripcion = nivelservicio.descripcion;
+                    nivelServicioToUpdate.usuarioAlta = nivelservicio.usuarioAlta;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             return View(nivelservicio);
         }
-
-        //
-        // GET: /NivelServicio/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
@@ -86,20 +82,27 @@ namespace ProyectoLojackABM.Controllers
             {
                 return HttpNotFound();
             }
+            last_delete_id = id;
             return View(nivelservicio);
         }
 
-        //
-        // POST: /NivelServicio/Delete/5
-
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(NivelServicio nivelservicio)
         {
-            NivelServicio nivelservicio = db.NivelServicios.Find(id);
-            db.NivelServicios.Remove(nivelservicio);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            nivelservicio.idNivelServicio = last_delete_id;
+            if (ModelState.IsValid)
+            {
+                var nivelServicioToUpdate = db.NivelServicios.SingleOrDefault(ns => ns.idNivelServicio == nivelservicio.idNivelServicio);
+                if (nivelServicioToUpdate != null)
+                {
+                    nivelServicioToUpdate.usuarioBaja = nivelservicio.usuarioBaja;
+                    nivelServicioToUpdate.fechaBaja = DateTime.Now;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+            return View(nivelservicio);
         }
 
         protected override void Dispose(bool disposing)

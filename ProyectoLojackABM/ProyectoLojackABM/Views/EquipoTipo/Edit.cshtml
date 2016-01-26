@@ -12,10 +12,9 @@
 
     <fieldset>
         <legend>EquipoTipo</legend>
-        <p></p>
         <div class="editor-label">
             @Html.Label("ID")
-            <font size="3">@Html.DisplayFor(model => model.idEquipoTipo)</font>    
+            <input type="text" id="id" value="@Model.idEquipoTipo" readonly />
         </div>
 
         <div class="editor-label">
@@ -36,7 +35,7 @@
 
         <div class="editor-label">
             @Html.Label("Fecha Alta")
-            <font size="3">@Html.DisplayFor(model => model.fechaAlta)</font>
+            <input type="text" id="id" value="@Model.fechaAlta" readonly />
         </div>
 
         <div class="editor-label">
@@ -49,12 +48,12 @@
 
         <div class="editor-label">
             @Html.Label("Fecha Baja")
-            <font size="3">@Html.DisplayFor(model => model.fechaBaja)</font>
+            <input type="text" id="id" value="@Model.fechaBaja" readonly />
         </div>
 
         <div class="editor-label">
             @Html.Label("ID Usuario Baja")
-            <font size="3">@Html.DisplayFor(model => model.usuarioBaja)</font>
+            <input type="text" id="id" value="@Model.usuarioBaja" readonly />
         </div>
 
         <p>

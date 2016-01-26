@@ -7,48 +7,59 @@
 <h2>Equipo Tipo - Baja</h2>
 
 <h3>Está seguro que desea eliminar esta entrada?</h3>
-<fieldset>
-    <legend>EquipoTipo</legend>
 
-    <div class="display-label">
-        <b>@Html.DisplayName("* ID: ")</b>
-        @Html.DisplayFor(model => model.idEquipoTipo)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayName("* Descripción: ")</b>
-        @Html.DisplayFor(model => model.descripcion)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayName("* Cantidad de sensores: ")</b>
-        @Html.DisplayFor(model => model.cantSensores)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayName("* Fecha Alta: ")</b>
-        @Html.DisplayFor(model => model.fechaAlta)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayName("* Usuario Alta: ")</b>
-        @Html.DisplayFor(model => model.usuarioAlta)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayName("* Fecha Baja: ")</b>
-        @Html.DisplayFor(model => model.fechaBaja)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayName("* Usuario Baja: ")</b>
-        @Html.DisplayFor(model => model.usuarioBaja)
-    </div>
-</fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Eliminar" /> |
-        @Html.ActionLink("Volver a la lista", "Index")
-    </p>
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>EquipoTipo</legend>
+        <p></p>
+        <div class="display-label">
+            <b>@Html.DisplayName("* ID: ")</b>
+            @Html.DisplayFor(model => model.idEquipoTipo)
+        </div>
+
+        <div class="display-label">
+            <b>@Html.DisplayName("* Descripción: ")</b>
+            @Html.DisplayFor(model => model.descripcion)
+        </div>
+
+        <div class="display-label">
+            <b>@Html.DisplayName("* Cantidad de sensores: ")</b>
+            @Html.DisplayFor(model => model.cantSensores)
+        </div>
+
+        <div class="display-label">
+            <b>@Html.DisplayName("* Fecha Alta: ")</b>
+            @Html.DisplayFor(model => model.fechaAlta)
+        </div>
+
+        <div class="display-label">
+            <b>@Html.DisplayName("* ID Usuario Alta: ")</b>
+            @Html.DisplayFor(model => model.usuarioAlta)
+        </div>
+
+        <div class="display-label">
+            <b>@Html.DisplayName("* Fecha Baja: ")</b>
+            @Html.DisplayFor(model => model.fechaBaja)
+        </div>
+
+        <p></p>
+
+        <p>
+            @Html.Label("ID Usuario Baja")
+            @Html.EditorFor(model => model.usuarioBaja)
+            @Html.ValidationMessageFor(model => model.usuarioBaja)
+            <input type="submit" value="Eliminar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Volver a la lista", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
