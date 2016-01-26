@@ -1,66 +1,77 @@
-﻿@model IEnumerable<ProyectoLojackABM.Models.Equipo>
+﻿@model PagedList.IPagedList<ProyectoLojackABM.Models.Equipo>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Equipo";
 }
 
-<h2>Index</h2>
+<h2>Equipo Tipo</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar nuevo", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Equipo", FormMethod.Get))
+{
+    <p>
+        Buscar por identificador: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Buscar" />
+    </p>
+}
+
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idEquipo)
+            @Html.DisplayName("ID")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.identificador)
+            @Html.DisplayName("Identificador")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nroSerie)
+            @Html.DisplayName("Nro Serie")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.primario)
+            @Html.DisplayName("Primario")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EquipoTipo.descripcion)
+            @Html.DisplayName("Equipo Tipo")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cadencia)
+            @Html.DisplayName("Cadencia")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaAlta)
+            @Html.DisplayName("Fecha Alta")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioAlta)
+            @Html.DisplayName("ID Usuario Alta")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.versionFirmware)
+            @Html.DisplayName("Versión Firmware")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.versionProgramacion)
+            @Html.DisplayName("Versión Programación")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaModificacion)
+            @Html.DisplayName("Fecha Modificación")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioModificacion)
+            @Html.DisplayName("ID Usuario Modificación")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaBaja)
+            @Html.DisplayName("Fecha Baja")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioBaja)
+            @Html.DisplayName("ID Usuario Baja")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.estadoSd)
+            @Html.DisplayName("Estado SD")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cuenta.nombre)
+            @Html.DisplayName("Cuenta")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.portable)
+            @Html.DisplayName("Portable")
         </th>
         <th></th>
     </tr>
@@ -119,11 +130,19 @@
             @Html.DisplayFor(modelItem => item.portable)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @if (item.usuarioBaja == null && item.fechaBaja == null)
+            {
+                @Html.ActionLink("Editar", "Edit", new { id = item.idEquipoTipo })
+                @Html.Name("|")
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.idEquipoTipo })
+            }
         </td>
     </tr>
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

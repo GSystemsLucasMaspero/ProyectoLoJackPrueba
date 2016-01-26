@@ -6,66 +6,90 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoLojackABM.Models;
+using PagedList;
 
 namespace ProyectoLojackABM.Controllers
 {
     public class EquipoController : Controller
     {
         private DataContextLoJack_Prueba db = new DataContextLoJack_Prueba();
+        private static int last_edit_id = 0;
+        private static int last_delete_id = 0;
+        private static int last_id = 0;
 
-        //
-        // GET: /Equipo/
+        // Hasta que este hecho el log-in
+        private static int usuarioPrueba = 20;
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var equipoes = db.Equipoes.Include(e => e.Cuenta).Include(e => e.EquipoTipo);
-            return View(equipoes.ToList());
-        }
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IDSortParm = "id_desc";
+            ViewBag.IdentificadorSortParm = String.IsNullOrEmpty(sortOrder) ? "identificador_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
-        //
-        // GET: /Equipo/Details/5
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
 
-        public ActionResult Details(int id = 0)
-        {
-            Equipo equipo = db.Equipoes.Find(id);
-            if (equipo == null)
+            ViewBag.CurrentFilter = searchString;
+
+            var equipos = from s in db.Equipoes
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return HttpNotFound();
+                equipos = equipos.Where(s => s.identificador.Contains(searchString));
             }
-            return View(equipo);
-        }
 
-        //
-        // GET: /Equipo/Create
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    equipos = equipos.OrderBy(s => s.idEquipo);
+                    break;
+                case "identificador_desc":
+                    equipos = equipos.OrderByDescending(s => s.identificador);
+                    break;
+                case "Date":
+                    equipos = equipos.OrderBy(s => s.fechaAlta);
+                    break;
+                case "date_desc":
+                    equipos = equipos.OrderByDescending(s => s.fechaAlta);
+                    break;
+                default:
+                    equipos = equipos.OrderBy(s => s.idEquipo);
+                    break;
+            }
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(equipos.ToPagedList(pageNumber, pageSize));
+        }
 
         public ActionResult Create()
         {
-            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre");
-            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion");
+            if (last_id == 0)
+            {
+                last_id = db.Equipoes.ToArray().Last().idEquipo;
+            }
             return View();
         }
-
-        //
-        // POST: /Equipo/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Equipo equipo)
         {
+            equipo.fechaAlta = DateTime.Now;
+            equipo.idEquipoTipo = ++last_id;
             if (ModelState.IsValid)
             {
+                equipo.usuarioAlta = usuarioPrueba; // Hasta que este hecho el log-in
                 db.Equipoes.Add(equipo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
-            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
             return View(equipo);
         }
-
-        //
-        // GET: /Equipo/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
@@ -78,9 +102,6 @@ namespace ProyectoLojackABM.Controllers
             ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
             return View(equipo);
         }
-
-        //
-        // POST: /Equipo/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -97,9 +118,6 @@ namespace ProyectoLojackABM.Controllers
             return View(equipo);
         }
 
-        //
-        // GET: /Equipo/Delete/5
-
         public ActionResult Delete(int id = 0)
         {
             Equipo equipo = db.Equipoes.Find(id);
@@ -109,9 +127,6 @@ namespace ProyectoLojackABM.Controllers
             }
             return View(equipo);
         }
-
-        //
-        // POST: /Equipo/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
