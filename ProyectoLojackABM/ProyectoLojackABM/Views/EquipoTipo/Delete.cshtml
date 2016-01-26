@@ -6,7 +6,7 @@
 
 <h2>Equipo Tipo - Baja</h2>
 
-<h3>Está seguro que desea eliminar esta entrada?</h3>
+<h3><font color="red">Está seguro que desea eliminar esta entrada?</font></h3>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -45,12 +45,14 @@
             @Html.DisplayFor(model => model.fechaBaja)
         </div>
 
+        <div class="display-label">
+            <b>@Html.DisplayName("* ID Usuario Baja: ")</b>
+            @Html.DisplayFor(model => model.usuarioBaja)
+        </div>
+
         <p></p>
 
         <p>
-            @Html.Label("ID Usuario Baja")
-            @Html.EditorFor(model => model.usuarioBaja)
-            @Html.ValidationMessageFor(model => model.usuarioBaja)
             <input type="submit" value="Eliminar" />
         </p>
     </fieldset>

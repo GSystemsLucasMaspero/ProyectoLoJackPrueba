@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoLojackABM.Models;
+using PagedList;
 
 namespace ProyectoLojackABM.Controllers
 {
@@ -16,9 +17,56 @@ namespace ProyectoLojackABM.Controllers
         private static int last_delete_id = 0;
         private static int last_id = 0;
 
-        public ActionResult Index()
+        // Hasta que este hecho el log-in
+        private static int usuarioPrueba = 20;
+
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.EquipoTipoes.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IDSortParm = "id_desc";
+            ViewBag.SensoresSortParm = "sensores_desc";
+            ViewBag.DescriptionSortParm = String.IsNullOrEmpty(sortOrder) ? "desc_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+
+            var equipotipos = from s in db.EquipoTipoes
+                           select s;
+            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                equipotipos = equipotipos.Where(s => s.descripcion.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "sensores_desc":
+                    equipotipos = equipotipos.OrderBy(s => s.cantSensores);
+                    break;
+                case "id_desc":
+                    equipotipos = equipotipos.OrderBy(s => s.idEquipoTipo);
+                    break;
+                case "desc_desc":
+                    equipotipos = equipotipos.OrderByDescending(s => s.descripcion);
+                    break;
+                case "Date":
+                    equipotipos = equipotipos.OrderBy(s => s.fechaAlta);
+                    break;
+                case "date_desc":
+                    equipotipos = equipotipos.OrderByDescending(s => s.fechaAlta);
+                    break;
+                default:
+                    equipotipos = equipotipos.OrderBy(s => s.idEquipoTipo);
+                    break;
+            }
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(equipotipos.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Create()
@@ -38,6 +86,7 @@ namespace ProyectoLojackABM.Controllers
             equipotipo.idEquipoTipo = ++last_id;
             if (ModelState.IsValid)
             {
+                equipotipo.usuarioAlta = usuarioPrueba; // Hasta que este hecho el log-in
                 db.EquipoTipoes.Add(equipotipo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -98,8 +147,8 @@ namespace ProyectoLojackABM.Controllers
                 var equipoTipoToUpdate = db.EquipoTipoes.SingleOrDefault(ns => ns.idEquipoTipo == equipotipo.idEquipoTipo);
                 if (equipoTipoToUpdate != null)
                 {
-                    equipoTipoToUpdate.usuarioBaja = equipotipo.usuarioBaja;
                     equipoTipoToUpdate.fechaBaja = DateTime.Now;
+                    equipoTipoToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");

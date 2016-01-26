@@ -16,6 +16,9 @@ namespace ProyectoLojackABM.Controllers
         private static int last_delete_id = 0;
         private static int last_id = 0;
 
+        // Hasta que este hecho el log-in
+        private static int usuarioPrueba = 20;
+
         public ActionResult Index()
         {
             return View(db.NivelServicios.ToList());
@@ -38,6 +41,7 @@ namespace ProyectoLojackABM.Controllers
             nivelservicio.idNivelServicio = ++last_id;
             if (ModelState.IsValid)
             {
+                nivelservicio.usuarioAlta = usuarioPrueba;  // Hasta que este hecho el log-in
                 db.NivelServicios.Add(nivelservicio);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -48,6 +52,8 @@ namespace ProyectoLojackABM.Controllers
         public ActionResult Edit(int id = 0)
         {
             NivelServicio nivelservicio = db.NivelServicios.Find(id);
+            if (nivelservicio.fechaBaja == null)
+                return View();
             if (nivelservicio == null)
             {
                 return HttpNotFound();
@@ -96,7 +102,7 @@ namespace ProyectoLojackABM.Controllers
                 var nivelServicioToUpdate = db.NivelServicios.SingleOrDefault(ns => ns.idNivelServicio == nivelservicio.idNivelServicio);
                 if (nivelServicioToUpdate != null)
                 {
-                    nivelServicioToUpdate.usuarioBaja = nivelservicio.usuarioBaja;
+                    nivelServicioToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
                     nivelServicioToUpdate.fechaBaja = DateTime.Now;
                     db.SaveChanges();
                 }
