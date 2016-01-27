@@ -91,7 +91,6 @@ namespace ProyectoLojackABM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(equipotipo);
         }
 

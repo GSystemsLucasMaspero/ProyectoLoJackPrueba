@@ -1,10 +1,10 @@
 ﻿@model ProyectoLojackABM.Models.Equipo
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Equipo";
 }
 
-<h2>Create</h2>
+<h2>Equipo - Alta</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -12,17 +12,9 @@
 
     <fieldset>
         <legend>Equipo</legend>
-
+        <p></p>
         <div class="editor-label">
-            @Html.LabelFor(model => model.idEquipo)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.idEquipo)
-            @Html.ValidationMessageFor(model => model.idEquipo)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.identificador)
+            @Html.Label("Identificador")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.identificador)
@@ -30,7 +22,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.nroSerie)
+            @Html.Label("Número de serie")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.nroSerie)
@@ -38,7 +30,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.primario)
+            @Html.Label("Primario")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.primario)
@@ -46,15 +38,15 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.idEquipoTipo, "EquipoTipo")
+            @Html.Label("Tipo de equipo")
         </div>
         <div class="editor-field">
             @Html.DropDownList("idEquipoTipo", String.Empty)
             @Html.ValidationMessageFor(model => model.idEquipoTipo)
         </div>
-
+        <p></p>
         <div class="editor-label">
-            @Html.LabelFor(model => model.cadencia)
+            @Html.Label("Cadencia")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.cadencia)
@@ -62,23 +54,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.fechaAlta)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.fechaAlta)
-            @Html.ValidationMessageFor(model => model.fechaAlta)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.usuarioAlta)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.usuarioAlta)
-            @Html.ValidationMessageFor(model => model.usuarioAlta)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.versionFirmware)
+            @Html.Label("Versión de Firmware")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.versionFirmware)
@@ -86,7 +62,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.versionProgramacion)
+            @Html.Label("Versión de Programación")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.versionProgramacion)
@@ -94,39 +70,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.fechaModificacion)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.fechaModificacion)
-            @Html.ValidationMessageFor(model => model.fechaModificacion)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.usuarioModificacion)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.usuarioModificacion)
-            @Html.ValidationMessageFor(model => model.usuarioModificacion)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.fechaBaja)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.fechaBaja)
-            @Html.ValidationMessageFor(model => model.fechaBaja)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.usuarioBaja)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.usuarioBaja)
-            @Html.ValidationMessageFor(model => model.usuarioBaja)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.estadoSd)
+            @Html.Label("Estado SD")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.estadoSd)
@@ -134,15 +78,15 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.idCuenta, "Cuenta")
+            @Html.Label("Cuenta")
         </div>
         <div class="editor-field">
             @Html.DropDownList("idCuenta", String.Empty)
             @Html.ValidationMessageFor(model => model.idCuenta)
         </div>
-
+        <p></p>
         <div class="editor-label">
-            @Html.LabelFor(model => model.portable)
+            @Html.Label("Portable")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.portable)
@@ -150,13 +94,13 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Crear" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </div>
 
 @section Scripts {

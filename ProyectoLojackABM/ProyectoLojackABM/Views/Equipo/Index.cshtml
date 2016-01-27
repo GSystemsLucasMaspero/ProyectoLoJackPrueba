@@ -6,7 +6,7 @@
     ViewBag.Title = "Equipo";
 }
 
-<h2>Equipo Tipo</h2>
+<h2>Equipo</h2>
 
 <p>
     @Html.ActionLink("Agregar nuevo", "Create")
@@ -23,53 +23,66 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayName("ID")
+            @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("Identificador")
+            @Html.ActionLink("Identificador", "Index", new { sortOrder = ViewBag.IdentificadorSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
+        <th></th>
         <th>
             @Html.DisplayName("Nro Serie")
         </th>
         <th>
             @Html.DisplayName("Primario")
         </th>
+        <th></th>
         <th>
             @Html.DisplayName("Equipo Tipo")
         </th>
         <th>
             @Html.DisplayName("Cadencia")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayName("Fecha Alta")
+            @Html.ActionLink("Fecha Alta", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
+        <th></th>
         <th>
-            @Html.DisplayName("ID Usuario Alta")
+            @Html.DisplayName("Usuario Alta")
         </th>
+        <th></th>
         <th>
             @Html.DisplayName("Versión Firmware")
         </th>
+        <th></th>
         <th>
             @Html.DisplayName("Versión Programación")
         </th>
+        <th></th>
         <th>
             @Html.DisplayName("Fecha Modificación")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayName("ID Usuario Modificación")
+            @Html.DisplayName("Usuario Modificación")
         </th>
+        <th></th>
         <th>
             @Html.DisplayName("Fecha Baja")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayName("ID Usuario Baja")
+            @Html.DisplayName("Usuario Baja")
         </th>
+        <th></th>
         <th>
             @Html.DisplayName("Estado SD")
         </th>
+        <th></th>
         <th>
             @Html.DisplayName("Cuenta")
         </th>
+        <th></th>
         <th>
             @Html.DisplayName("Portable")
         </th>
@@ -84,57 +97,71 @@
         <td>
             @Html.DisplayFor(modelItem => item.identificador)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.nroSerie)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.primario)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.EquipoTipo.descripcion)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.cadencia)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.fechaAlta)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.usuarioAlta)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.versionFirmware)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.versionProgramacion)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.fechaModificacion)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.usuarioModificacion)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.fechaBaja)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.usuarioBaja)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.estadoSd)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.Cuenta.nombre)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.portable)
         </td>
+        <td></td>
         <td>
             @if (item.usuarioBaja == null && item.fechaBaja == null)
             {
-                @Html.ActionLink("Editar", "Edit", new { id = item.idEquipoTipo })
+                @Html.ActionLink("Editar", "Edit", new { id = item.idEquipo })
                 @Html.Name("|")
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.idEquipoTipo })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.idEquipo })
             }
         </td>
     </tr>

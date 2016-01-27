@@ -69,8 +69,10 @@ namespace ProyectoLojackABM.Controllers
         {
             if (last_id == 0)
             {
-                last_id = db.Equipoes.ToArray().Last().idEquipo;
+                last_id = db.EquipoTipoes.ToArray().Last().idEquipoTipo;
             }
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre");
+            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion");
             return View();
         }
 
@@ -79,15 +81,19 @@ namespace ProyectoLojackABM.Controllers
         public ActionResult Create(Equipo equipo)
         {
             equipo.fechaAlta = DateTime.Now;
-            equipo.idEquipoTipo = ++last_id;
+            equipo.fechaModificacion = DateTime.Now;
+            equipo.idEquipo = ++last_id;
             if (ModelState.IsValid)
             {
-                equipo.usuarioAlta = usuarioPrueba; // Hasta que este hecho el log-in
+                equipo.usuarioAlta = usuarioPrueba;
+                equipo.usuarioModificacion = usuarioPrueba;
                 db.Equipoes.Add(equipo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
+            ViewBag.idNivelServicio = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
             return View(equipo);
         }
 
@@ -100,6 +106,7 @@ namespace ProyectoLojackABM.Controllers
             }
             ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
             ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
+            last_edit_id = id;
             return View(equipo);
         }
 
@@ -107,10 +114,26 @@ namespace ProyectoLojackABM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Equipo equipo)
         {
+            equipo.idEquipo = last_edit_id;
             if (ModelState.IsValid)
             {
-                db.Entry(equipo).State = EntityState.Modified;
-                db.SaveChanges();
+                var equipoToUpdate = db.Equipoes.SingleOrDefault(ns => ns.idEquipo == equipo.idEquipo);
+                if (equipoToUpdate != null)
+                {
+                    equipoToUpdate.identificador = equipo.identificador;
+                    equipoToUpdate.nroSerie = equipo.nroSerie;
+                    equipoToUpdate.primario = equipo.primario;
+                    equipoToUpdate.cadencia = equipo.cadencia;
+                    equipoToUpdate.versionFirmware = equipo.versionFirmware;
+                    equipoToUpdate.versionProgramacion = equipo.versionProgramacion;
+                    equipoToUpdate.estadoSd = equipo.estadoSd;
+                    equipoToUpdate.portable = equipo.portable;
+                    equipoToUpdate.idEquipoTipo = equipo.idEquipoTipo;
+                    equipoToUpdate.idCuenta = equipo.idCuenta;
+                    equipoToUpdate.fechaModificacion = DateTime.Now;
+                    equipoToUpdate.usuarioModificacion = usuarioPrueba;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
@@ -125,17 +148,27 @@ namespace ProyectoLojackABM.Controllers
             {
                 return HttpNotFound();
             }
+            last_delete_id = id;
             return View(equipo);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Equipo equipo)
         {
-            Equipo equipo = db.Equipoes.Find(id);
-            db.Equipoes.Remove(equipo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            equipo.idEquipo = last_delete_id;
+            if (ModelState.IsValid)
+            {
+                var equipoToUpdate = db.Equipoes.SingleOrDefault(ns => ns.idEquipo == equipo.idEquipo);
+                if (equipoToUpdate != null)
+                {
+                    equipoToUpdate.fechaBaja = DateTime.Now;
+                    equipoToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+            return View(equipo);
         }
 
         protected override void Dispose(bool disposing)
