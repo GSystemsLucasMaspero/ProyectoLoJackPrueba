@@ -375,10 +375,6 @@
     <Content Include="Views\NivelServicio\Create.cshtml" />
     <Content Include="Views\NivelServicio\Edit.cshtml" />
     <Content Include="Views\NivelServicio\Delete.cshtml" />
-    <Content Include="Views\Entidad\Index.cshtml" />
-    <Content Include="Views\Entidad\Create.cshtml" />
-    <Content Include="Views\Entidad\Edit.cshtml" />
-    <Content Include="Views\Entidad\Delete.cshtml" />
     <Content Include="Views\Equipo\Index.cshtml" />
     <Content Include="Views\Equipo\Create.cshtml" />
     <Content Include="Views\Equipo\Edit.cshtml" />
@@ -388,6 +384,10 @@
     <Content Include="Views\EquipoTipo\Edit.cshtml" />
     <Content Include="Views\EquipoTipo\Delete.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\string.cshtml" />
+    <Content Include="Views\Entidad\Index.cshtml" />
+    <Content Include="Views\Entidad\Create.cshtml" />
+    <Content Include="Views\Entidad\Edit.cshtml" />
+    <Content Include="Views\Entidad\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

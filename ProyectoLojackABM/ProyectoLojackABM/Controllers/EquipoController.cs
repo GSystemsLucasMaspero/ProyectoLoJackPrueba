@@ -152,7 +152,7 @@ namespace ProyectoLojackABM.Controllers
             return View(equipo);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Equipo equipo)
         {

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0227ddb0ea22404ba0c346f55c5501b2" Name="Diagram1">
+      <Diagram DiagramId="ce709abfe87c42678fb1ce5bb02f8758" Name="Diagram1">
         <EntityTypeShape EntityType="Lojack_PruebaModel.Cliente" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Lojack_PruebaModel.Cuenta" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Lojack_PruebaModel.Entidad" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />

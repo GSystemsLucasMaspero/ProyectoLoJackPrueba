@@ -1,123 +1,172 @@
-﻿@model IEnumerable<ProyectoLojackABM.Models.Entidad>
+﻿@model PagedList.IPagedList<ProyectoLojackABM.Models.Entidad>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Entidad";
 }
 
-<h2>Index</h2>
+<h2>Entidad</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar nuevo", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Entidad", FormMethod.Get))
+{
+    <p>
+        Buscar por nombre: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Buscar" />
+    </p>
+}
+
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idEntidad)
+            @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.ActionLink("Nombre", "Index", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.estado)
+            @Html.DisplayName("Estado")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.NivelServicio.descripcion)
+            @Html.DisplayName("Nivel Servicio")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.plantillaSuceso)
+            @Html.DisplayName("Plantilla Suceso")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.cadenciaReporte)
+            @Html.DisplayName("Cadencia Reporte")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaAlta)
+            @Html.ActionLink("Fecha Alta", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioAlta)
+            @Html.DisplayName("Usuario Alta")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaModificacion)
+            @Html.DisplayName("Fecha Modificación")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioModificacion)
+            @Html.DisplayName("Usuario Modificación")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaBaja)
+            @Html.DisplayName("Fecha Baja")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioBaja)
+            @Html.DisplayName("Usuario Baja")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.comentario)
+            @Html.DisplayName("Comentario")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.telefono)
+            @Html.DisplayName("Teléfono")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.idProcedimiento)
+            @Html.DisplayName("ID Procedimiento")
         </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.Cuenta.nombre)
+            @Html.DisplayName("Cuenta")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idEntidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NivelServicio.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.plantillaSuceso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cadenciaReporte)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaAlta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarioAlta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaModificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarioModificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaBaja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarioBaja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.comentario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.idProcedimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cuenta.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idEntidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NivelServicio.descripcion)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.plantillaSuceso)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cadenciaReporte)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaAlta)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarioAlta)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaModificacion)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarioModificacion)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaBaja)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarioBaja)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comentario)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idProcedimiento)
+            </td>
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cuenta.nombre)
+            </td>
+            <td></td>
+            <td>
+                @if (item.usuarioBaja == null && item.fechaBaja == null)
+                {
+                    @Html.ActionLink("Editar", "Edit", new { id = item.idEntidad })
+                    @Html.Name("|")
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.idEntidad })
+                }
+            </td>
+        </tr>
+    }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
