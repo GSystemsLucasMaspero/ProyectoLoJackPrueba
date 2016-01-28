@@ -12,6 +12,7 @@ namespace ProyectoLojackABM.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Equipo
     {
@@ -29,6 +30,7 @@ namespace ProyectoLojackABM.Models
         [Required(ErrorMessage = "El campo Equipo Tipo no puede ser vacío.")]
         public int idEquipoTipo { get; set; }
         [Required(ErrorMessage = "El campo Cadencia no puede ser vacío.")]
+        [Range(0, int.MaxValue, ErrorMessage = "El campo Cadencia no puede ser negativo.")]
         public int cadencia { get; set; }
         public System.DateTime fechaAlta { get; set; }
         public int usuarioAlta { get; set; }
@@ -43,7 +45,6 @@ namespace ProyectoLojackABM.Models
         [StringLength(50, ErrorMessage = "El campo Estado SD no puede exceder los 50 caracteres.")]
         public string estadoSd { get; set; }
         public Nullable<int> idCuenta { get; set; }
-        [Required]
         public bool portable { get; set; }
     
         public virtual Cuenta Cuenta { get; set; }

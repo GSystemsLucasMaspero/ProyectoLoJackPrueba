@@ -20,196 +20,200 @@
     </p>
 }
 
-<table>
-    <tr>
-        <th>
-            @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("Identificador", "Index", new { sortOrder = ViewBag.IdentificadorSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Nro Serie")
-        </th>
-        <th>
-            @Html.DisplayName("Primario")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Equipo Tipo")
-        </th>
-        <th>
-            @Html.DisplayName("Cadencia")
-        </th>
-        <th></th>
-        <th>
-            @Html.ActionLink("Fecha Alta", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Usuario Alta")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Versión Firmware")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Versión Programación")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Fecha Modificación")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Usuario Modificación")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Fecha Baja")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Usuario Baja")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Estado SD")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Cuenta")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Portable")
-        </th>
-        <th></th>
-    </tr>
+<div>
+    <table>
+        <tr>
+            <th>
+                @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Identificador", "Index", new { sortOrder = ViewBag.IdentificadorSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Nro Serie")
+            </th>
+            <th>
+                @Html.DisplayName("Primario")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Equipo Tipo")
+            </th>
+            <th>
+                @Html.DisplayName("Cadencia")
+            </th>
+            <th></th>
+            <th>
+                @Html.ActionLink("Fecha Alta", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Usuario Alta")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Versión Firmware")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Versión Programación")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Fecha Modificación")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Usuario Modificación")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Fecha Baja")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Usuario Baja")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Estado SD")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Cuenta")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Portable")
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idEquipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.identificador)
-        </td>
-        <td></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nroSerie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.primario)
-        </td>
-        <td></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EquipoTipo.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cadencia)
-        </td>
-        <td></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaAlta)
-        </td>
-        <td></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarioAlta)
-        </td>
-        <td></td>
-        <td>
-            @if (item.versionFirmware == null)
-            {
-                @Html.DisplayName("-")
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.versionFirmware)
-            }
-        </td>
-        <td></td>
-        <td>
-            @if (item.versionProgramacion == null)
-            {
-                @Html.DisplayName("-")
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.versionProgramacion)
-            }
-        </td>
-        <td></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaModificacion)
-        </td>
-        <td></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarioModificacion)
-        </td>
-        <td></td>
-        <td>
-            @if (item.fechaBaja == null)
-            {
-                @Html.DisplayName("-")
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.fechaBaja)
-            }
-        </td>
-        <td></td>
-        <td>
-            @if (item.usuarioBaja == null)
-            {
-                @Html.DisplayName("-")
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.usuarioBaja)
-            }
-        </td>
-        <td></td>
-        <td>
-            @if (item.estadoSd == null)
-            {
-                @Html.DisplayName("-")
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.estadoSd)
-            }
-        </td>
-        <td></td>
-        <td>
-            @if (item.idCuenta == null)
-            {
-                @Html.DisplayName("-")
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.idCuenta)
-            }
-        </td>
-        <td></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.portable)
-        </td>
-        <td></td>
-        <td>
-            @if (item.usuarioBaja == null && item.fechaBaja == null)
-            {
-                @Html.ActionLink("Editar", "Edit", new { id = item.idEquipo })
-                @Html.Name("|")
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.idEquipo })
-            }
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idEquipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.identificador)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nroSerie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.primario)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EquipoTipo.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cadencia)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaAlta)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuarioAlta)
+                </td>
+                <td></td>
+                <td>
+                    @if (item.versionFirmware == null)
+                    {
+                        @Html.DisplayName("-")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.versionFirmware)
+                    }
+                </td>
+                <td></td>
+                <td>
+                    @if (item.versionProgramacion == null)
+                    {
+                        @Html.DisplayName("-")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.versionProgramacion)
+                    }
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaModificacion)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuarioModificacion)
+                </td>
+                <td></td>
+                <td>
+                    @if (item.fechaBaja == null)
+                    {
+                        @Html.DisplayName("-")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.fechaBaja)
+                    }
+                </td>
+                <td></td>
+                <td>
+                    @if (item.usuarioBaja == null)
+                    {
+                        @Html.DisplayName("-")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.usuarioBaja)
+                    }
+                </td>
+                <td></td>
+                <td>
+                    @if (item.estadoSd == null)
+                    {
+                        @Html.DisplayName("-")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.estadoSd)
+                    }
+                </td>
+                <td></td>
+                <td>
+                    @if (item.idCuenta == null)
+                    {
+                        @Html.DisplayName("-")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.idCuenta)
+                    }
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.portable)
+                </td>
+                <td></td>
+                <td>
+                    @if (item.usuarioBaja == null && item.fechaBaja == null)
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idEquipo })
+                        @Html.Name("|")
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.idEquipo })
+                    }
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>
+
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
