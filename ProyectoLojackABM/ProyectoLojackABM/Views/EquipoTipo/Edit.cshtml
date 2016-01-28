@@ -13,46 +13,68 @@
     <fieldset>
         <legend>EquipoTipo</legend>
         <p></p>
-        <div class="editor-label">
-            @Html.Label("ID")
-            <input type="text" id="id" value="@Model.idEquipoTipo" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Descripción")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.descripcion)
-            @Html.ValidationMessageFor(model => model.descripcion)
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Cantidad de sensores")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.cantSensores)
-            @Html.ValidationMessageFor(model => model.cantSensores)
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Fecha Alta")
-            <input type="text" id="id" value="@Model.fechaAlta" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("ID Usuario Alta")
-            <input type="text" id="id" value="@Model.usuarioAlta" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Fecha Baja")
-            <input type="text" id="id" value="@Model.fechaBaja" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("ID Usuario Baja")
-            <input type="text" id="id" value="@Model.usuarioBaja" readonly />
-        </div>
+        <table>
+            <tr>
+                <td><text><font size="3"><b>ID: </b></font></text></td>
+                <td><text><font size="3">@Model.idEquipoTipo</font></text></td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Descripción: </b></font></text></td>
+                <td>
+                    @Html.EditorFor(model => model.descripcion)
+                    @Html.ValidationMessageFor(model => model.descripcion)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Cantidad de sensores: </b></font></text></td>
+                <td>
+                    @Html.EditorFor(model => model.cantSensores)
+                    @Html.ValidationMessageFor(model => model.cantSensores)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Fecha Alta: </b></font></text></td>
+                <td><text><font size="3">@Model.fechaAlta</font></text></td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Usuario Alta: </b></font></text></td>
+                <td><text><font size="3">@Model.usuarioAlta</font></text></td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Fecha Baja: </b></font></text></td>
+                <td>
+                    <text>
+                        <font size="3">
+                            @if (Model.fechaBaja == null)
+                            {
+                                @Html.DisplayName("-")
+                            }
+                            else
+                            {
+                                @Model.fechaBaja
+                            }
+                        </font>
+                    </text>
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Usuario Baja: </b></font></text></td>
+                <td>
+                    <text>
+                        <font size="3">
+                            @if (Model.usuarioBaja == null)
+                            {
+                                @Html.DisplayName("-")
+                            }
+                            else
+                            {
+                                @Model.usuarioBaja
+                            }
+                        </font>
+                    </text>
+                </td>
+            </tr>
+        </table>
 
         <p>
             <input type="submit" value="Modificar" />

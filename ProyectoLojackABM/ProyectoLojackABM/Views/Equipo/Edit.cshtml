@@ -13,120 +13,127 @@
     <fieldset>
         <legend>Equipo</legend>
         <p></p>
-        <div class="editor-label">
-            @Html.Label("ID")
-            <input type="text" id="id" value="@Model.idEquipo" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label(" Identificador")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.identificador)
-            @Html.ValidationMessageFor(model => model.identificador)
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Número de serie")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.nroSerie)
-            @Html.ValidationMessageFor(model => model.nroSerie)
-        </div>
-
-        <div class="editor-label">
-            @Html.Label(" Primario")
-            @Html.EditorFor(model => model.primario)
-            @Html.ValidationMessageFor(model => model.primario)
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Tipo de equipo")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("idEquipoTipo", String.Empty)
-            @Html.ValidationMessageFor(model => model.idEquipoTipo)
-        </div>
-
-        <p></p>
-        <div class="editor-label">
-            @Html.Label(" Cadencia")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.cadencia)
-            @Html.ValidationMessageFor(model => model.cadencia)
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Fecha Alta")
-            <input type="text" id="id" value="@Model.fechaAlta" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Usuario Alta")
-            <input type="text" id="id" value="@Model.usuarioAlta" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Versión de Firmware")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.versionFirmware)
-            @Html.ValidationMessageFor(model => model.versionFirmware)
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Versión de Programación")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.versionProgramacion)
-            @Html.ValidationMessageFor(model => model.versionProgramacion)
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Fecha de Modificación")
-            <input type="text" id="id" value="@Model.fechaModificacion" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Usuario Modificación")
-            <input type="text" id="id" value="@Model.usuarioModificacion" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Fecha Baja")
-            <input type="text" id="id" value="@Model.fechaBaja" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Usuario Baja")
-            <input type="text" id="id" value="@Model.usuarioBaja" readonly />
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Estado SD")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.estadoSd)
-            @Html.ValidationMessageFor(model => model.estadoSd)
-        </div>
-
-        <div class="editor-label">
-            @Html.Label(" Cuenta")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("idCuenta", String.Empty)
-            @Html.ValidationMessageFor(model => model.idCuenta)
-        </div>
-
-        <p></p>
-        <div class="editor-label">
-            @Html.Label(" Portable")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.portable)
-            @Html.ValidationMessageFor(model => model.portable)
-        </div>
+        <table>
+            <tr>
+                <td><text><font size="3"><b>ID: </b></font></text></td>
+                <td><text><font size="3">@Model.idEquipoTipo</font></text></td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Identificador: </b></font></text></td>
+                <td>
+                    @Html.EditorFor(model => model.identificador)
+                    @Html.ValidationMessageFor(model => model.identificador)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Número de serie: </b></font></text></td>
+                <td>
+                    @Html.EditorFor(model => model.nroSerie)
+                    @Html.ValidationMessageFor(model => model.nroSerie)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Primario: </b></font></text></td>
+                <td>
+                    @Html.EditorFor(model => model.primario)
+                    @Html.ValidationMessageFor(model => model.primario)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Tipo de equipo: </b></font></text></td>
+                <td>
+                    @Html.DropDownList("idEquipoTipo", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idEquipoTipo)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Cadencia: </b></font></text></td>
+                <td>
+                    @Html.EditorFor(model => model.cadencia)
+                    @Html.ValidationMessageFor(model => model.cadencia)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Fecha Alta: </b></font></text></td>
+                <td><text><font size="3">@Model.fechaAlta</font></text></td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Usuario Alta: </b></font></text></td>
+                <td><text><font size="3">@Model.usuarioAlta</font></text></td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Versión de Firmware: </b></font></text></td>
+                <td>
+                    @Html.EditorFor(model => model.versionFirmware)
+                    @Html.ValidationMessageFor(model => model.versionFirmware)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Versión de Programación: </b></font></text></td>
+                <td>
+                    @Html.EditorFor(model => model.versionProgramacion)
+                    @Html.ValidationMessageFor(model => model.versionProgramacion)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Fecha Modificación: </b></font></text></td>
+                <td><text><font size="3">@Model.fechaModificacion</font></text></td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Usuario Modificación: </b></font></text></td>
+                <td><text><font size="3">@Model.usuarioModificacion</font></text></td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Fecha Baja: </b></font></text></td>
+                <td><text><font size="3">
+                    @if (Model.fechaBaja == null)
+                    {
+                        @Html.DisplayName("-")
+                    } else {
+                        @Model.fechaBaja
+                    }
+                    </font></text>
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Usuario Baja: </b></font></text></td>
+                <td>
+                    <text>
+                        <font size="3">
+                            @if (Model.usuarioBaja == null)
+                            {
+                                @Html.DisplayName("-")
+                            }
+                            else
+                            {
+                                @Model.usuarioBaja
+                            }
+                        </font>
+                    </text>
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Estado SD: </b></font></text></td>
+                <td>
+                    @Html.EditorFor(model => model.estadoSd)
+                    @Html.ValidationMessageFor(model => model.estadoSd)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Cuenta: </b></font></text></td>
+                <td>
+                    @Html.DropDownList("idCuenta", String.Empty)
+                    @Html.ValidationMessageFor(model => model.idCuenta)
+                </td>
+            </tr>
+            <tr>
+                <td><text><font size="3"><b>Portable: </b></font></text></td>
+                <td>
+                    @Html.EditorFor(model => model.portable)
+                    @Html.ValidationMessageFor(model => model.portable)
+                </td>
+            </tr>
+        </table>
 
         <p>
             <input type="submit" value="Modificar" />

@@ -68,11 +68,25 @@
         </td>
         <td></td>
         <td>
-            @Html.DisplayFor(modelItem => item.fechaBaja)
+            @if (item.fechaBaja == null)
+            {
+                @Html.DisplayName("-")
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.fechaBaja)
+            }
         </td>
         <td></td>
         <td>
-            @Html.DisplayFor(modelItem => item.usuarioBaja)
+            @if (item.usuarioBaja == null)
+            {
+                @Html.DisplayName("-")
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.usuarioBaja)
+            }
         </td>
         <td></td>
         <td>

@@ -106,7 +106,14 @@
             </td>
             <td></td>
             <td>
-                @Html.DisplayFor(modelItem => item.plantillaSuceso)
+                @if (item.plantillaSuceso == null)
+                {
+                    @Html.DisplayName("-")
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.plantillaSuceso)
+                }
             </td>
             <td></td>
             <td>
@@ -130,27 +137,69 @@
             </td>
             <td></td>
             <td>
-                @Html.DisplayFor(modelItem => item.fechaBaja)
+                @if (item.fechaBaja == null)
+                {
+                    @Html.DisplayName("-")
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.fechaBaja)
+                }
             </td>
             <td></td>
             <td>
-                @Html.DisplayFor(modelItem => item.usuarioBaja)
+                @if (item.usuarioBaja == null)
+                {
+                    @Html.DisplayName("-")
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.usuarioBaja)
+                }
             </td>
             <td></td>
             <td>
-                @Html.DisplayFor(modelItem => item.comentario)
+                @if (item.comentario == null)
+                {
+                    @Html.DisplayName("-")
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.comentario)
+                }
             </td>
             <td></td>
             <td>
-                @Html.DisplayFor(modelItem => item.telefono)
+                @if (item.telefono == null)
+                {
+                    @Html.DisplayName("-")
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.telefono)
+                }
             </td>
             <td></td>
             <td>
-                @Html.DisplayFor(modelItem => item.idProcedimiento)
+                @if (item.idProcedimiento == null)
+                {
+                    @Html.DisplayName("-")
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.idProcedimiento)
+                }
             </td>
             <td></td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cuenta.nombre)
+                @if (item.idCuenta == null)
+                {
+                    @Html.DisplayName("-")
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Cuenta.nombre)
+                }
             </td>
             <td></td>
             <td>
