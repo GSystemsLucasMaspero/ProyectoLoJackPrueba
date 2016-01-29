@@ -59,7 +59,7 @@ namespace ProyectoLojackABM.Controllers
                     nivelservicios = nivelservicios.OrderBy(s => s.idNivelServicio);
                     break;
             }
-            int pageSize = 15;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
             return View(nivelservicios.ToPagedList(pageNumber, pageSize));
         }

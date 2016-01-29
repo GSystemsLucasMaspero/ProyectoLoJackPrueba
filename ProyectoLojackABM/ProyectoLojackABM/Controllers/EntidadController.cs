@@ -59,7 +59,7 @@ namespace ProyectoLojackABM.Controllers
                     entidades = entidades.OrderBy(s => s.idEntidad);
                     break;
             }
-            int pageSize = 15;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
             return View(entidades.ToPagedList(pageNumber, pageSize));
         }

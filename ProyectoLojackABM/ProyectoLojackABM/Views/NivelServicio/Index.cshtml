@@ -6,103 +6,106 @@
     ViewBag.Title = "NivelServicio";
 }
 
-<h2>Nivel Servicio</h2>
+<div class="content-wrapper">
+    <h2>Nivel Servicio</h2>
 
-<p>
-    @Html.ActionLink("Agregar nuevo", "Create")
-</p>
-
-@using (Html.BeginForm("Index", "NivelServicio", FormMethod.Get))
-{
-    <p>Buscar por descripción: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Buscar" />
+    <p>
+        @Html.ActionLink("Agregar nuevo", "Create")
     </p>
-}
 
-<table>
-    <tr>
-        <th>
-            @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th></th>
-        <th>
-            @Html.ActionLink("Descripción", "Index", new { sortOrder = ViewBag.DescriptionSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th></th>
-        <th>
-            @Html.ActionLink("Fecha Alta", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("ID Usuario Alta")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Fecha Baja")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("ID Usuario Baja")
-        </th>
-        <th></th>
-    </tr>
+    @using (Html.BeginForm("Index", "NivelServicio", FormMethod.Get))
+    {
+        <p>
+            Buscar por descripción: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Buscar" />
+        </p>
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idNivelServicio)
-        </td>
-        <td></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaAlta)
-        </td>
-        <td></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarioAlta)
-        </td>
-        <td></td>
-        <td>
-            @if (item.fechaBaja == null)
-            {
-                @Html.DisplayName("-")
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.fechaBaja)
-            }
-        </td>
-        <td></td>
-        <td>
-            @if (item.usuarioBaja == null)
-            {
-                @Html.DisplayName("-")
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.usuarioBaja)
-            }
-        </td>
-        <td></td>
-        <td>
-            @if (item.usuarioBaja == null && item.fechaBaja == null)
-            {
-                @Html.ActionLink("Editar", "Edit", new { id=item.idNivelServicio })
-                @Html.Name("|")
-                @Html.ActionLink("Eliminar", "Delete", new { id=item.idNivelServicio })   
-            }
-        </td>
-    </tr>
-}
+    <table>
+        <tr>
+            <th>
+                @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+            <th>
+                @Html.ActionLink("Descripción", "Index", new { sortOrder = ViewBag.DescriptionSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+            <th>
+                @Html.ActionLink("Fecha Alta", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("ID Usuario Alta")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("Fecha Baja")
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayName("ID Usuario Baja")
+            </th>
+            <th></th>
+        </tr>
 
-</table>
-<br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idNivelServicio)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaAlta)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuarioAlta)
+                </td>
+                <td></td>
+                <td>
+                    @if (item.fechaBaja == null)
+                    {
+                        @Html.DisplayName("-")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.fechaBaja)
+                    }
+                </td>
+                <td></td>
+                <td>
+                    @if (item.usuarioBaja == null)
+                    {
+                        @Html.DisplayName("-")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.usuarioBaja)
+                    }
+                </td>
+                <td></td>
+                <td>
+                    @if (item.usuarioBaja == null && item.fechaBaja == null)
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idNivelServicio })
+                        @Html.Name("|")
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.idNivelServicio })
+                    }
+                </td>
+            </tr>
+        }
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
+    </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-
+</div>
 

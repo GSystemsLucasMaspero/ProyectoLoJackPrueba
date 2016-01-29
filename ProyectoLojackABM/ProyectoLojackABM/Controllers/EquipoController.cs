@@ -59,7 +59,7 @@ namespace ProyectoLojackABM.Controllers
                     equipos = equipos.OrderBy(s => s.idEquipo);
                     break;
             }
-            int pageSize = 15;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
             return View(equipos.ToPagedList(pageNumber, pageSize));
         }

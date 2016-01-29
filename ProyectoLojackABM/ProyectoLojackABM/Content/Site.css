@@ -6,7 +6,6 @@
 
 body {
     background-color: #fff;
-    width : 90%;
     border-top: solid 10px #000;
     color: #333;
     font-size: .85em;
@@ -95,8 +94,13 @@ h5, h6 {
 /* main layout
 ----------------------------------------------------------*/
 .content-wrapper {
-    margin: 0 auto;
-    max-width: 960px;
+    margin: 0;
+    padding-left: 50px;
+}
+
+.container {
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 #body {

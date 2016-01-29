@@ -6,216 +6,220 @@
     ViewBag.Title = "Entidad";
 }
 
-<h2>Entidad</h2>
+<div class="content-wrapper">
+    <h2>Entidad</h2>
 
-<p>
-    @Html.ActionLink("Agregar nuevo", "Create")
-</p>
-
-@using (Html.BeginForm("Index", "Entidad", FormMethod.Get))
-{
     <p>
-        Buscar por nombre: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Buscar" />
+        @Html.ActionLink("Agregar nuevo", "Create")
     </p>
-}
 
-<table>
-    <tr>
-        <th>
-            @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("Nombre", "Index", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Estado")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Nivel Servicio")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Plantilla Suceso")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Cadencia Reporte")
-        </th>
-        <th></th>
-        <th>
-            @Html.ActionLink("Fecha Alta", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Usuario Alta")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Fecha Modificación")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Usuario Modificación")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Fecha Baja")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Usuario Baja")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Comentario")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Teléfono")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("ID Procedimiento")
-        </th>
-        <th></th>
-        <th>
-            @Html.DisplayName("Cuenta")
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+    @using (Html.BeginForm("Index", "Entidad", FormMethod.Get))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.idEntidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre)
-            </td>
-            <td></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NivelServicio.descripcion)
-            </td>
-            <td></td>
-            <td>
-                @if (item.plantillaSuceso == null)
-                {
-                    @Html.DisplayName("-")
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.plantillaSuceso)
-                }
-            </td>
-            <td></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cadenciaReporte)
-            </td>
-            <td></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechaAlta)
-            </td>
-            <td></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.usuarioAlta)
-            </td>
-            <td></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechaModificacion)
-            </td>
-            <td></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.usuarioModificacion)
-            </td>
-            <td></td>
-            <td>
-                @if (item.fechaBaja == null)
-                {
-                    @Html.DisplayName("-")
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.fechaBaja)
-                }
-            </td>
-            <td></td>
-            <td>
-                @if (item.usuarioBaja == null)
-                {
-                    @Html.DisplayName("-")
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.usuarioBaja)
-                }
-            </td>
-            <td></td>
-            <td>
-                @if (item.comentario == null)
-                {
-                    @Html.DisplayName("-")
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.comentario)
-                }
-            </td>
-            <td></td>
-            <td>
-                @if (item.telefono == null)
-                {
-                    @Html.DisplayName("-")
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.telefono)
-                }
-            </td>
-            <td></td>
-            <td>
-                @if (item.idProcedimiento == null)
-                {
-                    @Html.DisplayName("-")
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.idProcedimiento)
-                }
-            </td>
-            <td></td>
-            <td>
-                @if (item.idCuenta == null)
-                {
-                    @Html.DisplayName("-")
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.Cuenta.nombre)
-                }
-            </td>
-            <td></td>
-            <td>
-                @if (item.usuarioBaja == null && item.fechaBaja == null)
-                {
-                    @Html.ActionLink("Editar", "Edit", new { id = item.idEntidad })
-                    @Html.Name("|")
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.idEntidad })
-                }
-            </td>
-        </tr>
+        <p>
+            Buscar por nombre: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Buscar" />
+        </p>
     }
 
-</table>
-<br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    <div class="container">
+        <table>
+            <tr>
+                <th>
+                    @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink("Nombre", "Index", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Estado")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Nivel Servicio")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Plantilla Suceso")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Cadencia Reporte")
+                </th>
+                <th></th>
+                <th>
+                    @Html.ActionLink("Fecha Alta", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Usuario Alta")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Fecha Modificación")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Usuario Modificación")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Fecha Baja")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Usuario Baja")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Comentario")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Teléfono")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("ID Procedimiento")
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayName("Cuenta")
+                </th>
+                <th></th>
+            </tr>
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idEntidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.estado)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NivelServicio.descripcion)
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (item.plantillaSuceso == null)
+                        {
+                            @Html.DisplayName("-")
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.plantillaSuceso)
+                        }
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cadenciaReporte)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaAlta)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.usuarioAlta)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaModificacion)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.usuarioModificacion)
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (item.fechaBaja == null)
+                        {
+                            @Html.DisplayName("-")
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.fechaBaja)
+                        }
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (item.usuarioBaja == null)
+                        {
+                            @Html.DisplayName("-")
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.usuarioBaja)
+                        }
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (item.comentario == null)
+                        {
+                            @Html.DisplayName("-")
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.comentario)
+                        }
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (item.telefono == null)
+                        {
+                            @Html.DisplayName("-")
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.telefono)
+                        }
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (item.idProcedimiento == null)
+                        {
+                            @Html.DisplayName("-")
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.idProcedimiento)
+                        }
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (item.idCuenta == null)
+                        {
+                            @Html.DisplayName("-")
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Cuenta.nombre)
+                        }
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (item.usuarioBaja == null && item.fechaBaja == null)
+                        {
+                            @Html.ActionLink("Editar", "Edit", new { id = item.idEntidad })
+                            @Html.Name("|")
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.idEntidad })
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
