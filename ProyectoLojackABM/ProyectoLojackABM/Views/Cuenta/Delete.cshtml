@@ -1,0 +1,61 @@
+﻿@model ProyectoLojackABM.Models.Cuenta
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Cuenta</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idCuenta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idCuenta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cliente.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cliente.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.mapGuideEnabled)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.mapGuideEnabled)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.googleMapsEnabled)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.googleMapsEnabled)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.mapsEnabled)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.mapsEnabled)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

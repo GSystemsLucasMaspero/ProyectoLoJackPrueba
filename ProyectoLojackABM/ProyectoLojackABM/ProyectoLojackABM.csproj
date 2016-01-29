@@ -190,11 +190,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\EntidadController.cs" />
     <Compile Include="Controllers\EquipoController.cs" />
     <Compile Include="Controllers\EquipoTipoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NivelServicioController.cs" />
+    <Compile Include="Controllers\SectorController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -400,6 +404,26 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Cuenta\Index.cshtml" />
+    <Content Include="Views\Cuenta\Details.cshtml" />
+    <Content Include="Views\Cuenta\Create.cshtml" />
+    <Content Include="Views\Cuenta\Edit.cshtml" />
+    <Content Include="Views\Cuenta\Delete.cshtml" />
+    <Content Include="Views\Sector\Index.cshtml" />
+    <Content Include="Views\Sector\Details.cshtml" />
+    <Content Include="Views\Sector\Create.cshtml" />
+    <Content Include="Views\Sector\Edit.cshtml" />
+    <Content Include="Views\Sector\Delete.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Delete.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Details.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

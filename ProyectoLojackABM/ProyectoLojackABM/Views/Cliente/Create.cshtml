@@ -1,0 +1,188 @@
+﻿@model ProyectoLojackABM.Models.Cliente
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Cliente</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idCliente)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idCliente)
+            @Html.ValidationMessageFor(model => model.idCliente)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nombre)
+            @Html.ValidationMessageFor(model => model.nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.direccion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.direccion)
+            @Html.ValidationMessageFor(model => model.direccion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.telefono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.telefono)
+            @Html.ValidationMessageFor(model => model.telefono)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.localidad)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.localidad)
+            @Html.ValidationMessageFor(model => model.localidad)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.partido)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.partido)
+            @Html.ValidationMessageFor(model => model.partido)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.provincia)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.provincia)
+            @Html.ValidationMessageFor(model => model.provincia)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cuit)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cuit)
+            @Html.ValidationMessageFor(model => model.cuit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fax)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fax)
+            @Html.ValidationMessageFor(model => model.fax)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.inhabilitado)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.inhabilitado)
+            @Html.ValidationMessageFor(model => model.inhabilitado)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaAlta)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaAlta)
+            @Html.ValidationMessageFor(model => model.fechaAlta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.usuarioAlta)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.usuarioAlta)
+            @Html.ValidationMessageFor(model => model.usuarioAlta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaModificacion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaModificacion)
+            @Html.ValidationMessageFor(model => model.fechaModificacion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.usuarioModificacion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.usuarioModificacion)
+            @Html.ValidationMessageFor(model => model.usuarioModificacion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fechaBaja)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fechaBaja)
+            @Html.ValidationMessageFor(model => model.fechaBaja)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.usuarioBaja)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.usuarioBaja)
+            @Html.ValidationMessageFor(model => model.usuarioBaja)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idPais)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idPais)
+            @Html.ValidationMessageFor(model => model.idPais)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idCuenta, "Cuenta")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idCuenta", String.Empty)
+            @Html.ValidationMessageFor(model => model.idCuenta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.vistaInternoDesvios)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.vistaInternoDesvios)
+            @Html.ValidationMessageFor(model => model.vistaInternoDesvios)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

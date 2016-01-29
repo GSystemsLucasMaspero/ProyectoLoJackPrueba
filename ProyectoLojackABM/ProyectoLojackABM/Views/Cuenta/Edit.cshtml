@@ -1,0 +1,76 @@
+﻿@model ProyectoLojackABM.Models.Cuenta
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Cuenta</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idCuenta)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idCuenta)
+            @Html.ValidationMessageFor(model => model.idCuenta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nombre)
+            @Html.ValidationMessageFor(model => model.nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idClienteControlador, "Cliente")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idClienteControlador", String.Empty)
+            @Html.ValidationMessageFor(model => model.idClienteControlador)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mapGuideEnabled)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.mapGuideEnabled)
+            @Html.ValidationMessageFor(model => model.mapGuideEnabled)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.googleMapsEnabled)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.googleMapsEnabled)
+            @Html.ValidationMessageFor(model => model.googleMapsEnabled)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mapsEnabled)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.mapsEnabled)
+            @Html.ValidationMessageFor(model => model.mapsEnabled)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

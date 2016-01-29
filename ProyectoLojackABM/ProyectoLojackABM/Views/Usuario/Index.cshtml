@@ -1,0 +1,177 @@
+﻿@model IEnumerable<ProyectoLojackABM.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userLogin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sector.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastExpiredPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.operador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.operadorSeguridad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.supervisor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaAlta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuarioAlta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaModificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuarioModificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaBaja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuarioBaja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nivelAuditoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.perfilWindows)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.perfilWeb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.multipais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.demo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.diasDemo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cuenta.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userLogin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sector.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastExpiredPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.operador)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.operadorSeguridad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.supervisor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaAlta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuarioAlta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaModificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuarioModificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaBaja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuarioBaja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nivelAuditoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.perfilWindows)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.perfilWeb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.multipais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.demo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diasDemo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cuenta.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

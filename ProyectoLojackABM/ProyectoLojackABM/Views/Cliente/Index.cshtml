@@ -1,0 +1,147 @@
+﻿@model IEnumerable<ProyectoLojackABM.Models.Cliente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.localidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.partido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.provincia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cuit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.inhabilitado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaAlta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuarioAlta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaModificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuarioModificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaBaja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuarioBaja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idPais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cuenta.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vistaInternoDesvios)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.localidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.partido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.provincia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cuit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.inhabilitado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaAlta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuarioAlta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaModificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuarioModificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaBaja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuarioBaja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idPais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cuenta.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vistaInternoDesvios)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

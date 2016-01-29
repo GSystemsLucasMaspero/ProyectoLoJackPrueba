@@ -1,0 +1,159 @@
+﻿@model ProyectoLojackABM.Models.Cliente
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Cliente</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idCliente)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idCliente)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.direccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.telefono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.localidad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.localidad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.partido)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.partido)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.provincia)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.provincia)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cuit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cuit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fax)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fax)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.inhabilitado)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.inhabilitado)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaAlta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaAlta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuarioAlta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuarioAlta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaModificacion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaModificacion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuarioModificacion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuarioModificacion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaBaja)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaBaja)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuarioBaja)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuarioBaja)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idPais)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idPais)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cuenta.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cuenta.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.vistaInternoDesvios)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.vistaInternoDesvios)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

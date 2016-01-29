@@ -1,0 +1,190 @@
+﻿@model ProyectoLojackABM.Models.Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Usuario</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idUsuario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idUsuario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cliente.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cliente.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.userLogin)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.userLogin)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.apellido)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.apellido)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sector.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sector.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.password)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.password)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lastExpiredPassword)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lastExpiredPassword)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.operador)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.operador)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.operadorSeguridad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.operadorSeguridad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.supervisor)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.supervisor)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaAlta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaAlta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuarioAlta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuarioAlta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaModificacion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaModificacion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuarioModificacion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuarioModificacion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fechaBaja)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fechaBaja)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuarioBaja)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuarioBaja)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nivelAuditoria)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nivelAuditoria)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.perfilWindows)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.perfilWindows)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.perfilWeb)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.perfilWeb)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.multipais)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.multipais)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.demo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.demo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.diasDemo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.diasDemo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cuenta.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cuenta.nombre)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
