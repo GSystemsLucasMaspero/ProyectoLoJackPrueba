@@ -4,81 +4,84 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Nivel Servicio - Modificación</h2>
+<div class="content-wrapper">
+    <h2>Nivel Servicio - Modificación</h2>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>NivelServicio</legend>
-        <p></p>
-        <table>
-            <tr>
-                <td><text><font size="3"><b>ID: </b></font></text></td>
-                <td><text><font size="3">@Model.idNivelServicio</font></text></td>
-            </tr>
-            <tr>
-                <td><text><font size="3"><b>Descripción: </b></font></text></td>
-                <td>
-                    @Html.EditorFor(model => model.descripcion)
-                    @Html.ValidationMessageFor(model => model.descripcion)
-                </td>
-            </tr>
-            <tr>
-                <td><text><font size="3"><b>Fecha Alta: </b></font></text></td>
-                <td><text><font size="3">@Model.fechaAlta</font></text></td>
-            </tr>
-            <tr>
-                <td><text><font size="3"><b>Usuario Alta: </b></font></text></td>
-                <td><text><font size="3">@Model.usuarioAlta</font></text></td>
-            </tr>
-            <tr>
-                <td><text><font size="3"><b>Fecha Baja: </b></font></text></td>
-                <td>
-                    <text>
-                        <font size="3">
-                            @if (Model.fechaBaja == null)
-                            {
-                                @Html.DisplayName("-")
-                            }
-                            else
-                            {
-                                @Model.fechaBaja
-                            }
-                        </font>
-                    </text>
-                </td>
-            </tr>
-            <tr>
-                <td><text><font size="3"><b>Usuario Baja: </b></font></text></td>
-                <td>
-                    <text>
-                        <font size="3">
-                            @if (Model.usuarioBaja == null)
-                            {
-                                @Html.DisplayName("-")
-                            }
-                            else
-                            {
-                                @Model.usuarioBaja
-                            }
-                        </font>
-                    </text>
-                </td>
-            </tr>
-        </table>
+        <fieldset>
+            <legend>NivelServicio</legend>
+            <p></p>
+            <table>
+                <tr>
+                    <td><text><font size="3"><b>ID: </b></font></text></td>
+                    <td><text><font size="3">@Model.idNivelServicio</font></text></td>
+                </tr>
+                <tr>
+                    <td><text><font size="3"><b>Descripción: </b></font></text></td>
+                    <td>
+                        @Html.EditorFor(model => model.descripcion)
+                        @Html.ValidationMessageFor(model => model.descripcion)
+                    </td>
+                </tr>
+                <tr>
+                    <td><text><font size="3"><b>Fecha Alta: </b></font></text></td>
+                    <td><text><font size="3">@Model.fechaAlta</font></text></td>
+                </tr>
+                <tr>
+                    <td><text><font size="3"><b>Usuario Alta: </b></font></text></td>
+                    <td><text><font size="3">@Model.usuarioAlta</font></text></td>
+                </tr>
+                <tr>
+                    <td><text><font size="3"><b>Fecha Baja: </b></font></text></td>
+                    <td>
+                        <text>
+                            <font size="3">
+                                @if (Model.fechaBaja == null)
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                                else
+                                {
+                                    @Model.fechaBaja
+                                }
+                            </font>
+                        </text>
+                    </td>
+                </tr>
+                <tr>
+                    <td><text><font size="3"><b>Usuario Baja: </b></font></text></td>
+                    <td>
+                        <text>
+                            <font size="3">
+                                @if (Model.usuarioBaja == null)
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                                else
+                                {
+                                    @Model.usuarioBaja
+                                }
+                            </font>
+                        </text>
+                    </td>
+                </tr>
+            </table>
 
-        <p>
-            <input type="submit" value="Modificar" />
-        </p>
-    </fieldset>
-}
+            <p>
+                <input type="submit" value="Modificar" />
+            </p>
+        </fieldset>
+    }
 
-<div>
-    @Html.ActionLink("Volver a la lista", "Index")
+    <div>
+        @Html.ActionLink("Volver a la lista", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
