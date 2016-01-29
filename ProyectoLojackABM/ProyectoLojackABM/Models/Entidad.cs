@@ -11,23 +11,14 @@ namespace ProyectoLojackABM.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Entidad
     {
         public int idEntidad { get; set; }
-        [Required(ErrorMessage = "El campo Nombre no puede ser vacío.")]
-        [StringLength(30, ErrorMessage = "El campo Nombre no puede exceder los 30 caracteres.")]
         public string nombre { get; set; }
-        [Required(ErrorMessage = "El campo Estado no puede ser vacío.")]
-        [Range(0, int.MaxValue, ErrorMessage = "El campo Estado no puede ser negativo.")]
         public int estado { get; set; }
-        [Required(ErrorMessage = "El campo Nivel Servicio no puede ser vacío.")]
         public int idNivelServicio { get; set; }
-        [StringLength(50, ErrorMessage = "El campo Plantilla Suceso no puede exceder los 50 caracteres.")]
         public string plantillaSuceso { get; set; }
-        [Required(ErrorMessage = "El campo Cadencia Reporte no puede ser vacío.")]
-        [Range(0, int.MaxValue, ErrorMessage = "El campo Cadencia Reporte no puede ser negativo.")]
         public int cadenciaReporte { get; set; }
         public System.DateTime fechaAlta { get; set; }
         public int usuarioAlta { get; set; }
@@ -35,11 +26,8 @@ namespace ProyectoLojackABM.Models
         public int usuarioModificacion { get; set; }
         public Nullable<System.DateTime> fechaBaja { get; set; }
         public Nullable<int> usuarioBaja { get; set; }
-        [StringLength(40, ErrorMessage = "El campo Comentario no puede exceder los 40 caracteres.")]
         public string comentario { get; set; }
-        [StringLength(255, ErrorMessage = "El campo Teléfono no puede exceder los 255 caracteres.")]
         public string telefono { get; set; }
-        [Range(0, int.MaxValue, ErrorMessage = "El campo idProcedimiento no puede ser negativo.")]
         public Nullable<int> idProcedimiento { get; set; }
         public Nullable<int> idCuenta { get; set; }
     

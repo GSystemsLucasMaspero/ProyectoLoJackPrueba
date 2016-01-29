@@ -11,38 +11,23 @@ namespace ProyectoLojackABM.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Equipo
     {
         public int idEquipo { get; set; }
-        
-        
-        [Required(ErrorMessage = "El campo Identificador no puede ser vacío.")]
-        [StringLength(15, ErrorMessage = "El campo Identificador no puede exceder los 15 caracteres.")]
         public string identificador { get; set; }
-        [Required(ErrorMessage = "El campo Número de Serie no puede ser vacío.")]
-        [StringLength(20, ErrorMessage = "El campo Número de Serie no puede exceder los 15 caracteres.")]
         public string nroSerie { get; set; }
-        [Required]
         public bool primario { get; set; }
-        [Required(ErrorMessage = "El campo Equipo Tipo no puede ser vacío.")]
         public int idEquipoTipo { get; set; }
-        [Required(ErrorMessage = "El campo Cadencia no puede ser vacío.")]
-        [Range(0, int.MaxValue, ErrorMessage = "El campo Cadencia no puede ser negativo.")]
         public int cadencia { get; set; }
         public System.DateTime fechaAlta { get; set; }
         public int usuarioAlta { get; set; }
-        [StringLength(50, ErrorMessage = "El campo Versión de Firmware no puede exceder los 50 caracteres.")]
         public string versionFirmware { get; set; }
-        [StringLength(50, ErrorMessage = "El campo Versión de Programación no puede exceder los 50 caracteres.")]
         public string versionProgramacion { get; set; }
         public System.DateTime fechaModificacion { get; set; }
         public int usuarioModificacion { get; set; }
         public Nullable<System.DateTime> fechaBaja { get; set; }
         public Nullable<int> usuarioBaja { get; set; }
-        [StringLength(50, ErrorMessage = "El campo Estado SD no puede exceder los 50 caracteres.")]
         public string estadoSd { get; set; }
         public Nullable<int> idCuenta { get; set; }
         public bool portable { get; set; }

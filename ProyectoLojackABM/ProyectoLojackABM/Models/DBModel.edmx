@@ -88,7 +88,7 @@
           <Key>
             <PropertyRef Name="idEquipoTipo" />
           </Key>
-          <Property Name="idEquipoTipo" Type="int" Nullable="false" />
+          <Property Name="idEquipoTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="cantSensores" Type="int" Nullable="false" />
           <Property Name="fechaAlta" Type="datetime" Nullable="false" />
@@ -420,7 +420,7 @@
           <Key>
             <PropertyRef Name="idEquipoTipo" />
           </Key>
-          <Property Name="idEquipoTipo" Type="Int32" Nullable="false" />
+          <Property Name="idEquipoTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cantSensores" Type="Int32" Nullable="false" />
           <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />

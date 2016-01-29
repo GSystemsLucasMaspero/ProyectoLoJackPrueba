@@ -11,7 +11,6 @@ namespace ProyectoLojackABM.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class EquipoTipo
     {
@@ -21,11 +20,7 @@ namespace ProyectoLojackABM.Models
         }
     
         public int idEquipoTipo { get; set; }
-        [Required(ErrorMessage = "El campo Descripción no puede ser vacío.")]
-        [StringLength(50, ErrorMessage = "El campo Descripción no puede exceder los 50 caracteres.")]
         public string descripcion { get; set; }
-        [Required(ErrorMessage = "El campo Cantidad de Sensores no puede ser vacío.")]
-        [Range(0, int.MaxValue, ErrorMessage = "El campo Cantidad de Sensores no puede ser negativo.")]
         public int cantSensores { get; set; }
         public System.DateTime fechaAlta { get; set; }
         public int usuarioAlta { get; set; }
