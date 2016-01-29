@@ -15,7 +15,6 @@ namespace ProyectoLojackABM.Controllers
         private DataContextLoJack_Prueba db = new DataContextLoJack_Prueba();
         private static int last_edit_id = 0;
         private static int last_delete_id = 0;
-        private static int last_id = 0;
 
         // Hasta que este hecho el log-in
         private static int usuarioPrueba = 20;
@@ -67,10 +66,6 @@ namespace ProyectoLojackABM.Controllers
 
         public ActionResult Create()
         {
-            if (last_id == 0)
-            {
-                last_id = db.EquipoTipoes.ToArray().Last().idEquipoTipo;
-            }
             ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre");
             ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion");
             return View();
@@ -82,7 +77,6 @@ namespace ProyectoLojackABM.Controllers
         {
             equipo.fechaAlta = DateTime.Now;
             equipo.fechaModificacion = DateTime.Now;
-            equipo.idEquipo = ++last_id;
             if (ModelState.IsValid)
             {
                 equipo.usuarioAlta = usuarioPrueba;
