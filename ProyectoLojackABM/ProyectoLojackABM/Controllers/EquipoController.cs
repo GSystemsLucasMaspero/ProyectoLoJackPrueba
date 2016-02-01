@@ -143,6 +143,8 @@ namespace ProyectoLojackABM.Controllers
                 return HttpNotFound();
             }
             last_delete_id = id;
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
+            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo); 
             return View(equipo);
         }
 
