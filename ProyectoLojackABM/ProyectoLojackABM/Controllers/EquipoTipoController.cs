@@ -110,7 +110,6 @@ namespace ProyectoLojackABM.Controllers
                 if (equipoTipoToUpdate != null)
                 {
                     equipoTipoToUpdate.descripcion = equipotipo.descripcion;
-                    equipoTipoToUpdate.usuarioAlta = equipotipo.usuarioAlta;
                     equipoTipoToUpdate.cantSensores = equipotipo.cantSensores;
                     db.SaveChanges();
                 }
@@ -135,18 +134,14 @@ namespace ProyectoLojackABM.Controllers
         public ActionResult Delete(EquipoTipo equipotipo)
         {
             equipotipo.idEquipoTipo = last_delete_id;
-            if (ModelState.IsValid)
+            var equipoTipoToUpdate = db.EquipoTipoes.SingleOrDefault(ns => ns.idEquipoTipo == equipotipo.idEquipoTipo);
+            if (equipoTipoToUpdate != null)
             {
-                var equipoTipoToUpdate = db.EquipoTipoes.SingleOrDefault(ns => ns.idEquipoTipo == equipotipo.idEquipoTipo);
-                if (equipoTipoToUpdate != null)
-                {
-                    equipoTipoToUpdate.fechaBaja = DateTime.Now;
-                    equipoTipoToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
-                    db.SaveChanges();
-                }
-                return RedirectToAction("Index");
+                equipoTipoToUpdate.fechaBaja = DateTime.Now;
+                equipoTipoToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
+                db.SaveChanges();
             }
-            return View(equipotipo);
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

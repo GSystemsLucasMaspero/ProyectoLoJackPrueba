@@ -148,21 +148,17 @@ namespace ProyectoLojackABM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Equipo equipo)
+        public ActionResult Delete(Equipo equipo)
         {
             equipo.idEquipo = last_delete_id;
-            if (ModelState.IsValid)
+            var equipoToUpdate = db.Equipoes.SingleOrDefault(ns => ns.idEquipo == equipo.idEquipo);
+            if (equipoToUpdate != null)
             {
-                var equipoToUpdate = db.Equipoes.SingleOrDefault(ns => ns.idEquipo == equipo.idEquipo);
-                if (equipoToUpdate != null)
-                {
-                    equipoToUpdate.fechaBaja = DateTime.Now;
-                    equipoToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
-                    db.SaveChanges();
-                }
-                return RedirectToAction("Index");
+                equipoToUpdate.fechaBaja = DateTime.Now;
+                equipoToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
+                db.SaveChanges();
             }
-            return View(equipo);
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

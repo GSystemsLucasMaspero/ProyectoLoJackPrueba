@@ -106,7 +106,6 @@ namespace ProyectoLojackABM.Controllers
                 if (nivelServicioToUpdate != null)
                 {
                     nivelServicioToUpdate.descripcion = nivelservicio.descripcion;
-                    nivelServicioToUpdate.usuarioAlta = nivelservicio.usuarioAlta;
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
@@ -130,18 +129,14 @@ namespace ProyectoLojackABM.Controllers
         public ActionResult Delete(NivelServicio nivelservicio)
         {
             nivelservicio.idNivelServicio = last_delete_id;
-            if (ModelState.IsValid)
+            var nivelServicioToUpdate = db.NivelServicios.SingleOrDefault(ns => ns.idNivelServicio == nivelservicio.idNivelServicio);
+            if (nivelServicioToUpdate != null)
             {
-                var nivelServicioToUpdate = db.NivelServicios.SingleOrDefault(ns => ns.idNivelServicio == nivelservicio.idNivelServicio);
-                if (nivelServicioToUpdate != null)
-                {
-                    nivelServicioToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
-                    nivelServicioToUpdate.fechaBaja = DateTime.Now;
-                    db.SaveChanges();
-                }
-                return RedirectToAction("Index");
+                nivelServicioToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
+                nivelServicioToUpdate.fechaBaja = DateTime.Now;
+                db.SaveChanges();
             }
-            return View(nivelservicio);
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
