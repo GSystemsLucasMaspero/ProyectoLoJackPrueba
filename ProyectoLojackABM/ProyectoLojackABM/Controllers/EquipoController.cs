@@ -87,7 +87,7 @@ namespace ProyectoLojackABM.Controllers
             }
 
             ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
-            ViewBag.idNivelServicio = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
+            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
             return View(equipo);
         }
 

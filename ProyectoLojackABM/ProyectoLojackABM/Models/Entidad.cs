@@ -16,16 +16,17 @@ namespace ProyectoLojackABM.Models
     public partial class Entidad
     {
         public int idEntidad { get; set; }
-        [Required(ErrorMessage = "El campo Cantidad de Sensores es obligatorio.")]
+        [Required(ErrorMessage = "El campo Nombre es obligatorio.")]
         [StringLength(30, ErrorMessage = "El campo Nombre no puede exceder los 30 caracteres.")]
         public string nombre { get; set; }
-        [Required(ErrorMessage = "El campo Cantidad de Sensores es obligatorio.")]
+        [Required(ErrorMessage = "El campo Estado es obligatorio.")]
         [Range(0, int.MaxValue, ErrorMessage = "Estado no puede ser negativo.")]
         public int estado { get; set; }
-        public int idNivelServicio { get; set; }
+        [Required(ErrorMessage = "El campo Nivel Servicio es obligatorio.")]
+        public int? idNivelServicio { get; set; }
         [StringLength(50, ErrorMessage = "El campo Plantilla Suceso no puede exceder los 50 caracteres.")]
         public string plantillaSuceso { get; set; }
-        [Required(ErrorMessage = "El campo Cantidad de Sensores es obligatorio.")]
+        [Required(ErrorMessage = "El campo Cadencia Reporte es obligatorio.")]
         [Range(0, int.MaxValue, ErrorMessage = "Cadencia Reporte no puede ser negativo.")]
         public int cadenciaReporte { get; set; }
         public System.DateTime fechaAlta { get; set; }

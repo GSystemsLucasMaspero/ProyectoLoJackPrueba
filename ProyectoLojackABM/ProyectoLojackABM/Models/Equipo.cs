@@ -12,19 +12,21 @@ namespace ProyectoLojackABM.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class Equipo
     {
         public int idEquipo { get; set; }
-        [Required(ErrorMessage = "El campo Cantidad de Sensores es obligatorio.")]
+        [Required(ErrorMessage = "El campo Identificador es obligatorio.")]
         [StringLength(15, ErrorMessage = "El campo Identificador no puede exceder los 15 caracteres.")]
         public string identificador { get; set; }
-        [Required(ErrorMessage = "El campo Cantidad de Sensores es obligatorio.")]
+        [Required(ErrorMessage = "El campo Número de Serie es obligatorio.")]
         [StringLength(20, ErrorMessage = "El campo Número de Serie no puede exceder los 20 caracteres.")]
         public string nroSerie { get; set; }
         public bool primario { get; set; }
-        public int idEquipoTipo { get; set; }
-        [Required(ErrorMessage = "El campo Cantidad de Sensores es obligatorio.")]
+        [Required(ErrorMessage = "El campo Tipo de Equipo es obligatorio.")]
+        public int? idEquipoTipo { get; set; }
+        [Required(ErrorMessage = "El campo Cadencia es obligatorio.")]
         [Range(0, int.MaxValue, ErrorMessage = "Cadencia no puede ser negativo.")]
         public int cadencia { get; set; }
         public System.DateTime fechaAlta { get; set; }
