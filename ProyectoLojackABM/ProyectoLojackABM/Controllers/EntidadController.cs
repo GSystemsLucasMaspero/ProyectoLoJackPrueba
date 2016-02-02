@@ -153,6 +153,8 @@ namespace ProyectoLojackABM.Controllers
             var entidadToUpdate = db.Entidads.SingleOrDefault(ns => ns.idEntidad == entidad.idEntidad);
             if (entidadToUpdate != null)
             {
+                entidadToUpdate.fechaModificacion = DateTime.Now;
+                entidadToUpdate.usuarioModificacion = usuarioPrueba;
                 entidadToUpdate.fechaBaja = DateTime.Now;
                 entidadToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
                 db.SaveChanges();

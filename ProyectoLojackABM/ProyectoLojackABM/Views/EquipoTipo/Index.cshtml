@@ -29,6 +29,7 @@
             <th>
                 @Html.ActionLink("Descripción", "Index", new { sortOrder = ViewBag.DescriptionSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
+            <th></th>
             <th>
                 @Html.ActionLink("Nº Sensores", "Index", new { sortOrder = ViewBag.SensoresSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
@@ -59,6 +60,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.descripcion)
                 </td>
+                <td></td>
                 <td>
                     @Html.DisplayFor(modelItem => item.cantSensores)
                 </td>
