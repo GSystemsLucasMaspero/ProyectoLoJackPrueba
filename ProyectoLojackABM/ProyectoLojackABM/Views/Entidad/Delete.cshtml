@@ -4,102 +4,103 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Entidad - Baja</h2>
+<div class="content-wrapper">
+    <h2>Entidad - Baja</h2>
 
-<h3><font color="red">Está seguro que desea eliminar esta entrada?</font></h3>
+    <h3><font color="red">Está seguro que desea eliminar esta entrada?</font></h3>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Entidad</legend>
-        <p></p>
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID: ")</b>
-            @Html.DisplayFor(model => model.idEntidad)
-        </div>
+        <fieldset>
+            <legend>Entidad</legend>
+            <p></p>
+            <div class="display-label">
+                <b>@Html.DisplayName("* ID: ")</b>
+                @Html.DisplayFor(model => model.idEntidad)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Nombre: ")</b>
-            @Html.DisplayFor(model => model.nombre)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Nombre: ")</b>
+                @Html.DisplayFor(model => model.nombre)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Estado: ")</b>
-            @Html.DisplayFor(model => model.estado)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Estado: ")</b>
+                @Html.DisplayFor(model => model.estado)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Nivel Servcio: ")</b>
-            @Html.DisplayFor(model => model.idNivelServicio)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Nivel Servcio: ")</b>
+                @Html.DisplayFor(model => model.NivelServicio.descripcion)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Plantilla Suceso: ")</b>
-            @Html.DisplayFor(model => model.plantillaSuceso)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Plantilla Suceso: ")</b>
+                @Html.DisplayFor(model => model.plantillaSuceso)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Cadencia Reporte: ")</b>
-            @Html.DisplayFor(model => model.cadenciaReporte)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Cadencia Reporte: ")</b>
+                @Html.DisplayFor(model => model.cadenciaReporte)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Fecha Alta: ")</b>
-            @Html.DisplayFor(model => model.fechaAlta)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Fecha Alta: ")</b>
+                @Html.DisplayFor(model => model.fechaAlta)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Usuario Alta: ")</b>
-            @Html.DisplayFor(model => model.usuarioAlta)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* ID Usuario Alta: ")</b>
+                @Html.DisplayFor(model => model.usuarioAlta)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Fecha de Modificación: ")</b>
-            @Html.DisplayFor(model => model.fechaModificacion)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Fecha de Modificación: ")</b>
+                @Html.DisplayFor(model => model.fechaModificacion)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Usuario de Modificación: ")</b>
-            @Html.DisplayFor(model => model.usuarioModificacion)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* ID Usuario de Modificación: ")</b>
+                @Html.DisplayFor(model => model.usuarioModificacion)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Comentario: ")</b>
-            @Html.DisplayFor(model => model.comentario)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Comentario: ")</b>
+                @Html.DisplayFor(model => model.comentario)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Telefono: ")</b>
-            @Html.DisplayFor(model => model.telefono)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Telefono: ")</b>
+                @Html.DisplayFor(model => model.telefono)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Procedimiento: ")</b>
-            @Html.DisplayFor(model => model.idProcedimiento)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* ID Procedimiento: ")</b>
+                @Html.DisplayFor(model => model.idProcedimiento)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Cuenta: ")</b>
-            @Html.DisplayFor(model => model.idCuenta)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Cuenta: ")</b>
+                @Html.DisplayFor(model => model.Cuenta.nombre)
+            </div>
 
-        <p></p>
+            <p></p>
 
-        <p>
-            <input type="submit" value="Eliminar" />
-        </p>
-    </fieldset>
-}
+            <p>
+                <input type="submit" value="Eliminar" />
+            </p>
+        </fieldset>
+    }
 
-<div>
-    @Html.ActionLink("Volver a la lista", "Index")
+    <div>
+        @Html.ActionLink("Volver a la lista", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
 

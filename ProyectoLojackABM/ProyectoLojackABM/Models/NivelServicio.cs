@@ -11,6 +11,7 @@ namespace ProyectoLojackABM.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class NivelServicio
     {
@@ -20,6 +21,8 @@ namespace ProyectoLojackABM.Models
         }
     
         public int idNivelServicio { get; set; }
+        [Required(ErrorMessage = "El campo Descripción es obligatorio.")]
+        [StringLength(20, ErrorMessage = "El campo Descripción no puede exceder los 20 caracteres.")]
         public string descripcion { get; set; }
         public System.DateTime fechaAlta { get; set; }
         public int usuarioAlta { get; set; }

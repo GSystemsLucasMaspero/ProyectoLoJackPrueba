@@ -59,7 +59,7 @@ namespace ProyectoLojackABM.Controllers
                     equipos = equipos.OrderBy(s => s.idEquipo);
                     break;
             }
-            int pageSize = 15;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
             return View(equipos.ToPagedList(pageNumber, pageSize));
         }
@@ -87,7 +87,7 @@ namespace ProyectoLojackABM.Controllers
             }
 
             ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
-            ViewBag.idNivelServicio = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
+            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
             return View(equipo);
         }
 
@@ -143,26 +143,24 @@ namespace ProyectoLojackABM.Controllers
                 return HttpNotFound();
             }
             last_delete_id = id;
+            ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", equipo.idCuenta);
+            ViewBag.idEquipoTipo = new SelectList(db.EquipoTipoes, "idEquipoTipo", "descripcion", equipo.idEquipoTipo); 
             return View(equipo);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Equipo equipo)
+        public ActionResult Delete(Equipo equipo)
         {
             equipo.idEquipo = last_delete_id;
-            if (ModelState.IsValid)
+            var equipoToUpdate = db.Equipoes.SingleOrDefault(ns => ns.idEquipo == equipo.idEquipo);
+            if (equipoToUpdate != null)
             {
-                var equipoToUpdate = db.Equipoes.SingleOrDefault(ns => ns.idEquipo == equipo.idEquipo);
-                if (equipoToUpdate != null)
-                {
-                    equipoToUpdate.fechaBaja = DateTime.Now;
-                    equipoToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
-                    db.SaveChanges();
-                }
-                return RedirectToAction("Index");
+                equipoToUpdate.fechaBaja = DateTime.Now;
+                equipoToUpdate.usuarioBaja = usuarioPrueba; // Hasta que este hecho el log-in
+                db.SaveChanges();
             }
-            return View(equipo);
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

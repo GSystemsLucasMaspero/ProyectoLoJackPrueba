@@ -4,107 +4,108 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Equipo - Baja</h2>
+<div class="content-wrapper">
+    <h2>Equipo - Baja</h2>
 
-<h3><font color="red">Está seguro que desea eliminar esta entrada?</font></h3>
+    <h3><font color="red">Está seguro que desea eliminar esta entrada?</font></h3>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Equipo</legend>
-        <p></p>
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID: ")</b>
-            @Html.DisplayFor(model => model.idEquipoTipo)
-        </div>
+        <fieldset>
+            <legend>Equipo</legend>
+            <p></p>
+            <div class="display-label">
+                <b>@Html.DisplayName("* ID: ")</b>
+                @Html.DisplayFor(model => model.idEquipoTipo)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Identificador: ")</b>
-            @Html.DisplayFor(model => model.identificador)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Identificador: ")</b>
+                @Html.DisplayFor(model => model.identificador)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Número de serie: ")</b>
-            @Html.DisplayFor(model => model.nroSerie)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Número de serie: ")</b>
+                @Html.DisplayFor(model => model.nroSerie)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Tipo de Equipo: ")</b>
-            @Html.DisplayFor(model => model.idEquipoTipo)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Tipo de Equipo: ")</b>
+                @Html.DisplayFor(model => model.EquipoTipo.descripcion)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Cadencia: ")</b>
-            @Html.DisplayFor(model => model.cadencia)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Cadencia: ")</b>
+                @Html.DisplayFor(model => model.cadencia)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Primario: ")</b>
-            @Html.DisplayFor(model => model.primario)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Primario: ")</b>
+                @Html.DisplayFor(model => model.primario)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Fecha Alta: ")</b>
-            @Html.DisplayFor(model => model.fechaAlta)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Fecha Alta: ")</b>
+                @Html.DisplayFor(model => model.fechaAlta)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Usuario Alta: ")</b>
-            @Html.DisplayFor(model => model.usuarioAlta)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* ID Usuario Alta: ")</b>
+                @Html.DisplayFor(model => model.usuarioAlta)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Versión de Firmware: ")</b>
-            @Html.DisplayFor(model => model.versionFirmware)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Versión de Firmware: ")</b>
+                @Html.DisplayFor(model => model.versionFirmware)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Versión de Programación: ")</b>
-            @Html.DisplayFor(model => model.versionProgramacion)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Versión de Programación: ")</b>
+                @Html.DisplayFor(model => model.versionProgramacion)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Fecha de Modificación: ")</b>
-            @Html.DisplayFor(model => model.fechaModificacion)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Fecha de Modificación: ")</b>
+                @Html.DisplayFor(model => model.fechaModificacion)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Usuario de Modificación: ")</b>
-            @Html.DisplayFor(model => model.usuarioModificacion)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* ID Usuario de Modificación: ")</b>
+                @Html.DisplayFor(model => model.usuarioModificacion)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Estado SD: ")</b>
-            @Html.DisplayFor(model => model.estadoSd)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Estado SD: ")</b>
+                @Html.DisplayFor(model => model.estadoSd)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Cuenta: ")</b>
-            @Html.DisplayFor(model => model.idCuenta)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Cuenta: ")</b>
+                @Html.DisplayFor(model => model.Cuenta.nombre)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Portable: ")</b>
-            @Html.DisplayFor(model => model.portable)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Portable: ")</b>
+                @Html.DisplayFor(model => model.portable)
+            </div>
 
-        <p></p>
+            <p></p>
 
-        <p>
-            <input type="submit" value="Eliminar" />
-        </p>
-    </fieldset>
-}
+            <p>
+                <input type="submit" value="Eliminar" />
+            </p>
+        </fieldset>
+    }
 
-<div>
-    @Html.ActionLink("Volver a la lista", "Index")
+    <div>
+        @Html.ActionLink("Volver a la lista", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
 

@@ -4,105 +4,108 @@
     ViewBag.Title = "Equipo";
 }
 
-<h2>Equipo - Alta</h2>
+<div class="content-wrapper">
+    <h2>Equipo - Alta</h2>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Equipo</legend>
-        <p></p>
-        <div class="editor-label">
-            @Html.Label("Identificador")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.identificador)
-            @Html.ValidationMessageFor(model => model.identificador)
-        </div>
+        <fieldset>
+            <legend>Equipo</legend>
+            <p></p>
+            <div class="editor-label">
+                @Html.Label("Identificador")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.identificador)
+                @Html.ValidationMessageFor(model => model.identificador)
+            </div>
 
-        <div class="editor-label">
-            @Html.Label("Número de serie")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.nroSerie)
-            @Html.ValidationMessageFor(model => model.nroSerie)
-        </div>
+            <div class="editor-label">
+                @Html.Label("Número de serie")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.nroSerie)
+                @Html.ValidationMessageFor(model => model.nroSerie)
+            </div>
 
-        <div class="editor-label">
-            @Html.Label("Primario")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.primario)
-            @Html.ValidationMessageFor(model => model.primario)
-        </div>
+            <div class="editor-label">
+                @Html.Label("Primario")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.primario)
+                @Html.ValidationMessageFor(model => model.primario)
+            </div>
 
-        <div class="editor-label">
-            @Html.Label("Tipo de equipo")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("idEquipoTipo", String.Empty)
-            @Html.ValidationMessageFor(model => model.idEquipoTipo)
-        </div>
-        <p></p>
-        <div class="editor-label">
-            @Html.Label("Cadencia")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.cadencia)
-            @Html.ValidationMessageFor(model => model.cadencia)
-        </div>
+            <div class="editor-label">
+                @Html.Label("Tipo de equipo")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("idEquipoTipo", String.Empty)
+                @Html.ValidationMessageFor(model => model.idEquipoTipo)
+            </div>
+            <p></p>
+            <div class="editor-label">
+                @Html.Label("Cadencia")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.cadencia)
+                @Html.ValidationMessageFor(model => model.cadencia)
+            </div>
 
-        <div class="editor-label">
-            @Html.Label("Versión de Firmware")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.versionFirmware)
-            @Html.ValidationMessageFor(model => model.versionFirmware)
-        </div>
+            <div class="editor-label">
+                @Html.Label("Versión de Firmware")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.versionFirmware)
+                @Html.ValidationMessageFor(model => model.versionFirmware)
+            </div>
 
-        <div class="editor-label">
-            @Html.Label("Versión de Programación")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.versionProgramacion)
-            @Html.ValidationMessageFor(model => model.versionProgramacion)
-        </div>
+            <div class="editor-label">
+                @Html.Label("Versión de Programación")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.versionProgramacion)
+                @Html.ValidationMessageFor(model => model.versionProgramacion)
+            </div>
 
-        <div class="editor-label">
-            @Html.Label("Estado SD")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.estadoSd)
-            @Html.ValidationMessageFor(model => model.estadoSd)
-        </div>
+            <div class="editor-label">
+                @Html.Label("Estado SD")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.estadoSd)
+                @Html.ValidationMessageFor(model => model.estadoSd)
+            </div>
 
-        <div class="editor-label">
-            @Html.Label("Cuenta")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("idCuenta", String.Empty)
-            @Html.ValidationMessageFor(model => model.idCuenta)
-        </div>
-        <p></p>
-        <div class="editor-label">
-            @Html.Label("Portable")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.portable)
-            @Html.ValidationMessageFor(model => model.portable)
-        </div>
+            <div class="editor-label">
+                @Html.Label("Cuenta")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("idCuenta", String.Empty)
+                @Html.ValidationMessageFor(model => model.idCuenta)
+            </div>
+            <p></p>
+            <div class="editor-label">
+                @Html.Label("Portable")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.portable)
+                @Html.ValidationMessageFor(model => model.portable)
+            </div>
 
-        <p>
-            <input type="submit" value="Crear" />
-        </p>
-    </fieldset>
-}
+            <p>
+                <input type="submit" value="Crear" />
+            </p>
+        </fieldset>
+    }
 
-<div>
-    @Html.ActionLink("Volver a la lista", "Index")
+    <div>
+        @Html.ActionLink("Volver a la lista", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

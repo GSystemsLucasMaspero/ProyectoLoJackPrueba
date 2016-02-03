@@ -4,57 +4,50 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Nivel Servicio - Baja</h2>
+<div class="content-wrapper">
+    <h2>Nivel Servicio - Baja</h2>
 
-<h3><font color="red">Está seguro que desea eliminar esta entrada?</font></h3>
+    <h3><font color="red">Está seguro que desea eliminar esta entrada?</font></h3>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-    <fieldset>
-        <legend>NivelServicio</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>NivelServicio</legend>
 
-        <p></p>
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID: ")</b>
-            @Html.DisplayFor(model => model.idNivelServicio)
-        </div>
+            <p></p>
+            <div class="display-label">
+                <b>@Html.DisplayName("* ID: ")</b>
+                @Html.DisplayFor(model => model.idNivelServicio)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Descripción: ")</b>
-            @Html.DisplayFor(model => model.descripcion)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Descripción: ")</b>
+                @Html.DisplayFor(model => model.descripcion)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Fecha Alta: ")</b>
-            @Html.DisplayFor(model => model.fechaAlta)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* Fecha Alta: ")</b>
+                @Html.DisplayFor(model => model.fechaAlta)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Usuario Alta: ")</b>
-            @Html.DisplayFor(model => model.usuarioAlta)
-        </div>
+            <div class="display-label">
+                <b>@Html.DisplayName("* ID Usuario Alta: ")</b>
+                @Html.DisplayFor(model => model.usuarioAlta)
+            </div>
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* Fecha Baja: ")</b>
-            @Html.DisplayFor(model => model.fechaBaja)
-        </div>
+            <p>
+                <input type="submit" value="Eliminar" />
+            </p>
+        </fieldset>
+    }
 
-        <div class="display-label">
-            <b>@Html.DisplayName("* ID Usuario Baja: ")</b>
-            @Html.DisplayFor(model => model.usuarioBaja)
-        </div>
+    <div>
+        @Html.ActionLink("Volver a la lista", "Index")
+    </div>
 
-        <p>
-            <input type="submit" value="Eliminar" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Volver a la lista", "Index")
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
