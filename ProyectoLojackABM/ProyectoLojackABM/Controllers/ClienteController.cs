@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoLojackABM.Models;
+using PagedList;
 
 namespace ProyectoLojackABM.Controllers
 {
@@ -27,12 +28,14 @@ namespace ProyectoLojackABM.Controllers
 
         public ActionResult Details(int id = 0)
         {
+            
             Cliente cliente = db.Clientes.Find(id);
             if (cliente == null)
             {
                 return HttpNotFound();
             }
             return View(cliente);
+
         }
 
         //

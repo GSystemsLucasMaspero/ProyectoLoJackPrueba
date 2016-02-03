@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoLojackABM.Models;
+using PagedList;
 
 namespace ProyectoLojackABM.Controllers
 {
@@ -16,10 +17,43 @@ namespace ProyectoLojackABM.Controllers
         //
         // GET: /Cuenta/
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var cuentas = db.Cuentas.Include(c => c.Cliente);
-            return View(cuentas.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IDSortParm = "id_desc";
+            ViewBag.CuentaNombre = "nombre_desc";
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+
+            var cuentas = from s in db.Cuentas
+                          select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                cuentas = cuentas.Where(s => s.nombre.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    cuentas = cuentas.OrderBy(s => s.idCuenta);
+                    break;
+                case "nombre_desc":
+                    cuentas = cuentas.OrderBy(s => s.nombre);
+                    break;
+                default:
+                    cuentas = cuentas.OrderBy(s => s.idCuenta);
+                    break;
+            }
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(cuentas.ToPagedList(pageNumber, pageSize));
+
         }
 
         //

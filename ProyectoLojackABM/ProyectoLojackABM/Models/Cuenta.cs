@@ -11,6 +11,7 @@ namespace ProyectoLojackABM.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Cuenta
     {
@@ -23,8 +24,12 @@ namespace ProyectoLojackABM.Models
             this.Usuarios = new HashSet<Usuario>();
         }
     
+        
+        [Display(Name="ID")]
         public int idCuenta { get; set; }
+        [Display(Name = "Nombre")]
         public string nombre { get; set; }
+        [Display(Name = "Cliente")]
         public int idClienteControlador { get; set; }
         public Nullable<bool> mapGuideEnabled { get; set; }
         public Nullable<bool> googleMapsEnabled { get; set; }

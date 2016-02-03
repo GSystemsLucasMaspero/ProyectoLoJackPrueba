@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoLojackABM.Models;
+using PagedList;
 
 namespace ProyectoLojackABM.Controllers
 {

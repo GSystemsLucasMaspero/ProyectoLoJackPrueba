@@ -1,4 +1,6 @@
-﻿@model IEnumerable<ProyectoLojackABM.Models.Cuenta>
+﻿@model PagedList.IPagedList<ProyectoLojackABM.Models.Cuenta>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -7,27 +9,36 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar Nuevo", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Cuenta", FormMethod.Get))
+{
+    <p>
+        Buscar por identificador: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Buscar" />
+    </p>
+}
+
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idCuenta)
+            @Html.DisplayName("ID")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayName("NOMBRE")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente.nombre)
+            @Html.DisplayName("CLIENTE")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.mapGuideEnabled)
+            @Html.DisplayName("mapGuideEnabled")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.googleMapsEnabled)
+            @Html.DisplayName("googleMapsEnabled")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.mapsEnabled)
+            @Html.DisplayName("mapsEnabled")
         </th>
         <th></th>
     </tr>
@@ -61,3 +72,8 @@
 }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
