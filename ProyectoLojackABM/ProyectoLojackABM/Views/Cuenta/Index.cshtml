@@ -3,7 +3,7 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cuentas";
 }
 
 <h2>Index</h2>
@@ -23,10 +23,10 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayName("ID")
+            @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("NOMBRE")
+            @Html.ActionLink("NOMBRE", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
             @Html.DisplayName("CLIENTE")
