@@ -85,15 +85,22 @@ namespace ProyectoLojackABM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Cuenta cuenta)
         {
+            //Svar cuentas = from s in db.Cuentas select s;
+            //SELECT TOP 1 idCuenta FROM Cuenta ORDER BY idCuenta DESC
+            var cuentas = (from s in db.Cuentas orderby "idCuenta" select "idCuenta").Take(1);
+
             if (ModelState.IsValid)
             {
-                db.Cuentas.Add(cuenta);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    cuenta.idCuenta = Int32.Parse(cuentas.ToString()) + 1;
+                    db.Cuentas.Add(cuenta);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
             }
 
+            
             ViewBag.idClienteControlador = new SelectList(db.Clientes, "idCliente", "nombre", cuenta.idClienteControlador);
             return View(cuenta);
+
         }
 
         //
