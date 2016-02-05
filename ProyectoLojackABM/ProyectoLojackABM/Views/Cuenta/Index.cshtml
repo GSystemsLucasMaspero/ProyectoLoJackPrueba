@@ -32,13 +32,13 @@
             @Html.DisplayName("CLIENTE")
         </th>
         <th>
-            @Html.DisplayName("mapGuideEnabled")
+            @Html.DisplayName("MAP GUIDE")
         </th>
         <th>
-            @Html.DisplayName("googleMapsEnabled")
+            @Html.DisplayName("GOOGLE MAPS")
         </th>
         <th>
-            @Html.DisplayName("mapsEnabled")
+            @Html.DisplayName("MAPS")
         </th>
         <th></th>
     </tr>
@@ -64,9 +64,9 @@
             @Html.DisplayFor(modelItem => item.mapsEnabled)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.idCuenta }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Delete", "Delete", new { id = item.idCuenta })
         </td>
     </tr>
 }

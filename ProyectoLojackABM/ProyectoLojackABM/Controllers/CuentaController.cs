@@ -13,7 +13,8 @@ namespace ProyectoLojackABM.Controllers
     public class CuentaController : Controller
     {
         private DataContextLoJack_Prueba db = new DataContextLoJack_Prueba();
-
+        private static int last_edit_id = 0;
+        private static int last_delete_id = 0;
         //
         // GET: /Cuenta/
 
@@ -30,9 +31,8 @@ namespace ProyectoLojackABM.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var cuentas = from s in db.Cuentas
-                          select s;
-
+            var cuentas = from s in db.Cuentas where s.idCuenta != 0 select s ;
+            
             if (!String.IsNullOrEmpty(searchString))
             {
                 cuentas = cuentas.Where(s => s.nombre.Contains(searchString));
@@ -87,11 +87,12 @@ namespace ProyectoLojackABM.Controllers
         {
             //Svar cuentas = from s in db.Cuentas select s;
             //SELECT TOP 1 idCuenta FROM Cuenta ORDER BY idCuenta DESC
-            var cuentas = (from s in db.Cuentas orderby "idCuenta" select "idCuenta").Take(1);
+            //var cuentas = (from s in db.Cuentas orderby "idCuenta" select "idCuenta").Take(1);
+            var query = db.Cuentas.OrderByDescending(u => u.idCuenta).Select(u => u.idCuenta).Take(1).FirstOrDefault();
 
             if (ModelState.IsValid)
             {
-                    cuenta.idCuenta = Int32.Parse(cuentas.ToString()) + 1;
+                    cuenta.idCuenta = Convert.ToInt32(query.ToString()) + 1;
                     db.Cuentas.Add(cuenta);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -108,13 +109,14 @@ namespace ProyectoLojackABM.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Cuenta cuenta = db.Cuentas.Find(id);
-            if (cuenta == null)
+            Cuenta query = db.Cuentas.Find(id);
+            if (query == null || id == 0)
             {
                 return HttpNotFound();
             }
-            ViewBag.idClienteControlador = new SelectList(db.Clientes, "idCliente", "nombre", cuenta.idClienteControlador);
-            return View(cuenta);
+            ViewBag.idClienteControlador = new SelectList(db.Clientes, "idCliente", "nombre", query.idClienteControlador);
+            last_edit_id = id;
+            return View(query);
         }
 
         //
@@ -140,7 +142,7 @@ namespace ProyectoLojackABM.Controllers
         public ActionResult Delete(int id = 0)
         {
             Cuenta cuenta = db.Cuentas.Find(id);
-            if (cuenta == null)
+            if (cuenta == null || id == 0)
             {
                 return HttpNotFound();
             }
@@ -150,7 +152,7 @@ namespace ProyectoLojackABM.Controllers
         //
         // POST: /Cuenta/Delete/5
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -159,6 +161,8 @@ namespace ProyectoLojackABM.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+       
 
         protected override void Dispose(bool disposing)
         {
