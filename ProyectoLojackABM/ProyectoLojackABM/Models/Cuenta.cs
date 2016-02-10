@@ -34,6 +34,7 @@ namespace ProyectoLojackABM.Models
         public Nullable<bool> mapGuideEnabled { get; set; }
         public Nullable<bool> googleMapsEnabled { get; set; }
         public int mapsEnabled { get; set; }
+        public Nullable <DateTime> fechaBaja { get; set; }
     
         public virtual ICollection<Cliente> Clientes { get; set; }
         public virtual Cliente Cliente { get; set; }
