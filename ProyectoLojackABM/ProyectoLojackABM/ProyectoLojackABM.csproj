@@ -406,7 +406,6 @@
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\Cuenta\Index.cshtml" />
-    <Content Include="Views\Cuenta\Details.cshtml" />
     <Content Include="Views\Cuenta\Create.cshtml" />
     <Content Include="Views\Cuenta\Edit.cshtml" />
     <Content Include="Views\Cuenta\Delete.cshtml" />

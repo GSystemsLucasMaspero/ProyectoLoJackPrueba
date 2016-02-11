@@ -15,9 +15,9 @@ namespace ProyectoLojackABM.Controllers
         private DataContextLoJack_Prueba db = new DataContextLoJack_Prueba();
         //
         // GET: /Cuenta/
-
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.filtro = false;
             ViewBag.CurrentSort = sortOrder;
             ViewBag.IDSortParm = "id_desc";
             ViewBag.CuentaNombre = "nombre_desc";
@@ -31,35 +31,38 @@ namespace ProyectoLojackABM.Controllers
 
             //var cuentas = from s in db.Cuentas where s.fechaBaja.GetValueOrDefault() == null select s ;
 
-            var qcuentas = from cuentas in db.Cuentas where !cuentas.fechaBaja.HasValue select cuentas;
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    cuentas = cuentas.Where(s => s.nombre.Contains(searchString));
-            //    //cuentas = db.Cuentas.SqlQuery("SELECT idCuenta, nombre, idClienteControlador, mapGuideEnabled, googleMapsEnabled, mapsEnabled FROM Cuenta WHERE fechaBaja IS NULL AND nombre like @p0",searchString);
-            //}
+            var qcuentas = from cuentas in db.Cuentas /*where cuentas.fechaBaja.HasValue*/ select cuentas;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                qcuentas = qcuentas.Where(s => s.nombre.Contains(searchString));
+                ViewBag.filtro = true;
+            }
 
-            //switch (sortOrder)
-            //{
-            //    case "id_desc":
-            //        cuentas = cuentas.OrderBy(s => s.idCuenta);
-            //        break;
-            //    case "nombre_desc":
-            //        cuentas = cuentas.OrderBy(s => s.nombre);
-            //        break;
-            //    default:
-            //        cuentas = cuentas.OrderBy(s => s.idCuenta);
-            //        break;
-            //}
-            //int pageSize = 15;
-            //int pageNumber = (page ?? 1);
-            //return View(cuentas.ToPagedList(pageNumber, pageSize));
-            return View();
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    qcuentas = qcuentas.OrderBy(s => s.idCuenta);
+                    break;
+                case "nombre_desc":
+                    qcuentas = qcuentas.OrderBy(s => s.nombre);
+                    break;
+                default:
+                    qcuentas = qcuentas.OrderBy(s => s.idCuenta);
+                    break;
+            }
 
+            if(qcuentas.Count() == 0 && ViewBag.filtro == true)
+            {
+                return Content("<p>NO SE HAN ENCONTRADO RESULTADOS</p>" );         
+            }
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(qcuentas.ToPagedList(pageNumber, pageSize));
         }
 
         //
         // GET: /Cuenta/Details/5
-
         public ActionResult Details(int id = 0)
         {
             Cuenta cuenta = db.Cuentas.Find(id);
@@ -72,16 +75,15 @@ namespace ProyectoLojackABM.Controllers
 
         //
         // GET: /Cuenta/Create
-
         public ActionResult Create()
         {
             ViewBag.idClienteControlador = new SelectList(db.Clientes, "idCliente", "nombre");
             return View();
         }
 
+
         //
         // POST: /Cuenta/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Cuenta cuenta)
@@ -89,6 +91,7 @@ namespace ProyectoLojackABM.Controllers
             //Svar cuentas = from s in db.Cuentas select s;
             //SELECT TOP 1 idCuenta FROM Cuenta ORDER BY idCuenta DESC
             //var cuentas = (from s in db.Cuentas orderby "idCuenta" select "idCuenta").Take(1);
+
             var query = db.Cuentas.OrderByDescending(u => u.idCuenta).Select(u => u.idCuenta).Take(1).FirstOrDefault();
 
             if (ModelState.IsValid)
@@ -119,27 +122,38 @@ namespace ProyectoLojackABM.Controllers
             return View(query);
         }
 
+
         //
         // POST: /Cuenta/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Cuenta cuenta)
+        [ActionName("Edit")]
+        public ActionResult Edit(Cuenta cuenta, int id)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cuenta).State = EntityState.Modified;
+                db.Database.ExecuteSqlCommand("UPDATE Cuenta SET nombre = @p0, idClienteControlador=@p1, mapGuideEnabled = @p2, mapsEnabled = @p3 WHERE idCuenta = @p4", cuenta.nombre, cuenta.idClienteControlador, cuenta.mapGuideEnabled, cuenta.mapsEnabled, id);
                 db.SaveChanges();
+                /*
+                var cuentaToUpdate = db.Cuentas.SingleOrDefault(ns => ns.idCuenta == id);
+                if (cuentaToUpdate != null)
+                {
+                    cuentaToUpdate.nombre = cuenta.nombre;
+                    cuentaToUpdate.idClienteControlador = cuenta.idClienteControlador;
+                    cuentaToUpdate.mapGuideEnabled = cuenta.mapGuideEnabled;
+                    cuentaToUpdate.mapsEnabled = cuenta.mapsEnabled;    
+                }*/
+
                 return RedirectToAction("Index");
             }
             ViewBag.idClienteControlador = new SelectList(db.Clientes, "idCliente", "nombre", cuenta.idClienteControlador);
             return View(cuenta);
         }
 
+
         //
         // GET: /Cuenta/Delete/5
-
-
         public ActionResult Delete(int id = 0)
         {
             Cuenta cuenta = db.Cuentas.Find(id);
@@ -152,7 +166,6 @@ namespace ProyectoLojackABM.Controllers
 
         //
         // POST: /Cuenta/Delete/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
@@ -165,7 +178,6 @@ namespace ProyectoLojackABM.Controllers
         }
 
        
-
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

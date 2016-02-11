@@ -7,10 +7,19 @@
 }
 
 <h2>Index</h2>
+@if (ViewBag.filtro == true)
+{
+    <p>
+        @Html.ActionLink("Quitar Filtro", "Index")
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Agregar Nuevo", "Create")
+    </p>
+}
 
-<p>
-    @Html.ActionLink("Agregar Nuevo", "Create")
-</p>
 
 @using (Html.BeginForm("Index", "Cuenta", FormMethod.Get))
 {
@@ -64,9 +73,8 @@
             @Html.DisplayFor(modelItem => item.mapsEnabled)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.idCuenta }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.idCuenta })
+            @Html.ActionLink("Editar", "Edit", new { id = item.idCuenta }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.idCuenta })
         </td>
     </tr>
 }
