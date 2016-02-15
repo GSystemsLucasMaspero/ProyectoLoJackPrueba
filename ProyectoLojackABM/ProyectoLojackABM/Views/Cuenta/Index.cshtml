@@ -7,18 +7,16 @@
 }
 
 <h2>Index</h2>
-@if (ViewBag.filtro == true)
-{
-    <p>
+<p>
+    @if (ViewBag.filtro == true)
+    {
         @Html.ActionLink("Quitar Filtro", "Index")
-    </p>
-}
-else
-{
-    <p>
+    }
+    else
+    {
         @Html.ActionLink("Agregar Nuevo", "Create")
-    </p>
-}
+    }
+</p>
 
 
 @using (Html.BeginForm("Index", "Cuenta", FormMethod.Get))

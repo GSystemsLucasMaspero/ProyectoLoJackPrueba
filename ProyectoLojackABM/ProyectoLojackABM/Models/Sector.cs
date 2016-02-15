@@ -11,6 +11,8 @@ namespace ProyectoLojackABM.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Sector
     {
@@ -19,12 +21,17 @@ namespace ProyectoLojackABM.Models
             this.Usuarios = new HashSet<Usuario>();
         }
     
+        [Display(Name="ID")]
         public int idSector { get; set; }
+        [Display(Name = "NOMBRE")]
         public string nombre { get; set; }
+
         public System.DateTime fechaAlta { get; set; }
         public int usuarioAlta { get; set; }
         public Nullable<System.DateTime> fechaBaja { get; set; }
         public Nullable<int> usuarioBaja { get; set; }
+
+        [Display(Name = "ID CUENTA")]
         public Nullable<int> idCuenta { get; set; }
     
         public virtual Cuenta Cuenta { get; set; }

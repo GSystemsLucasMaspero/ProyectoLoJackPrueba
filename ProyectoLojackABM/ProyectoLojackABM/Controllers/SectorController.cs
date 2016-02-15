@@ -6,37 +6,65 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoLojackABM.Models;
+using PagedList;
 
 namespace ProyectoLojackABM.Controllers
 {
     public class SectorController : Controller
     {
         private DataContextLoJack_Prueba db = new DataContextLoJack_Prueba();
-
         //
         // GET: /Sector/
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var sectors = db.Sectors.Include(s => s.Cuenta);
-            return View(sectors.ToList());
+            ViewBag.filtro = false;
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IDSortParm = "id_desc";
+            ViewBag.CuentaNombre = "nombre_desc";
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+
+            var query = from sectores in db.Sectors select sectores;
+           
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                query = query.Where(s => s.nombre.Contains(searchString));
+                ViewBag.filtro = true;
+            }
+
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    query = query.OrderBy(s => s.idSector);
+                    break;
+                case "nombre_desc":
+                    query = query.OrderBy(s => s.nombre);
+                    break;
+                default:
+                    query = query.OrderBy(s => s.idSector);
+                    break;
+            }
+
+            if (query.Count() == 0 && ViewBag.filtro == true)
+            {
+                return Content("<p>NO SE HAN ENCONTRADO RESULTADOS</p>");
+            }
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(query.ToPagedList(pageNumber, pageSize));
         }
+        //INDEX CHECK
 
         //
         // GET: /Sector/Details/5
 
-        public ActionResult Details(int id = 0)
-        {
-            Sector sector = db.Sectors.Find(id);
-            if (sector == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sector);
-        }
-
-        //
-        // GET: /Sector/Create
 
         public ActionResult Create()
         {
@@ -53,14 +81,15 @@ namespace ProyectoLojackABM.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Sectors.Add(sector);
-                db.SaveChanges();
+                db.Database.ExecuteSqlCommand("INSERT INTO Sector (nombre,fechaAlta,usuarioAlta,idCuenta)VALUES(@p0,@p1,@p2,@p3)",sector.nombre,DateTime.Now.ToString("yyyy-MM-dd h:mm:ss.f"),66/*TEMPORAL*/,sector.idCuenta);
                 return RedirectToAction("Index");
             }
 
             ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", sector.idCuenta);
             return View(sector);
         }
+
+        //CREATE LISTO
 
         //
         // GET: /Sector/Edit/5
@@ -85,14 +114,15 @@ namespace ProyectoLojackABM.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sector).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Database.ExecuteSqlCommand("UPDATE Sector SET nombre = @P0, idCuenta = @p1 WHERE idSector = @p2", sector.nombre, sector.idCuenta,sector.idSector);
+
                 return RedirectToAction("Index");
             }
             ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", sector.idCuenta);
             return View(sector);
         }
 
+        //EDIT CHECK
         //
         // GET: /Sector/Delete/5
 
@@ -114,8 +144,7 @@ namespace ProyectoLojackABM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Sector sector = db.Sectors.Find(id);
-            db.Sectors.Remove(sector);
-            db.SaveChanges();
+            db.Database.ExecuteSqlCommand("UPDATE Sector SET fechaBaja = @P0, usuarioBaja = @p1 WHERE idSector = @p2", DateTime.Now.ToString("yyyy-MM-dd h:mm:ss.f"), 66/*TEMPORAL*/, sector.idSector);
             return RedirectToAction("Index");
         }
 
