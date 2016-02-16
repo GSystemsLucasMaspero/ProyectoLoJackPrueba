@@ -15,13 +15,9 @@ namespace ProyectoLojackABM.Controllers
         private DataContextLoJack_Prueba db = new DataContextLoJack_Prueba();
         //
         // GET: /Cuenta/
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(int? Order, string  currentFilter, string searchString, int? page)
         {
             ViewBag.filtro = false;
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.IDSortParm = "id_desc";
-            ViewBag.CuentaNombre = "nombre_desc";
-
             if (searchString != null)
                 page = 1;
             else
@@ -37,14 +33,16 @@ namespace ProyectoLojackABM.Controllers
                 qcuentas = qcuentas.Where(s => s.nombre.Contains(searchString));
                 ViewBag.filtro = true;
             }
-
-            switch (sortOrder)
+            switch (Order)
             {
-                case "id_desc":
+                case 0:
                     qcuentas = qcuentas.OrderBy(s => s.idCuenta);
                     break;
-                case "nombre_desc":
+                case 1:
                     qcuentas = qcuentas.OrderBy(s => s.nombre);
+                    break;
+                case 2:
+                    qcuentas = qcuentas.OrderBy(s => s.idClienteControlador);
                     break;
                 default:
                     qcuentas = qcuentas.OrderBy(s => s.idCuenta);

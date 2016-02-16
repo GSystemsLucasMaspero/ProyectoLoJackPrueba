@@ -16,13 +16,9 @@ namespace ProyectoLojackABM.Controllers
         //
         // GET: /Sector/
 
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(int ?Order, string currentFilter, string searchString, int? page)
         {
             ViewBag.filtro = false;
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.IDSortParm = "id_desc";
-            ViewBag.CuentaNombre = "nombre_desc";
-
             if (searchString != null)
                 page = 1;
             else
@@ -38,13 +34,16 @@ namespace ProyectoLojackABM.Controllers
                 ViewBag.filtro = true;
             }
 
-            switch (sortOrder)
+            switch (Order)
             {
-                case "id_desc":
+                case 0:
                     query = query.OrderBy(s => s.idSector);
                     break;
-                case "nombre_desc":
+                case 1:
                     query = query.OrderBy(s => s.nombre);
+                    break;
+                case 2:
+                    query = query.OrderBy(s => s.idCuenta);
                     break;
                 default:
                     query = query.OrderBy(s => s.idSector);

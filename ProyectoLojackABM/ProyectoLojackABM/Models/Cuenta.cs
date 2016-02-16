@@ -23,12 +23,14 @@ namespace ProyectoLojackABM.Models
             this.Sectors = new HashSet<Sector>();
             this.Usuarios = new HashSet<Usuario>();
         }
-    
+
         
         [Display(Name="ID")]
         public int idCuenta { get; set; }
+        [Required(ErrorMessage = "Campo Obligatorio")] 
         [Display(Name = "Nombre")]
         public string nombre { get; set; }
+        [Required(ErrorMessage = "Campo Obligatorio")] 
         [Display(Name = "Cliente")]
         public int idClienteControlador { get; set; }
         public Nullable<bool> mapGuideEnabled { get; set; }

@@ -23,6 +23,7 @@ namespace ProyectoLojackABM.Models
     
         [Display(Name="ID")]
         public int idSector { get; set; }
+        [Required(ErrorMessage = "Campo Obligatorio")] 
         [Display(Name = "NOMBRE")]
         public string nombre { get; set; }
 
@@ -31,6 +32,7 @@ namespace ProyectoLojackABM.Models
         public Nullable<System.DateTime> fechaBaja { get; set; }
         public Nullable<int> usuarioBaja { get; set; }
 
+        [Required(ErrorMessage = "Campo Obligatorio")] 
         [Display(Name = "ID CUENTA")]
         public Nullable<int> idCuenta { get; set; }
     

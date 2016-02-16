@@ -21,7 +21,7 @@ else
 }
 
 
-@using (Html.BeginForm("Index", "Cuenta", FormMethod.Get))
+@using (Html.BeginForm("Index", "Sector", FormMethod.Get))
 {
     <p>
         Buscar por identificador: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
@@ -32,10 +32,13 @@ else
 <table>
     <tr>
         <th>
-            @Html.ActionLink("NOMBRE", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
+            @Html.ActionLink("ID", "Index", new { Order = 0, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("CUENTA")
+            @Html.ActionLink("NOMBRE", "Index", new { Order = 1, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("CUENTA", "Index", new { Order = 2, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
