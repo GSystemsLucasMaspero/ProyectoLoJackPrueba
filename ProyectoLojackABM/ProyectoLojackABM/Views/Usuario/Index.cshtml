@@ -1,90 +1,75 @@
-﻿@model IEnumerable<ProyectoLojackABM.Models.Usuario>
-
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model PagedList.IPagedList<ProyectoLojackABM.Models.Usuario>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (ViewBag.filtro == true)
+    {
+        @Html.ActionLink("Quitar Filtro", "Index")
+    }
+    else
+    {
+        @Html.ActionLink("Agregar Nuevo", "Create")
+    }
 </p>
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idUsuario)
+            @Html.ActionLink("ID", "Index", new { Order = 0, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente.nombre)
+            @Html.ActionLink("CLIENTE", "Index", new { Order = 1, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.userLogin)
+            @Html.ActionLink("USUARIO", "Index", new { Order = 2, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.ActionLink("NOMBRE", "Index", new { Order = 3, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.apellido)
+            @Html.ActionLink("APELLIDO", "Index", new { Order = 4, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sector.nombre)
+            @Html.ActionLink("Sector", "Index", new { Order = 5, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.password)
+            @Html.ActionLink("PASSWORD", "Index", new { Order = 6, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lastExpiredPassword)
+            @Html.ActionLink("OPERADOR", "Index", new { Order = 7, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.operador)
+            @Html.ActionLink("O. SEGURIDAD", "Index", new { Order = 8, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.operadorSeguridad)
+            @Html.ActionLink("SUPERVISOR", "Index", new { Order = 9, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.supervisor)
+            @Html.ActionLink("EMAIL", "Index", new { Order = 10, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            @Html.ActionLink("NIVEL AUDITORIA", "Index", new { Order = 11, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaAlta)
+            @Html.ActionLink("PERFIL WINDOWS", "Index", new { Order = 12, currentFilter = ViewBag.CurrentFilter })
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioAlta)
+            @Html.ActionLink("PERFIL WEB", "Index", new { Order = 13, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaModificacion)
+            @Html.ActionLink("MULTI-PAIS", "Index", new { Order = 14, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioModificacion)
+            @Html.ActionLink("DEMO", "Index", new { Order = 15, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaBaja)
+            @Html.ActionLink("DIAS DEMO", "Index", new { Order = 16, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.usuarioBaja)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nivelAuditoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.perfilWindows)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.perfilWeb)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.multipais)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.demo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.diasDemo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cuenta.nombre)
+            @Html.ActionLink("CUENTA", "Index", new { Order = 17, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -111,9 +96,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastExpiredPassword)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.operador)
@@ -167,11 +149,16 @@
             @Html.DisplayFor(modelItem => item.Cuenta.nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id = item.idUsuario }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idUsuario }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idUsuario })
         </td>
     </tr>
 }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

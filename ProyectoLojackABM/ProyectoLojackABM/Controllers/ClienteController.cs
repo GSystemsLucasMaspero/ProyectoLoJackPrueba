@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.Mvc;
 using ProyectoLojackABM.Models;
 using PagedList;
-using PagedList;
 
 namespace ProyectoLojackABM.Controllers
 {
@@ -114,6 +113,7 @@ namespace ProyectoLojackABM.Controllers
         //
         // GET: /Cliente/Create
 
+        [HttpGet]
         public ActionResult Create()
         {
             ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre");
@@ -123,17 +123,15 @@ namespace ProyectoLojackABM.Controllers
         //
         // POST: /Cliente/Create
 
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Cliente cliente)
         {
             var query = db.Cuentas.OrderByDescending(u => u.idCuenta).Select(u => u.idCuenta).Take(1).FirstOrDefault();
 
             if (ModelState.IsValid)
-            {
-                cliente.idCuenta = Convert.ToInt32(query.ToString()) + 1;
-                db.Clientes.Add(cliente);
-                db.SaveChanges();
+            { 
+                db.Database.ExecuteSqlCommand("INSERT INTO Cliente (nombre, direccion, telefono, localidad, partido, provincia, cuit,email, fax, inhabilitado, usuarioAlta, fechaAlta, usuarioModificacion, fechaModificacion, idPais, idCuenta, vistaInternoDesvios)VALUES(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10,@p11,@p10,@p11,@p12,@p13,@p14)", /*p0*/cliente.nombre,/*p1*/ cliente.direccion,/*p2*/ cliente.telefono,/*p3*/ cliente.localidad,/*p4*/ cliente.partido,/*p5*/ cliente.provincia,/*p6*/ cliente.cuit,/*p7*/ cliente.email,/*p8*/ cliente.fax,/*p9*/ cliente.inhabilitado,/*p10*/ 66/*TEMPORAL*/,/*p11*/ DateTime.Now.ToString("yyyy-MM-dd h:mm:ss.f"),/*p12*/ cliente.idPais,/*p13*/ cliente.idCuenta,/*p14*/ cliente.vistaInternoDesvios);
                 return RedirectToAction("Index");
             }
 
@@ -158,15 +156,13 @@ namespace ProyectoLojackABM.Controllers
         //
         // POST: /Cliente/Edit/5
 
-        [HttpPost]
+        [HttpPost, ActionName ("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Cliente cliente)
+        public ActionResult Edit(Cliente cliente, int id)
         {
             if (ModelState.IsValid)
             {
-                db.Database.ExecuteSqlCommand("UPDATE Cliente SET nombre = @p0, direccion= @p1, telefono= @p2, localidad= @p3, partido= @p4, provincia= @p5, cuit= @p6,email= @p7 ,fax= @p8, inhabilitado= @p9, usuarioAlta= @p10,fechaAlta= @p11,idPais= @p12,idCuenta= @p13, vistaInternoDesvios= @p14 , fechaModificacion = p@15, usuarioModificacion = @p16WHERE idCliente = @p17", cliente.nombre, cliente.direccion, cliente.direccion, cliente.telefono, cliente.localidad, cliente.partido, cliente.provincia, cliente.cuit, cliente.email, cliente.fax, cliente.inhabilitado, 66/*TEMPORAL*/ ,DateTime.Now.ToString("yyyy-MM-dd h:mm:ss.f"),cliente.idPais,cliente.idCuenta,cliente.vistaInternoDesvios,cliente.idCliente);
-                db.SaveChanges();
-
+                db.Database.ExecuteSqlCommand("UPDATE Cliente SET nombre = @p0, direccion= @p1, telefono= @p2, localidad= @p3, partido= @p4, provincia= @p5, cuit= @p6,email= @p7 ,fax= @p8, inhabilitado= @p9,idPais= @p10,idCuenta= @p11, vistaInternoDesvios= @p12 , fechaModificacion = @p13, usuarioModificacion = @p14 WHERE idCliente = @p15", cliente.nombre/*p0*/, cliente.direccion/*p1*/, cliente.telefono/*p2*/, cliente.localidad/*p3*/, cliente.partido/*p4*/, cliente.provincia/*p5*/, cliente.cuit/*p6*/, cliente.email/*p7*/, cliente.fax/*p8*/, cliente.inhabilitado/*p9*/, cliente.idPais/*p10*/, cliente.idCuenta/*p11*/, cliente.vistaInternoDesvios/*p12*/, DateTime.Now.ToString("yyyy-MM-dd h:mm:ss.f")/*p13*/, 66/*TEMPORAL*/ /*p14*/, id/*p15*/);
                 return RedirectToAction("Index");
             }
             ViewBag.idCuenta = new SelectList(db.Cuentas, "idCuenta", "nombre", cliente.idCuenta);
@@ -194,7 +190,7 @@ namespace ProyectoLojackABM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Cliente cliente = db.Clientes.Find(id);
-            db.Database.ExecuteSqlCommand("UPDATE Sector SET fechaBaja = @P0, usuarioBaja = @p1 WHERE idCliente = @p2", DateTime.Now.ToString("yyyy-MM-dd h:mm:ss.f"), 66/*TEMPORAL*/, cliente.idCliente);
+            db.Database.ExecuteSqlCommand("UPDATE Cliente SET fechaBaja = @P0, usuarioBaja = @p1 WHERE idCliente = @p2", DateTime.Now.ToString("yyyy-MM-dd h:mm:ss.f"), 66/*TEMPORAL*/, id);
             return RedirectToAction("Index");
         }
 
