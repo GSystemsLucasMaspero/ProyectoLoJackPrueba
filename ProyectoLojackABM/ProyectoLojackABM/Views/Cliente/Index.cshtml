@@ -18,49 +18,57 @@
         @Html.ActionLink("Agregar Nuevo", "Create")
     }
 </p>
+
+@using (Html.BeginForm("Index", "Cliente", FormMethod.Get))
+{
+    <p>
+        Buscar por identificador: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Buscar" />
+    </p>
+}
 <table>
     <tr>
         <th>
-            @Html.DisplayName("ID")
+            @Html.ActionLink("ID", "Index", new { Order = 0, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("NOMBRE")
+            @Html.ActionLink("NOMBRE", "Index", new { Order = 1, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("DIRECCION")
+            @Html.ActionLink("DIRECCION", "Index", new { Order = 2, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("TELEFONO")
+            @Html.ActionLink("TELEFONO", "Index", new { Order = 3, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("LOCALIDAD")
+            @Html.ActionLink("LOCALIDAD", "Index", new { Order = 4, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("PARTIDO")
+            @Html.ActionLink("PARTIDO", "Index", new { Order = 5, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("PROVINCIA")
+            @Html.ActionLink("PROVINCIA", "Index", new { Order = 6, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("CUIT")
+            @Html.ActionLink("CUIT", "Index", new { Order = 7, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("EMAIL")
+            @Html.ActionLink("EMAIL", "Index", new { Order = 8, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("FAX")
+            @Html.ActionLink("FAX", "Index", new { Order = 9, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayName("INHABILITADO")
+            @Html.ActionLink("INHABILITADO", "Index", new { Order = 10, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.idPais)
+            @Html.ActionLink("PAIS", "Index", new { Order = 11, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cuenta.nombre)
+            @Html.ActionLink("CUENTA", "Index", new { Order = 12, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.vistaInternoDesvios)
+            @Html.ActionLink("VISTA INTERNO", "Index", new { Order = 13, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -110,11 +118,16 @@
             @Html.DisplayFor(modelItem => item.vistaInternoDesvios)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id = item.idCliente }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idCliente }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idCliente })
         </td>
     </tr>
 }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
